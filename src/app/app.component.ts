@@ -14,7 +14,7 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 })
 export class AppComponent {
 
-  userImage: any;
+  userImage: any = 'assets/img/logo.png';
   userName: any;
 
   userId: any = localStorage.getItem('ineat_userid');
@@ -33,8 +33,8 @@ export class AppComponent {
   initializeApp() {
 
     if (this.userData != "") {
-      this.userImage = this.userData.image
-      this.userName = this.userData.first_name;
+      this.userImage = this.userData?.image
+      this.userName = this.userData?.first_name;
     }
 
   }

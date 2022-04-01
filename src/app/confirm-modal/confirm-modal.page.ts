@@ -34,27 +34,33 @@ export class ConfirmModalPage implements OnInit {
   }
 
   confirm() {
-    this.api.post('confirmUserMeal', { userId: this.userId }, '')
-      .subscribe(
-        (result) => {
-          this.common.stopLoading();
-          const res: any = result;
-          if (res.status === 422 || res.status === '422') {
-            let errMsgs = '';
-            for (const x of res.errors) {
-              errMsgs += x + '</br>';
-            }
-            this.common.presentToast(errMsgs, 'danger');
-          }
-          else if (res.status === 200 || res.status === '200') {
-            console.log(res);
-          }
-        },
-        (error) => {
-          console.log(error);
-        });
+     this.modalController.dismiss({
+      'dismissed': true
+    });
+    this.api.navCtrl.navigateRoot('/order-placed');
 
-   
+    // this.api.post('confirmUserMeal', { userId: this.userId }, '')
+    //   .subscribe(
+    //     (result) => {
+    //       this.common.stopLoading();
+    //       const res: any = result;
+    //       if (res.status === 422 || res.status === '422') {
+    //         let errMsgs = '';
+    //         for (const x of res.errors) {
+    //           errMsgs += x + '</br>';
+    //         }
+    //         this.common.presentToast(errMsgs, 'danger');
+    //       }
+    //       else if (res.status === 200 || res.status === '200') {
+    //         this.api.navCtrl.navigateRoot('/order-placed');
+    //         //console.log(res);
+    //       }
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     });
+
+
   }
 
 }

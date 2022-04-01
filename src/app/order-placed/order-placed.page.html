@@ -1,9 +1,53 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>order-placed</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div orderPlaced>
+    <img src="assets/img/orderplaced.png" />
 
+    <h1>Order Placed Successfully</h1>
+    <p>Thank you for placing order with us. Once your order will be accepted will notify you very soon.</p>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="6" class="ion-text-left">
+          Box Name
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          {{ subscriptionData?.plan_box_type }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="ion-text-left">
+          Meal Count
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          {{ subscriptionData?.meal_count }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="ion-text-left">
+          Purchase Amount
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          ${{ subscriptionData?.price }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="ion-text-left">
+          Discount Applied
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          No
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="ion-text-left">
+          Delivery Date
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          {{ userData?.delivery_dates }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-button btncontinue routerLink="/tabs/home">Go To Home</ion-button>
 </ion-content>
