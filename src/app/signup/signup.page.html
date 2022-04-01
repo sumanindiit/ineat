@@ -20,7 +20,7 @@
 		<ion-slides #mySlider>
 			<ion-slide>
 				<div padding>
-					<h4 title>Are you living with a medical condition?</h4>
+					<h4 title>Let’s find your perfect menu. Are you living with a medical condition?</h4>
 
 
 					<ul groupRadio radio-group ngDefaultControl [(ngModel)]="diseaseSuffer">
@@ -38,7 +38,7 @@
 					<ion-item class="form-text error" *ngIf="selectDiseaseError">
 						<ion-label no-margin stacked>Please select at least one option.</ion-label>
 					</ion-item>
-					
+
 					<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
 						</ion-icon>
 					</ion-button>
@@ -52,17 +52,17 @@
 						<li>
 							<input id="dia" type="radio" value="1" name="sufferfrom"
 								[checked]="this.illnesSufferFrom==='1'">
-							<label for="dia"><span></span> Diabetes</label>
+							<label for="dia"><span></span> I have diabetes</label>
 						</li>
 						<li>
 							<input id="coe" type="radio" value="2" name="sufferfrom"
 								[checked]="this.illnesSufferFrom==='2'">
-							<label for="coe"><span></span> Coeliac</label>
+							<label for="coe"><span></span> I’m Coeliac</label>
 						</li>
 						<li>
 							<input id="coro" type="radio" value="3" name="sufferfrom"
 								[checked]="this.illnesSufferFrom==='3'">
-							<label for="coro"><span></span> Coronary Heart Disease</label>
+							<label for="coro"><span></span>I have coronary heart disease</label>
 						</li>
 						<li>
 							<input id="gut" type="radio" value="5" name="sufferfrom"
@@ -79,7 +79,8 @@
 						<ion-label no-margin stacked>Please select at least one disease.</ion-label>
 					</ion-item>
 
-					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					<ion-button (click)="swipePrevious($event)" btnback>
+						<ion-icon name="arrow-back-outline"></ion-icon>
 					</ion-button>
 					<ion-button (click)="swipeNext()" btncontinue>Continue <ion-icon name="arrow-forward-outline">
 						</ion-icon>
@@ -104,7 +105,8 @@
 					<ion-item class="form-text error" *ngIf="preferenceError">
 						<ion-label no-margin stacked>Please select at least one preference.</ion-label>
 					</ion-item>
-					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					<ion-button (click)="swipePrevious($event)" btnback>
+						<ion-icon name="arrow-back-outline"></ion-icon>
 					</ion-button>
 					<ion-button (click)="swipeNext()" btncontinue>Continue <ion-icon name="arrow-forward-outline">
 						</ion-icon>
@@ -113,6 +115,7 @@
 			</ion-slide>
 			<ion-slide>
 				<div padding>
+					<label>Choose your plan preferece</label>
 					<ion-segment mode="ios" [(ngModel)]="tabs" segment>
 						<ng-container *ngFor="let data of planData">
 							<ion-segment-button value="{{ data.planId }}" class=""
@@ -122,7 +125,7 @@
 						</ng-container>
 					</ion-segment>
 					<div form-group>
-						<label>Number of people</label>
+						<label>How many people are eating?</label>
 						<ul groupRadio flexRow radio-group ngDefaultControl [(ngModel)]="noOfPeople">
 							<li>
 								<input id="peo1" type="radio" value="1" (click)="planChanged($event, selectBoxPrice)"
@@ -139,15 +142,25 @@
 									(click)="planChanged($event, selectBoxPrice)">
 								<label for="peo3"><span></span> 3</label>
 							</li>
+							<li>
+								<input id="peo3" type="radio" value="4" name="people"
+									(click)="planChanged($event, selectBoxPrice)">
+								<label for="peo3"><span></span>4</label>
+							</li>
 						</ul>
 					</div>
 					<div form-group>
-						<label>Recipes per week</label>
+						<label>How many mealtimes is it for?</label>
 						<ul groupRadio flexRow radio-group ngDefaultControl [(ngModel)]="recepiesSelect">
 							<li>
-								<input id="recipesweek1" type="radio" value="4"
+								<input id="recipesweek1" type="radio" value="3"
+									(click)="planChanged($event, selectBoxPrice)" name="recipesweek" >
+								<label for="recipesweek1"><span></span> 3</label>
+							</li>
+							<li>
+								<input id="recipesweek4" type="radio" value="4"
 									(click)="planChanged($event, selectBoxPrice)" name="recipesweek" checked>
-								<label for="recipesweek1"><span></span> 4</label>
+								<label for="recipesweek4"><span></span> 4</label>
 							</li>
 							<li>
 								<input id="recipesweek2" type="radio" value="5" name="recipesweek"
@@ -172,8 +185,9 @@
 						<p><b>First Box Total </b><span><b>£{{ finalPrice }}</b></span></p>
 					</div>
 				</div>
-				<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
-					</ion-button>
+				<ion-button (click)="swipePrevious($event)" btnback>
+					<ion-icon name="arrow-back-outline"></ion-icon>
+				</ion-button>
 				<ion-button btncontinue (click)="swipeNext($event)">Continue <ion-icon name="arrow-forward-outline">
 					</ion-icon>
 				</ion-button>
@@ -208,8 +222,9 @@
 							<li><a href="javascript:void(0)"><img src="assets/img/apple.svg" alt=""></a></li>
 						</ul>
 					</form>
-					
-					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+
+					<ion-button (click)="swipePrevious($event)" btnback>
+						<ion-icon name="arrow-back-outline"></ion-icon>
 					</ion-button>
 				</div>
 			</ion-slide>
@@ -428,10 +443,12 @@
 							</li>
 						</ul>
 					</div>
-					<div class="flexBTn">						
-						<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					<div class="flexBTn">
+						<ion-button (click)="swipePrevious($event)" btnback>
+							<ion-icon name="arrow-back-outline"></ion-icon>
 						</ion-button>
-						<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon
+								name="arrow-forward-outline">
 							</ion-icon>
 						</ion-button>
 					</div>
@@ -534,11 +551,13 @@
 						</ul>
 					</div>
 					<div class="flexBTn">
-					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
-					</ion-button>
-					<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
-						</ion-icon>
-					</ion-button>
+						<ion-button (click)="swipePrevious($event)" btnback>
+							<ion-icon name="arrow-back-outline"></ion-icon>
+						</ion-button>
+						<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon
+								name="arrow-forward-outline">
+							</ion-icon>
+						</ion-button>
 					</div>
 				</div>
 			</ion-slide>
@@ -638,9 +657,11 @@
 						</ul>
 					</div>
 					<div class="flexBTn">
-						<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+						<ion-button (click)="swipePrevious($event)" btnback>
+							<ion-icon name="arrow-back-outline"></ion-icon>
 						</ion-button>
-						<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon
+								name="arrow-forward-outline">
 							</ion-icon>
 						</ion-button>
 					</div>
