@@ -1,0 +1,161 @@
+ion-header{
+	ion-toolbar{
+		border:0 !important;
+		--height: 50px;
+		height: 50px;
+		padding-top:3px; 
+	}
+	ion-title{
+		font-weight: 500;
+	}
+}
+
+.header-md:after{
+	display: none;
+}
+ion-content {
+	
+	.main-padding {
+		padding: 0px 15px 12px;
+		float: left;
+		width: 100%;
+		min-height: 100%;
+	}
+	.catr-box {
+		text-align: center;
+		.img-bag {
+			background: #7d8d98;
+			text-align: center;
+			width: 100%;
+			height: 60px;
+			border-radius: 7px;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			img {
+				height: 40px;
+			}
+		}
+		h4 {
+			margin: 0px;
+			font-size: 11px;
+			color: #5f666b;
+			 
+			margin-top: 5px;
+		}
+	}
+	.servic-near {
+		float: left;
+		width: 100%;
+		display: block;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.liat-st {
+	    overflow: visible;
+		background: transparent;
+		ion-card.detals   {
+			margin: 0px;
+			padding: 10px 10px 11px;
+			margin-bottom: 12px;
+			background: #fff;
+			position: relative;
+			box-shadow: none;
+			border: none;
+			border-radius: 10px;
+			display: -webkit-box;
+			display: flex;
+			-webkit-box-pack: justify;
+			justify-content: space-between;
+			-webkit-box-align: center;
+			align-items: center;
+			padding-left: 75px;
+			.cont-alls {
+				display: flex;
+				width: 100%;
+				height: 100%;
+				ion-card-subtitle {
+					font-size: 12px;
+					color: #12aaf2;
+					 
+					font-weight: 300;
+					letter-spacing: 0.5px;
+					text-transform: capitalize;
+				}
+				ul.rirht-sr {
+					display: inline-block;
+					float: right;
+					padding: 0px;
+					margin: 0px;
+					list-style: none;
+					li {
+						display: inline-block;
+						color: #f69834;
+						margin-right: 1px;
+					}
+				}
+				ion-checkbox.check-desins {
+					float: right;
+					width: 15px;
+					height: 15px;
+					margin-left: 6px;
+				}
+				.pric-loc {
+					color: #7d8d98;
+					 
+					font-size: 10px;
+					font-weight: 100;
+					letter-spacing: 0.5px;
+					 margin-top: 5px;
+					span {
+						display: block;
+						font-size: 10px;
+						color: #173143;
+						letter-spacing: 0px;
+						font-weight: 600;
+						margin-top: 3px;
+					}
+				}
+				.mrg-n5 { margin:0 -5px;}
+			}
+			h5.name-trs {
+				margin: 0px;
+				color: #565656;
+				font-size: 14px;
+				font-weight: 500;
+				display: block;
+				line-height: 18px;
+				span{
+					display: block;
+					margin:3px 0 0;
+					font-size: 13px;
+				}
+			}
+			p.emainb {
+				margin: 0px 0 0 auto;
+				color: #a7a7a7;
+				font-size: 10px;
+				margin-top: 7px;
+				font-weight: 500;
+				min-width: 70px;
+				text-align: right;				
+			}
+			.img-boxda {
+				position: absolute;
+				left: 10px;
+				top: 11px;
+				text-align: center;
+				img {
+					width: 45px;
+					height: 45px;
+					-o-object-fit: cover;
+					object-fit: cover;
+					border-radius: 50%;
+					/*background: rgba(1, 164, 241, 0.2);*/
+					/*padding: 3px;*/
+				}
+			}
+		}
+	}
+}

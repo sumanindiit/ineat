@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <div flexHeader>
+      <div backHead>
+        <ion-back-button [text]="" defaultHref="/tabs/settings" icon="chevron-back-outline"></ion-back-button>
+      </div>
+      <ion-title class="ion-text-center">Refer A Friend</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div main-im>
+    <img src="assets/img/bg-m.png" />
+  </div>
+  <p slomo-tx>Refer a Friend by using link<br> or via email.</p>
+  <div invite-fields>
+    <ion-list>
+      <ion-item detail="false" lines="none">
+        <ion-input value="" placeholder="Enter email address" [(ngModel)]="userEmail"></ion-input>
+        <span (click)="sendInvite()">Invite</span>
+
+      </ion-item>
+      <span class="error" *ngIf="errors.indexOf(userEmail) >= 0 && is_submit == true">
+        Please enter email.
+      </span>
+    </ion-list>
+  </div>
+  <div subscriptionsBtm>
+    <p linkType>- or copy this link -</p>
+    <div copyText>
+      <a>{{ referLink }}</a>
+      <ion-icon name="documents-outline" (click)="copyLink(referLink)"></ion-icon>
+    </div>
+  </div>
+
+</ion-content>

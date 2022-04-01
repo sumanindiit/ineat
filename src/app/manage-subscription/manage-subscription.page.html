@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+     <div flexHeader>
+        <div backHead>
+          <ion-back-button [text]="" defaultHref="/tabs/settings"  icon="chevron-back-outline"></ion-back-button>
+        </div>
+        <ion-title>Manage Subscription</ion-title>
+     </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <div padding>
+  <div manage-subs>
+     <h4>Current Plan</h4>
+     <div imgMain>
+        <img src="assets/img/tomatto.png"/>
+        <div activtx>
+          <ion-icon name="checkmark-circle-outline"></ion-icon> Active
+        </div>
+     </div>
+     <h5>{{ subscriptionData?.plan_box_type }}</h5>
+     <div tx-cn>
+        <div inline-bl>
+           <p>Meal Count</p>
+           <h6>{{ subscriptionData?.meal_count }}</h6>
+        </div>
+        <div inline-bl>
+           <p>Price</p>
+           <h6>${{ subscriptionData?.price }}</h6>
+        </div>
+     </div>
+     <div packagedetails>
+        <div packageitem><ion-icon name="checkmark-outline"></ion-icon> {{ subscriptionData?.meal_count }} meals for {{ subscriptionData?.people_count }} people per week.</div>
+        <div packageitem><ion-icon name="checkmark-outline"></ion-icon> {{ totalMeals }} servings at ${{ singlePrice  }} per serving.</div>
+     </div>
+     <ng-container *ngIf="isCancelled == 0">
+         <ion-button class="cancl-sb" (click)="cancelSubscription(subscriptionData?.recipes_ids);">Cancel Subscription</ion-button>
+     </ng-container>
+    <ng-container *ngIf="isCancelled == 1">
+         <ion-button class="cancl-sb">Cancelled</ion-button>
+     </ng-container>
+  </div>
+   <ion-button btnsave routerLink="/signup" >Get New Plan</ion-button>
+</div>
+</ion-content>

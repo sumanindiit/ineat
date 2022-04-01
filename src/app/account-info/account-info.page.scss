@@ -1,0 +1,242 @@
+ion-segment {
+	border-radius: 14px;
+	background: transparent;
+	border: 1px solid #f3f3f3;
+	box-shadow: none;
+	ion-segment-button {
+		--border-radius: 14px;
+		color: #888;
+		&.segment-button-checked {
+			--indicator-box-shadow: none;
+			--indicator-color: var(--ion-color-secondary);
+			color: #fff;
+		}
+		h6 {
+			margin: 10px 0;
+			font-size: 13px;
+		}
+	}
+}
+[padding] {
+	padding-bottom: 0;
+}
+
+[accouninfo-page] {
+	.top-ims-bx {
+		background-size: cover;
+		position: relative;
+		padding: 30px 25px 15px 25px;
+		.img-prs {
+			position: relative;
+			margin-top: 0;
+			display: flex;
+			align-items: center;
+			.left-box {
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				position: relative;
+				flex: 0 0 100px;
+				margin-right: 15px;
+
+				img {
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+			.con-pr {
+				flex: 1;
+				h4 {
+					margin: 0px;
+					color: #333333;
+					font-size: 18px;
+					font-weight: 500;
+				}
+				p {
+					color: #000000b3;
+					font-size: 13px;
+					margin-top: 3px;
+					font-weight: 500;
+					margin-bottom: 7px;
+				}
+				ion-button {
+					font-size: 12px;
+					height: 30px;
+					--border-radius: 50px;
+					margin: 0;
+					ion-icon {
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+	[personal-info] {
+		padding: 10px 25px 15px 25px;
+		ion-row {
+			ion-col {
+				margin-bottom: 10px;
+				label {
+					font-size: 14px;
+					color: #777;
+					display: block;
+					margin: 0;
+					font-weight: 500;
+				}
+				ion-input,
+				ion-datetime,
+				ion-textarea {
+					border-bottom: 1px solid #c4c4c4;
+					border-radius: 0;
+					font-size: 15px;
+					color: #222;
+					--padding-start: 0;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+	[title-h] {
+		font-size: 17px;
+		color: #fd8a5e;
+		border-left: 2px solid #fd8a5e;
+		padding-left: 10px;
+		margin: 0 0 10px;
+		font-weight: 600;
+		line-height: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		[addbtn] {
+			color: #1fa779;
+			display: flex;
+			align-items: center;
+			ion-icon {
+				margin-right: 5px;
+			}
+		}
+	}
+	[password] {
+		position: relative;
+		padding: 30px 25px 15px 25px;
+		[password-form] {
+			ion-row {
+				ion-col {
+					margin: 10px 0 0;
+					label {
+						font-size: 14px;
+						color: #777;
+						display: block;
+						margin: 0;
+						font-weight: 500;
+						margin: 0 0 10px;
+					}
+					ion-input {
+						border: 1px solid #eee;
+						border-radius: 5px;
+						font-size: 14px;
+						color: #222;
+						padding: 10px;
+					}
+				}
+				[btnsave] {
+					height: 50px;
+					border-radius: 10px;
+					width: 100%;
+					letter-spacing: 0;
+					margin-top: 25px;
+				}
+			}
+		}
+	}
+	[payment-options] {
+		position: relative;
+		padding: 30px 25px 15px 25px;
+		ion-radio-group {
+			padding: 15px 0 0;
+			display: block;
+			ion-item {
+				--background: transparent;
+				--background-hover: transparent;
+				--background-focused: transparent;
+				--inner-padding-end: 0px;
+				margin-bottom: 15px;
+				border-radius: 20px;
+				transition: 0.3s;
+				display: flex;
+				align-items: center;
+				font-size: 16px;
+				justify-content: left;
+				border: 1px solid #eee;
+				color: #333;
+				width: 100%;
+				position: relative;
+				--padding-end: 15px;
+				--padding-top: 15px;
+				--padding-bottom: 15px;
+				--padding-start: 15px;
+				ion-label {
+					margin: 0px;
+					display: flex;
+					align-items: center;
+					h2 {
+						font-size: 14px;
+						display: flex;
+						justify-content: space-between;
+						font-weight: 600;
+						color: var(--ion-color-black);
+						margin: 0px;
+						align-items: center;
+						span {
+							margin: 0 10px;
+							z-index: 1111;
+						}
+					}
+					[price-title] {
+						margin-left: auto;
+						font-weight: 600;
+						color: var(--ion-color-medium);
+					}
+				}
+				span {
+					z-index: 1111;
+				}
+				ion-radio {
+					margin: 0;
+				}
+				[pen-del] {
+					ion-icon {
+						margin: 0 4px;
+					}
+					[green] {
+						color: #1fa779;
+					}
+					[red] {
+						color: #ff4646;
+					}
+				}
+				&.item-radio-checked {
+					--background: #1fa779;
+					--background-hover: #1fa779;
+					--background-focused: #1fa779;
+					background: #1fa779;
+					border-color: #1fa779;
+					ion-radio {
+						--color-checked: #ffffff;
+					}
+					ion-label {
+						h2 {
+							color: var(--ion-color-white);
+						}
+					}
+					[pen-del] {
+						ion-icon {
+							color: var(--ion-color-white) !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <div flexHeader>
+      <div backHead>
+        <ion-back-button [text]="" defaultHref="/account-info"  icon="chevron-back-outline"></ion-back-button>
+      </div>
+      <ion-title class="ion-text-center">Add Card</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <div addcardform>
+      <form [formGroup]="addCardForm" (ngSubmit)="onAddCardSubmit()" novalidate>
+        <ion-row>
+          <ion-col size="12">
+            <label>Card Holder Name* </label>
+            <ion-input type="text" formControlName="cardName"></ion-input>
+            <ion-item class="form-text error" *ngIf="submitcardAttempt && erroraddCardCtr.cardName.errors?.required">
+              <ion-label no-margin stacked>Please enter card name.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <label>Card Number* </label>
+            <ion-input type="text" formControlName="cardNumber"></ion-input>
+            <ion-item class="form-text error" *ngIf="submitcardAttempt && erroraddCardCtr.cardNumber.errors?.required">
+              <ion-label no-margin stacked>Please enter card number.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <label>Card Type*</label>
+            <ion-select placeholder="Select" interface="action-sheet" formControlName="cardType">
+              <ion-select-option value="Master Card">Master Card</ion-select-option>
+              <ion-select-option value="Visa Card">Visa Card</ion-select-option>
+              <ion-select-option value="Debit Card">Debit Card</ion-select-option>
+              <ion-select-option value="Credit Card">Credit Card</ion-select-option>
+            </ion-select>
+
+            <ion-item class="form-text error" *ngIf="submitcardAttempt && erroraddCardCtr.cardType.errors?.required">
+              <ion-label no-margin stacked>Please select card type.</ion-label>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12">
+            <label>Expiry Month* </label>
+            <ion-datetime displayFormat="MM" formControlName="cardExpiryMonth" value=""></ion-datetime>
+            <ion-item class="form-text error"
+              *ngIf="submitcardAttempt && erroraddCardCtr.cardExpiryMonth.errors?.required">
+              <ion-label no-margin stacked>Please select expiry month.</ion-label>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12">
+            <label>Expiry Year* </label>
+            <ion-datetime [min]="minDate" [max]="maxData" displayFormat="YYYY" formControlName="cardExpiryYear"
+              value=""></ion-datetime>
+            <ion-item class="form-text error"
+              *ngIf="submitcardAttempt && erroraddCardCtr.cardExpiryYear.errors?.required">
+              <ion-label no-margin stacked>Please select expiry year.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <label>CVV* </label>
+            <ion-input formControlName="cardCvv" type="text"></ion-input>
+            <ion-item class="form-text error" *ngIf="submitcardAttempt && erroraddCardCtr.cardCvv.errors?.required">
+              <ion-label no-margin stacked>Please enter card cvv.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="ion-no-padding" lines="none">
+              <ion-checkbox mode="ios" color="tertiary"  formControlName="default"  slot="start"></ion-checkbox>
+            <ion-label>Mark as Default</ion-label>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" btnsave>Add</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+
+  </div>
+</ion-content>

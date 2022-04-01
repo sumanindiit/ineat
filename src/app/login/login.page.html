@@ -1,0 +1,44 @@
+
+
+<ion-content botmbg>
+	<div padding>
+		<a href="javascript:void(0)" logo><img src="assets/img/logo.png" alt=""></a>
+		<form [formGroup]="logInForm" (ngSubmit)="onSubmit()" novalidate>
+			<ion-label>Email</ion-label>
+			<ion-item>
+			  <ion-input formControlName="email" type="text" value="jonathandavis@gmail.com" placeholder="Email"></ion-input>
+			</ion-item>
+			<ion-item lines="none" class="form-text error" *ngIf="submitAttempt && errorCtr.email.errors?.required">
+				<ion-label no-margin stacked>Email is required.</ion-label>
+			</ion-item>
+			<ion-item lines="none" class="form-text error" *ngIf="submitAttempt && errorCtr.email.errors?.pattern">
+				<ion-label no-margin stacked>Enter valid email.</ion-label>
+			</ion-item>
+
+			<ion-label>Password</ion-label>
+			<ion-item>
+			  <ion-input paswd  [type]="passwordType"   formControlName="password"   placeholder="Password"></ion-input>
+			  <a href="javascript:void(0)" (click)='hideShowPassword()' showpas >{{ passwordIcon }}</a>
+			</ion-item>
+			<ion-item lines="none" class='form-text error'*ngIf="submitAttempt && errorCtr.password.errors?.required">
+				<ion-label no-margin stacked>Password is required.</ion-label>
+			</ion-item>
+			<ion-item lines="none" class='form-text error' *ngIf="submitAttempt && errorCtr.password.errors?.pattern" >
+				<ion-label no-margin stacked wrap-text>Password must be between 8 and 12 characters.</ion-label>
+			</ion-item>
+			
+			<a href="" forgot>Forgot Password?</a>
+			
+			<ion-button btn-login type="submit" >Continue <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+
+			<small orlogin>or sign in with</small>
+			<ul social>
+				<li><a href="javascript:void(0)" (click)="googleLogin()"><img src="assets/img/google.svg" alt=""></a></li>
+				<li><a href="javascript:void(0)" (click)="doFbLogin()"><img src="assets/img/facebook.svg" alt=""></a></li>
+				<li><a href="javascript:void(0)"><img src="assets/img/apple.svg" alt=""></a></li>
+			</ul>
+
+			<a href="javascript:void(0)" dont routerLink="/signup">Don't have an account? <b>Sign up</b></a>
+		</form>
+	</div>
+</ion-content>

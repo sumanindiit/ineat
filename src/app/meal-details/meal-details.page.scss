@@ -1,0 +1,101 @@
+
+ion-content{
+    .mealDetails{
+        padding: 10px 15px 100px 15px;
+        h4{
+            margin:0 0 12px 0;
+        }
+
+        .imgRealtive{
+            position: relative;
+            img{
+                border-radius: 20px;
+                height: 175px;
+                object-fit: cover;
+                width: 100%;
+            }
+            [playVideo]{
+                   position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 36px;
+                    height: 58px;
+            }
+        }
+
+        ion-icon[name="remove-circle"],
+        ion-icon[name="add-circle"]
+        {
+            color: #FD8A5E;
+            font-size: 31px;
+        
+        }
+
+        h5{
+            color: #FD8A5E;
+            font-size: 17px;
+            border-left: 2px solid #FD8A5E;
+            padding-left: 10px;
+            margin-bottom: 17px;
+            font-weight: 600;
+        }
+
+        [d-flex]{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .ionbox{
+                --inner-padding-end: 0;
+            .quanTity{
+                display: flex;
+                align-items: center;
+                h4{
+                    margin: 0;
+                    color: #000000;
+                    opacity: 0.5;
+                    min-width: 27px;
+                    text-align: center;
+                }
+            }
+
+            .ionSelect
+            {
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                border-radius: 5px;
+                padding: 2px 8px;
+                font-size: 14px;
+                    width: 100%;
+                margin: 0 5px;
+                color: #666666;
+                --placeholder-opacity: 1;
+            }
+        }
+
+        ion-grid{
+            ion-row{
+                margin-bottom: 15px;
+                ion-col{
+                    font-size: 15px;
+                    &.ion-text-right{
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    
+    }
+
+    [btncontinue]{
+            position: fixed;
+    bottom: 0px;
+    z-index: 10;
+    width: 90%;
+    height: 45px;
+    font-size: 16px;
+    }
+
+}

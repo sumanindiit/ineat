@@ -1,0 +1,173 @@
+<ion-header>
+	<ion-toolbar>
+		<div flexHeader>
+			<div backHead>
+				<ion-back-button></ion-back-button>
+			</div>
+			<ion-title>Bowl Details</ion-title>
+			<div ml-auto>
+				<ion-button fill="none"><ion-icon name="arrow-redo-outline"></ion-icon></ion-button>
+				<ion-button toggle><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
+			</div>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div >
+		<ion-segment mode="ios" [(ngModel)]="tabs" segment>
+			<ion-segment-button value="posts">
+				<ion-icon name="copy"></ion-icon>
+				<h6>Posts</h6>
+			</ion-segment-button>
+			<ion-segment-button value="info">
+				<ion-icon name="information"></ion-icon>
+				<h6>Information</h6>
+			</ion-segment-button>
+			<ion-segment-button value="search">
+				<ion-icon name="search"></ion-icon>
+				<h6>Search</h6>
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+
+		<div feedPage [ngSwitch]="tabs">
+			<div *ngSwitchCase="'posts'">
+				
+				<div posts>
+					<div postinner class="ion-padding">
+						<ion-item lines="none" class="ion-no-padding"> 
+							<ion-avatar>
+								<img src="assets/img/bowl1.png"/>
+							</ion-avatar>
+							<ion-label>
+								<h2 routerLink="/otherprofile">Ineat Official <span>8 min</span></h2>
+							</ion-label>
+							<ion-buttons slot="end"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
+						</ion-item>
+						<p desc>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+						<ion-card class="ion-no-margin">
+							<ion-card-content class="ion-no-padding">
+								<div commentcounts>
+									<div posticons>
+										<a href="javascript:void(0)" hearticon><ion-icon name="heart"></ion-icon></a>
+										<a href="javascript:void(0)"><ion-icon name="chatbubble-outline"></ion-icon></a>
+										<a href="javascript:void(0)"><ion-icon name="arrow-redo-outline"></ion-icon></a>
+									</div>
+									<ion-row>
+										<ion-col size="8" pl-0>
+											<p>Liked <b>yanna_summer</b> and <b>12k more</b></p>
+										</ion-col>
+										<ion-col size="4" class="ion-text-right" pr-0>
+											<p>Comments  <b>15</b></p>
+										</ion-col>
+									</ion-row>
+
+								</div>
+								<ion-item lines="none" class="ion-no-padding"> 
+									<ion-avatar>
+										<img src="assets/img/img2.jpg" alt="" />
+									</ion-avatar>
+									<ion-label>
+										<h2>Moa Rotunia . <span>2 min</span></h2>
+										<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+										<div btns>
+											<a href="javascript:void(0)">Like</a>
+										</div>
+									</ion-label>
+								</ion-item>
+							</ion-card-content>
+						</ion-card>
+					</div>
+					<div postinner class="ion-padding">
+						<ion-item lines="none" class="ion-no-padding"> 
+							<ion-avatar>
+								<img src="assets/img/bowl1.png"/>
+							</ion-avatar>
+							<ion-label>
+								<h2 routerLink="/otherprofile">Ineat Official <span>8 min</span></h2>
+							</ion-label>
+							<ion-buttons slot="end"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
+						</ion-item>
+						<p desc>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+						<ion-card class="ion-no-margin">
+							<ion-card-content class="ion-no-padding">
+								<div commentcounts>
+									<div posticons>
+										<a href="javascript:void(0)" hearticon><ion-icon name="heart"></ion-icon></a>
+										<a href="javascript:void(0)"><ion-icon name="chatbubble-outline"></ion-icon></a>
+										<a href="javascript:void(0)"><ion-icon name="arrow-redo-outline"></ion-icon></a>
+									</div>
+									<ion-row>
+										<ion-col size="8" pl-0>
+											<p>Liked <b>yanna_summer</b> and <b>12k more</b></p>
+										</ion-col>
+										<ion-col size="4" class="ion-text-right" pr-0>
+											<p>Comments  <b>15</b></p>
+										</ion-col>
+									</ion-row>
+
+								</div>
+								<ion-item lines="none" class="ion-no-padding"> 
+									<ion-avatar>
+										<img src="assets/img/img2.jpg" alt="" />
+									</ion-avatar>
+									<ion-label>
+										<h2>Moa Rotunia . <span>2 min</span></h2>
+										<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+										<div btns>
+											<a href="javascript:void(0)">Like</a>
+										</div>
+									</ion-label>
+								</ion-item>
+							</ion-card-content>
+						</ion-card>
+					</div>
+				</div>
+			</div>
+
+			<div infoTab *ngSwitchCase="'info'">
+				<div titlePage>
+					<h5>Technical Event Suppot</h5>
+					<small>3 month ago</small>
+				</div>
+				<img src="assets/img/bowl2.jpg" alt="" mainImg>
+				<div allmembers>
+					<span><img src="assets/img/img1.jpg" alt=""><img src="assets/img/img2.jpg" alt=""><img src="assets/img/img3.jpg" alt=""><img src="assets/img/img4.jpg" alt=""><img src="assets/img/img5.jpg" alt=""> </span> <p>+ 253k members</p>
+				</div>
+				<p para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+<br><br>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+<br><br>
+Lorem ipsum dolor sit amet, consectetuer adipiscing... </p>
+			</div>
+
+			<div searchTab *ngSwitchCase="'search'">
+				<div form>
+					<ion-row>
+						<ion-col>
+							<label>Search Topic</label>
+							<ion-input value="" placeholder=""></ion-input>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col>
+							<h6>Related Topics</h6>
+							<ul>
+								<li><a href=""><ion-icon name="arrow-forward-outline"></ion-icon> Contrary to popular</a></li>
+								<li><a href=""><ion-icon name="arrow-forward-outline"></ion-icon> long established </a></li>
+								<li><a href=""><ion-icon name="arrow-forward-outline"></ion-icon> Hampden-Sydney </a></li>
+								<li><a href=""><ion-icon name="arrow-forward-outline"></ion-icon> Bonorum et Malorum</a></li>
+							</ul>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col>
+							<ion-button btnsave>Search</ion-button>
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+		</div>
+
+</ion-content>

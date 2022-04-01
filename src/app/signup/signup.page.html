@@ -1,0 +1,646 @@
+<ion-header>
+	<h3>{{ stepTitle }}</h3>
+	<ul steps>
+		<li class="active">
+			<ion-icon name="checkmark"></ion-icon>
+		</li>
+		<li [ngClass]="{'active': active1 === 'step1'}">
+			<ion-icon name="checkmark"></ion-icon>
+		</li>
+		<li [ngClass]="{'active': active2 === 'step2'}">
+			<ion-icon name="checkmark"></ion-icon>
+		</li>
+		<li [ngClass]="{'active': active3 === 'step3'}"></li>
+		<li #active4></li>
+	</ul>
+</ion-header>
+
+<ion-content botmbg>
+	<div slideBox>
+		<ion-slides #mySlider>
+			<ion-slide>
+				<div padding>
+					<h4 title>Are you living with a medical condition?</h4>
+
+
+					<ul groupRadio radio-group ngDefaultControl [(ngModel)]="diseaseSuffer">
+						<li>
+							<input id="yes" type="radio" value="Yes" name="disease-suffer"
+								[checked]="this.diseaseSuffer==='Yes'">
+							<label for="yes"><span></span> Yes</label>
+						</li>
+						<li>
+							<input id="no" type="radio" value="No" name="disease-suffer"
+								[checked]="this.diseaseSuffer==='No'">
+							<label for="no"><span></span> No</label>
+						</li>
+					</ul>
+					<ion-item class="form-text error" *ngIf="selectDiseaseError">
+						<ion-label no-margin stacked>Please select at least one option.</ion-label>
+					</ion-item>
+					
+					<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						</ion-icon>
+					</ion-button>
+
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div padding>
+					<h4 title>What illness are you living with?</h4>
+					<ul groupRadio radio-group ngDefaultControl [(ngModel)]="illnesSufferFrom">
+						<li>
+							<input id="dia" type="radio" value="1" name="sufferfrom"
+								[checked]="this.illnesSufferFrom==='1'">
+							<label for="dia"><span></span> Diabetes</label>
+						</li>
+						<li>
+							<input id="coe" type="radio" value="2" name="sufferfrom"
+								[checked]="this.illnesSufferFrom==='2'">
+							<label for="coe"><span></span> Coeliac</label>
+						</li>
+						<li>
+							<input id="coro" type="radio" value="3" name="sufferfrom"
+								[checked]="this.illnesSufferFrom==='3'">
+							<label for="coro"><span></span> Coronary Heart Disease</label>
+						</li>
+						<li>
+							<input id="gut" type="radio" value="5" name="sufferfrom"
+								[checked]="this.illnesSufferFrom==='5'">
+							<label for="gut"><span></span> IBS & IBD</label>
+						</li>
+						<li>
+							<input id="other" type="radio" value="6" name="sufferfrom"
+								[checked]="this.illnesSufferFrom==='6'">
+							<label for="other"><span></span> Other</label>
+						</li>
+					</ul>
+					<ion-item class="form-text error" *ngIf="diseaseError">
+						<ion-label no-margin stacked>Please select at least one disease.</ion-label>
+					</ion-item>
+
+					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+					<ion-button (click)="swipeNext()" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						</ion-icon>
+					</ion-button>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div padding>
+					<h4 title>Tell us how you prefer to eat</h4>
+					<ul groupRadio radio-group ngDefaultControl [(ngModel)]="userPreference">
+						<li>
+							<input id="vege" type="radio" value="2" name="preference"
+								[checked]="this.userPreference==='2'">
+							<label for="vege"><span></span> Vegetarian</label>
+						</li>
+						<li>
+							<input id="meat" type="radio" value="1" name="preference"
+								[checked]="this.userPreference==='1'">
+							<label for="meat"><span></span> Meat and Vegetables</label>
+						</li>
+					</ul>
+					<ion-item class="form-text error" *ngIf="preferenceError">
+						<ion-label no-margin stacked>Please select at least one preference.</ion-label>
+					</ion-item>
+					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+					<ion-button (click)="swipeNext()" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						</ion-icon>
+					</ion-button>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div padding>
+					<ion-segment mode="ios" [(ngModel)]="tabs" segment>
+						<ng-container *ngFor="let data of planData">
+							<ion-segment-button value="{{ data.planId }}" class=""
+								(click)="planChanged($event, data.pricePerMeal)">
+								<h6>{{ data.boxCategory }}</h6>
+							</ion-segment-button>
+						</ng-container>
+					</ion-segment>
+					<div form-group>
+						<label>Number of people</label>
+						<ul groupRadio flexRow radio-group ngDefaultControl [(ngModel)]="noOfPeople">
+							<li>
+								<input id="peo1" type="radio" value="1" (click)="planChanged($event, selectBoxPrice)"
+									name="people" checked>
+								<label for="peo1"><span></span> 1</label>
+							</li>
+							<li>
+								<input id="peo2" type="radio" value="2" name="people"
+									(click)="planChanged($event, selectBoxPrice)">
+								<label for="peo2"><span></span> 2</label>
+							</li>
+							<li>
+								<input id="peo3" type="radio" value="3" name="people"
+									(click)="planChanged($event, selectBoxPrice)">
+								<label for="peo3"><span></span> 3</label>
+							</li>
+						</ul>
+					</div>
+					<div form-group>
+						<label>Recipes per week</label>
+						<ul groupRadio flexRow radio-group ngDefaultControl [(ngModel)]="recepiesSelect">
+							<li>
+								<input id="recipesweek1" type="radio" value="4"
+									(click)="planChanged($event, selectBoxPrice)" name="recipesweek" checked>
+								<label for="recipesweek1"><span></span> 4</label>
+							</li>
+							<li>
+								<input id="recipesweek2" type="radio" value="5" name="recipesweek"
+									(click)="planChanged($event, selectBoxPrice)">
+								<label for="recipesweek2"><span></span> 5</label>
+							</li>
+							<li>
+								<input id="recipesweek3" type="radio" value="6" name="recipesweek"
+									(click)="planChanged($event, selectBoxPrice)">
+								<label for="recipesweek3"><span></span> 6</label>
+							</li>
+						</ul>
+					</div>
+					<div form-group>
+						<label>Both type</label>
+						<p>{{ recepiesSlect }} meals for {{ peopleSelect }} people per week<br>
+							{{ totalServing }} servings at £{{ selectBoxPrice }} per serving.</p>
+					</div>
+					<div form-group subtotal>
+						<p>Box Price <span>£{{ totalPrice }}</span></p>
+						<p>Shipping <span>£{{ shippingPrice }}</span></p>
+						<p><b>First Box Total </b><span><b>£{{ finalPrice }}</b></span></p>
+					</div>
+				</div>
+				<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+				<ion-button btncontinue (click)="swipeNext($event)">Continue <ion-icon name="arrow-forward-outline">
+					</ion-icon>
+				</ion-button>
+			</ion-slide>
+			<ion-slide>
+				<div padding widthfull>
+					<form>
+						<ion-label>Username</ion-label>
+						<ion-item>
+							<ion-input name="username" type="text" [(ngModel)]="userName" placeholder="Username">
+							</ion-input>
+						</ion-item>
+
+						<ion-label>Password</ion-label>
+						<ion-item>
+							<ion-input name="password" paswd type="password" [(ngModel)]="password"
+								placeholder="Password">
+							</ion-input>
+							<a href="javascript:void(0)" showpas>Show</a>
+						</ion-item>
+						<ion-item class="form-text error" *ngIf="registerError">
+							<ion-label no-margin stacked>Please fill above details.</ion-label>
+						</ion-item>
+						<ion-button btn-login (click)="swipeNext($event)">Continue <ion-icon
+								name="arrow-forward-outline"></ion-icon>
+						</ion-button>
+
+						<small orlogin>or sign in with</small>
+						<ul social>
+							<li><a href="javascript:void(0)"><img src="assets/img/google.svg" alt=""></a></li>
+							<li><a href="javascript:void(0)"><img src="assets/img/facebook.svg" alt=""></a></li>
+							<li><a href="javascript:void(0)"><img src="assets/img/apple.svg" alt=""></a></li>
+						</ul>
+					</form>
+					
+					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+				</div>
+			</ion-slide>
+			<ion-slide class="fullHight">
+				<div padding>
+					<div readymeal>
+						<span><img src="assets/img/img1.png" alt=""> </span>
+						<div>
+							<h5>Ready Meal</h5>
+							<p>{{ recepiesSlect }} meals for {{ peopleSelect }} people per week<br>
+								{{ totalServing }} servings at £{{ selectBoxPrice }} per serving</p>
+						</div>
+					</div>
+					<div form-group subtotal>
+						<p>Box Price <span>£{{ totalPrice }}</span></p>
+						<p>Shipping <span>£{{ shippingPrice }}</span></p>
+						<p><b>First Box Total </b><span><b>£{{ finalPrice }}</b></span></p>
+					</div>
+					<div billingDe>
+						<h5 subhdng>Billing Details</h5>
+
+						<div form-group>
+							<ion-label>Name*</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryName" type="text" placeholder=""></ion-input>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryName) >= 0 && is_submit == true">Please
+								enter your name.</span>
+
+						</div>
+						<div form-group>
+							<ion-label>Surname</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliverySurname" type="text"></ion-input>
+							</ion-item>
+						</div>
+						<div form-group>
+							<ion-label>Address Line 1*</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryAddressLine1" type="text"></ion-input>
+							</ion-item>
+							<span class="error"
+								*ngIf="errors.indexOf(deliveryAddressLine1) >= 0 && is_submit == true">Please enter your
+								address.</span>
+						</div>
+						<div form-group>
+							<ion-label>Address Line 2*</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryAddressLine2" type="text"></ion-input>
+							</ion-item>
+							<span class="error"
+								*ngIf="errors.indexOf(deliveryAddressLine2) >= 0 && is_submit == true">Please enter your
+								address.</span>
+						</div>
+						<div form-group>
+							<ion-label>Date Of Birth*</ion-label>
+							<ion-item>
+								<ion-datetime [(ngModel)]="deliveryDob" displayFormat="MM/DD" placeholder="Select Date">
+								</ion-datetime>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryDob) >= 0 && is_submit == true">Please
+								enter your DOB.</span>
+						</div>
+						<div form-group>
+							<ion-label>Additional Email</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryEmail" type="email"></ion-input>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryEmail) >= 0 && is_submit == true">Please
+								enter your email address</span>
+							<span class="error"
+								*ngIf="errors.indexOf(deliveryEmail) == -1 && is_submit == true && !reg_exp.test(deliveryEmail.toLowerCase())">Please
+								enter valid email address</span>
+						</div>
+						<div form-group>
+							<ion-label>City *</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryCity" type="text"></ion-input>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryCity) >= 0 && is_submit == true">Please
+								enter your city.</span>
+						</div>
+						<div form-group>
+							<ion-label>Country *</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryCountry" type="text"></ion-input>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryCountry) >= 0 && is_submit == true">Please
+								enter your country.</span>
+						</div>
+						<div form-group>
+							<ion-label>Postcode *</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryPostCode" type="text"></ion-input>
+							</ion-item>
+							<span class="error"
+								*ngIf="errors.indexOf(deliveryPostCode) >= 0 && is_submit == true">Please enter your
+								postcode.</span>
+						</div>
+						<div form-group>
+							<ion-label>Phone *</ion-label>
+							<ion-item>
+								<ion-input [(ngModel)]="deliveryPhone" type="tel"></ion-input>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryPhone) >= 0 && is_submit == true">Please
+								enter your phonenumber.</span>
+						</div>
+
+
+
+					</div>
+					<div billAdrs>
+						<h5 subhdng>Select Billing Address {{billingAddressValue}}</h5>
+						<ion-radio-group value="{{billingAddressValue}}" [(ngModel)]="billingAddressValue"
+							name="billingAddress">
+							<ion-item lines="none">
+								<ion-label>Use Delivery Address</ion-label>
+								<ion-radio slot="start" value="2" (click)="showBillingAddressFn('no')"
+									[checked]="this.billingAddressValue==='2'">
+								</ion-radio>
+							</ion-item>
+							<ion-item lines="none">
+								<ion-label>Add New Address</ion-label>
+								<ion-radio slot="start" value="1" (click)="showBillingAddressFn('yes')"
+									[checked]="this.billingAddressValue==='1'"></ion-radio>
+							</ion-item>
+							<span class="error"
+								*ngIf="errors.indexOf(billingAddressValue) >= 0 && is_submit == true">Please
+								enter your billing Address.</span>
+						</ion-radio-group>
+						<ng-container *ngIf="showBillingAddress">
+
+							<div form-group>
+								<ion-label>Name*</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingName" type="text" placeholder=""></ion-input>
+								</ion-item>
+								<span class="error" *ngIf="errors.indexOf(billingName) >= 0 && is_submit == true">Please
+									enter your name.</span>
+							</div>
+							<div form-group>
+								<ion-label>Surname</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingSurname" type="text"></ion-input>
+								</ion-item>
+							</div>
+							<div form-group>
+								<ion-label>Address Line 1*</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingAddressLine1" type="text"></ion-input>
+								</ion-item>
+								<span class="error"
+									*ngIf="errors.indexOf(billingAddressLine1) >= 0 && is_submit == true">Please enter
+									your address.</span>
+							</div>
+							<div form-group>
+								<ion-label>Address Line 2*</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingAddressLine2" type="text"></ion-input>
+								</ion-item>
+								<span class="error"
+									*ngIf="errors.indexOf(billingAddressLine2) >= 0 && is_submit == true">Please enter
+									your address.</span>
+							</div>
+
+							<div form-group>
+								<ion-label>City *</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingCity" type="text"></ion-input>
+								</ion-item>
+								<span class="error" *ngIf="errors.indexOf(billingCity) >= 0 && is_submit == true">Please
+									enter your city.</span>
+							</div>
+
+							<div form-group>
+								<ion-label>Postcode *</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingPostCode" type="text"></ion-input>
+								</ion-item>
+								<span class="error"
+									*ngIf="errors.indexOf(billingPostCode) >= 0 && is_submit == true">Please enter your
+									postcode.</span>
+							</div>
+							<div form-group>
+								<ion-label>Phone *</ion-label>
+								<ion-item>
+									<ion-input [(ngModel)]="billingPhone" type="tel"></ion-input>
+								</ion-item>
+								<span class="error"
+									*ngIf="errors.indexOf(billingPhone) >= 0 && is_submit == true">Please enter your
+									phone number.</span>
+							</div>
+
+
+
+						</ng-container>
+
+					</div>
+
+
+					<div contactless>
+						<ul>
+							<li>
+								<span><img src="assets/img/icon2.png" alt=""> </span>
+								<div>
+									<h5>Contactless Delivery</h5>
+									<p>Boxes are delivered fast and safe</p>
+								</div>
+							</li>
+							<li>
+								<span><img src="assets/img/img1.png" alt=""> </span>
+								<div>
+									<h5>Green to the last mile</h5>
+									<p>Green to the last mile</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+					<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						</ion-icon>
+					</ion-button>
+				</div>
+			</ion-slide>
+			<ion-slide class="fullHight">
+				<div padding>
+					<div readymeal>
+						<span><img src="assets/img/img1.png" alt=""> </span>
+						<div>
+							<h5>Ready Meal</h5>
+							<p>{{ recepiesSlect }} meals for {{ peopleSelect }} people per week<br>
+								{{ totalServing }} servings at £{{ selectBoxPrice }} per serving</p>
+						</div>
+					</div>
+					<div form-group subtotal>
+						<p>Box Price <span>£{{ totalPrice }}</span></p>
+						<p>Shipping <span>£{{ shippingPrice }}</span></p>
+						<p><b>First Box Total </b><span><b>£{{ finalPrice }}</b></span></p>
+					</div>
+					<div billingDe>
+						<h5 subhdng>When do you want your delivery?</h5>
+
+						<div deliveryDeta>
+							<span>
+								<ion-icon name="location"></ion-icon>
+							</span>
+							<p>{{ deliveryAddressLine1 }}. <br>
+								{{ deliveryCity}}, {{deliveryCountry}} {{ deliveryPostCode }}</p>
+						</div>
+
+						<div form-group>
+							<ion-label>Add Delivery Details</ion-label>
+							<ion-item>
+								<ion-select interface="action-sheet" [(ngModel)]="addressOptions" placeholder="Choose"
+									#deliverySelect (ionChange)="onChangeDeliverySelect(deliverySelect.value)">
+									<ion-select-option value="1">Want Delivery One day a Week</ion-select-option>
+									<ion-select-option value="2">Want Delivery Multiple days a Week</ion-select-option>
+								</ion-select>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(addressOptions) >= 0 && is_submit == true">
+								Please select at least one delivery option.
+							</span>
+						</div>
+						<div form-group>
+							<ion-label>Date</ion-label>
+							<ng-container *ngIf="!showdeliverySelect">
+								<ion-item>
+									<ion-datetime displayFormat="MM/DD/YYYY" [min]="minDate" [max]="maxDate"
+										[(ngModel)]="singleSelecteDate"></ion-datetime>
+								</ion-item>
+							</ng-container>
+							<ng-container *ngIf="showdeliverySelect">
+								<ion-item>
+									<ion-datetime displayFormat="MM/DD/YYYY" (ionChange)="changeMinDate()"
+										[max]="maxDate" [min]="minDate" [(ngModel)]="multipleSelecteDate1">
+									</ion-datetime>
+								</ion-item>
+
+								<ion-item>
+									<ion-datetime displayFormat="MM/DD/YYYY" [min]="multiMinDate" [max]="maxDate"
+										[(ngModel)]="multipleSelecteDate2"></ion-datetime>
+
+								</ion-item>
+							</ng-container>
+						</div>
+						<div form-group>
+							<ion-label>Choose delivery instructions</ion-label>
+							<ion-item>
+								<ion-select interface="action-sheet" placeholder="Choose"
+									[(ngModel)]="deliveryInstructions">
+									<ion-select-option value="At front Door">At front Door</ion-select-option>
+									<ion-select-option value="At back Door">At back Door</ion-select-option>
+									<ion-select-option value="Concierge">Concierge</ion-select-option>
+									<ion-select-option value="Others">Others</ion-select-option>
+								</ion-select>
+							</ion-item>
+							<span class="error" *ngIf="errors.indexOf(deliveryInstructions) >= 0 && is_submit == true">
+								Please select at least one delivery instructions.
+							</span>
+						</div>
+
+					</div>
+					<div contactless>
+						<ul>
+							<li>
+								<span><img src="assets/img/icon2.png" alt=""> </span>
+								<div>
+									<h5>Contactless Delivery</h5>
+									<p>Boxes are delivered fast and safe</p>
+								</div>
+							</li>
+							<li>
+								<span><img src="assets/img/img1.png" alt=""> </span>
+								<div>
+									<h5>Green to the last mile</h5>
+									<p>Green to the last mile</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+					<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						</ion-icon>
+					</ion-button>
+				</div>
+			</ion-slide>
+			<ion-slide class="fullHight">
+				<div padding>
+					<div readymeal>
+						<span><img src="assets/img/img1.png" alt=""> </span>
+						<div>
+							<h5>Ready Meal</h5>
+							<p>{{ recepiesSlect }} meals for {{ peopleSelect }} people per week<br>
+								{{ totalServing }} servings at £{{ selectBoxPrice }} per serving</p>
+						</div>
+					</div>
+					<div form-group subtotal>
+						<p>Box Price <span>£{{ totalPrice }}</span></p>
+						<p>Shipping <span>£{{ shippingPrice }}</span></p>
+						<p><b>First Box Total </b><span><b>£{{ finalPrice }}</b></span></p>
+					</div>
+					<div billingDe inside style="margin-top:30px">
+						<h6>Card Details</h6>
+						<p>InEat is a flexible subscription service. You can modify, pause, or cancel 4 days (5 in
+							Northern Ireland) before your next delivery.</p>
+					</div>
+					<div billAdrs>
+						<ion-radio-group value="biff">
+							<ion-item lines="none">
+								<ion-label>Add a credit or debit card</ion-label>
+								<ion-radio slot="start" value="biff"></ion-radio>
+							</ion-item>
+						</ion-radio-group>
+					</div>
+
+
+					<div form-group>
+						<ion-label>Card Number*</ion-label>
+						<ion-item>
+							<ion-input type="number" [(ngModel)]="cardNumber"></ion-input>
+						</ion-item>
+						<span class="error" *ngIf="errors.indexOf(cardNumber) >= 0 && is_submit == true">
+							Please enter your card number.
+						</span>
+					</div>
+					<div form-group>
+						<ion-label>Expiry Date*</ion-label>
+						<ion-item>
+							<ion-datetime displayFormat="MM/YYYY" [min]="minDate" [max]="maxDate"
+								[(ngModel)]="cardExipryDate"></ion-datetime>
+
+						</ion-item>
+						<span class="error" *ngIf="errors.indexOf(cardExipryDate) >= 0 && is_submit == true">
+							Please enter your card expiry date.
+						</span>
+					</div>
+					<div form-group>
+						<ion-label>Security Code*(?)</ion-label>
+						<ion-item>
+							<ion-input type="text" [(ngModel)]="cardCvv"></ion-input>
+						</ion-item>
+						<span class="error" *ngIf="errors.indexOf(cardCvv) >= 0 && is_submit == true">
+							Please enter your card cvv.
+						</span>
+					</div>
+
+					<div billAdrs mt-3>
+						<ion-radio-group value="biff">
+							<ion-item lines="none">
+								<ion-label>I accept the terms and conditions and I have read the privacy policy.
+								</ion-label>
+								<ion-checkbox slot="start" value="1" [(ngModel)]="termsChecked"></ion-checkbox>
+							</ion-item>
+							<span class="error" *ngIf="termsChecked == false && is_submit == true">
+								Please accept ours terms and conditions.
+							</span>
+							<ion-item lines="none">
+								<ion-label>Yes, I'd like exclusive offers, competitions and news emailed to me.
+								</ion-label>
+								<ion-checkbox slot="start" value="1" [(ngModel)]="offersChecked"></ion-checkbox>
+							</ion-item>
+						</ion-radio-group>
+					</div>
+					<div contactless>
+						<ul>
+							<li>
+								<span><img src="assets/img/icon2.png" alt=""> </span>
+								<div>
+									<h5>Save Money</h5>
+									<p>Spend less on dinner every week</p>
+								</div>
+							</li>
+							<li>
+								<span><img src="assets/img/img1.png" alt=""> </span>
+								<div>
+									<h5>Flexible, No Lock-In Plans</h5>
+									<p>Skip, pause or cancel anytime</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ion-button (click)="swipePrevious($event)" btnback><ion-icon name="arrow-back-outline"></ion-icon>
+					</ion-button>
+					<ion-button (click)="swipeNext($event)" btncontinue>Continue <ion-icon name="arrow-forward-outline">
+						</ion-icon>
+					</ion-button>
+				</div>
+			</ion-slide>
+
+		</ion-slides>
+	</div>
+</ion-content>

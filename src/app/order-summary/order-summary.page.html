@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-toolbar>
+		<div flexHeader>
+			<div backHead>
+				<ion-back-button></ion-back-button>
+			</div>
+			<ion-title>Order Summary</ion-title>
+		</div>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<ul mybowlsPage *ngIf="cartData">
+		<ng-container *ngFor="let data of cartData | keyvalue">
+			<li routerLink="/meal-details/{{recepie.item_id}}"  *ngFor="let recepie of data.value" >
+				<span bowlimg><img src="{{recepie.image}}" alt=""> <label>{{recepie.difficulty_level}}</label></span>
+				<div ritBowl>
+					<h4>{{recepie.recipe_name}}</h4>
+					<p>Quantity: {{recepie.quantity}}</p>
+					<p>{{data.key}}</p>
+				</div>
+			</li>
+		</ng-container>
+
+	</ul>
+	<ion-button btncontinue (click)="feedback()">Continue</ion-button>
+
+
+</ion-content>

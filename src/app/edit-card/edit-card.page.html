@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <div flexHeader>
+      <div backHead>
+        <ion-back-button [text]=""  icon="chevron-back-outline"></ion-back-button>
+      </div>
+      <ion-title class="ion-text-center">Edit Card</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div padding>
+		<div addcardform>
+		<form>
+		<ion-row>
+			<ion-col size="12">
+				<label>Card Holder Name*        </label>
+				<ion-input type="text" value="John Doe" ></ion-input>
+			</ion-col>
+      <ion-col size="12">
+				<label>Card Type*</label>
+        <ion-select placeholder="Select" value="credit" >
+          <ion-select-option value="debit">Debit Card</ion-select-option>
+          <ion-select-option value="credit">Credit Card</ion-select-option>
+        </ion-select>
+			</ion-col>
+
+      <ion-col size="12">
+				<label>Expiry Month* </label>
+        <ion-select placeholder="Select" value="feb">
+          <ion-select-option value="jan">Jan</ion-select-option>
+          <ion-select-option value="feb">Feb</ion-select-option>
+        </ion-select>
+			</ion-col>
+   
+      <ion-col size="12">
+				<label>Expiry Year* </label>
+        <ion-select placeholder="Select"  value="2023">
+          <ion-select-option value="2020">2020</ion-select-option>
+          <ion-select-option value="2021">2021</ion-select-option>
+          <ion-select-option value="2022">2022</ion-select-option>
+          <ion-select-option value="2023">2023</ion-select-option>
+        </ion-select>
+			</ion-col>
+      <ion-col size="12">
+				<label>CVV*        </label>
+				<ion-input type="text" value="123"></ion-input>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-button type="submit"   btnsave>Save</ion-button>
+			</ion-col>
+		</ion-row>
+		</form>
+	</div>
+
+	</div>
+</ion-content>

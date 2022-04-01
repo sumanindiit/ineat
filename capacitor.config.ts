@@ -1,0 +1,31 @@
+import { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.ineat.app',
+  appName: 'InEat',
+  webDir: 'www',
+  bundledWebRuntime: false,
+  cordova: {
+    preferences: {
+      ScrollEnabled: 'false',
+      BackupWebStorage: 'none',
+      SplashMaintainAspectRatio: 'true',
+      FadeSplashScreenDuration: '300',
+      SplashShowOnlyFirstTime: 'false',
+      SplashScreen: 'screen',
+      SplashScreenDelay: '3000'
+    }
+  },
+  plugins: {
+    GoogleAuth: {
+      scopes: ["profile", "email"],
+      androidClientId:"2518286749-ec7rucs19merlnmqr5dfh0c1tneu0egn.apps.googleusercontent.com",
+      clientId: "2518286749-ec7rucs19merlnmqr5dfh0c1tneu0egn.apps.googleusercontent.com",
+      forceCodeForRefreshToken: true,
+      serverClientId: "2518286749-ec7rucs19merlnmqr5dfh0c1tneu0egn.apps.googleusercontent.com",
+    }
+  }
+
+};
+
+export default config;

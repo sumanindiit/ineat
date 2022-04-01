@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "2518286749",
+    "project_id": "ineat-app",
+    "storage_bucket": "ineat-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2518286749:android:edb717e7028519c7daef74",
+        "android_client_info": {
+          "package_name": "com.ineat.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2518286749-ec7rucs19merlnmqr5dfh0c1tneu0egn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ineat.app",
+            "certificate_hash": "91442c214a450fb3e60693bc389cd65fbc2ba12b"
+          }
+        },
+        {
+          "client_id": "2518286749-rjokv56snjqqs20c9rlqugnsaqpo3o2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ineat.app",
+            "certificate_hash": "e668e78dcf3cdddb7048530a4f0de8a18edee375"
+          }
+        },
+        {
+          "client_id": "2518286749-h6na61oh6nfltj51m78a387n8vqn9b4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJETe4FkWfs6vJfOnTn33HwEoDsP1tlvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2518286749-h6na61oh6nfltj51m78a387n8vqn9b4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

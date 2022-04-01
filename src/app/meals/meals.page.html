@@ -1,0 +1,77 @@
+<ion-header>
+  <h3>Select Meals</h3>
+  <ul steps>
+    <li class="active">
+      <ion-icon name="checkmark"></ion-icon>
+    </li>
+    <li class="active">
+      <ion-icon name="checkmark"></ion-icon>
+    </li>
+    <li class="active">
+      <ion-icon name="checkmark"></ion-icon>
+    </li>
+    <li class="active">
+      <ion-icon name="checkmark"></ion-icon>
+    </li>
+    <li class="active" #active4></li>
+  </ul>
+</ion-header>
+
+<ion-content botmbg>
+  <div slideBox>
+
+    <div padding>
+      <div searchbar>
+        <ion-searchbar [(ngModel)]="searchQuery" (search)="filterMeals($event)" autocorrect="off" showCancelButton="focus" mode="md" placeholder="Search Meals..." ></ion-searchbar>
+      </div>
+      <div billingDe d-flex>
+        <div>
+          <h5 subhdng>Build a meal plan</h5>
+          <p>Pick your meal for this week.</p>
+        </div>
+        <div sortIcons>
+          <a routerLink="/order-summary"  cart>
+            <ion-icon name="cart"></ion-icon>
+          </a>
+          <a href="javascript:void(0);">
+            <ion-icon name="funnel"></ion-icon>
+          </a>
+        </div>
+      </div>
+
+      <div selectMeal *ngIf="pageData">
+        <ion-row>
+          <ion-col size="6" *ngFor="let data of pageData">
+            <div class="mealCol">
+              <div class="absomeal lbl_{{ data.difficulty_level }}">
+                <label>{{ data.difficulty_level }}</label>
+              </div>
+              <a routerLink="/meal-details/{{data.id}}"><img src="{{ data.image }}" alt="" class="mealImg"></a>
+              <div class="mealCont">
+                <h6><a routerLink="/meal-details/{{data.id}}">{{ data.title }}</a></h6>
+                <p>Prep. Time: {{ data.prepration_time }} mins</p>
+                <ul class="iconsRow" *ngIf="data.allergen">
+                  <li *ngFor="let allergen of data.allergen" class="allerden_{{ allergen.name }}">
+                    <a href="javascript:void(0)" data-tooltip="{{ allergen.name }}">
+                      <img src="{{ allergen.image }}" alt="">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </ion-col>
+
+          <ion-infinite-scroll *ngIf="isMoreRecords" threshold="100px" (ionInfinite)="getMeals($event,'1')">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more Meals...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-row>
+
+        
+      </div>
+    </div>
+
+  
+  </div>
+  <ion-button routerLink="/order-summary"  btncontinue >Go to Cart ({{ cartCount }}) </ion-button>
+</ion-content>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">InEat</string>
+    <string name="title_activity_main">InEat</string>
+    <string name="package_name">com.ineat.app</string>
+    <string name="custom_url_scheme">com.ineat.app</string>
+    <string name="server_client_id">2518286749-ec7rucs19merlnmqr5dfh0c1tneu0egn.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">1119584012173754</string>
+    <string name="facebook_client_token">50d69622b792b9c91f153095286a6eae</string>
+</resources>

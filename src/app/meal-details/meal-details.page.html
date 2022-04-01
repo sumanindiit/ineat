@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <div flexHeader>
+      <div backHead>
+        <ion-back-button [text]=""></ion-back-button>
+      </div>
+      <ion-title class="ion-text-center">Meal Detail</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="mealDetails" *ngIf="pageData">
+
+    <div>
+      <h4 title>{{ pageData?.title }}</h4>
+      <div class="imgRealtive">
+        <img src="{{ pageData?.image }}" />
+        <img src="assets/img/playVideo.svg" playVideo />
+      </div>
+    </div>
+
+    <div formcontent>
+      <ion-item lines="none" class="ion-no-padding ionbox">
+
+        <div class="quanTity">
+          <ion-icon name="remove-circle" (click)="decrement()"></ion-icon>
+            <h4>  {{currentNumber}} </h4>
+          <ion-icon name="add-circle" (click)="increment()"></ion-icon>
+        </div>
+
+        <ion-select class="ionSelect" placeholder="Meal Type" interface="action-sheet" [(ngModel)]="mealType" >
+          <ion-select-option value="1">Ready meal</ion-select-option>
+          <ion-select-option value="2">Meal Kit</ion-select-option>
+        </ion-select>
+
+        <ion-select class="ionSelect" placeholder=" Select Delivery Date" interface="action-sheet" [(ngModel)]="deliveryDate" >
+          <ng-container *ngFor="let data of pageData.deliveryDates">
+            <ion-select-option value="{{ data }}">{{ data }}</ion-select-option>
+					</ng-container>
+        </ion-select>
+        
+      </ion-item>
+
+     
+    </div>
+
+    <div mealcontent>
+
+      <div d-flex>
+        <h5 subhdng>Main Ingredients</h5>
+        
+      </div>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let ingredients of pageData.ingredeints">
+          <ion-col size="6" class="ion-text-left">
+            <div>{{ ingredients.ingredients_quantity }}</div>
+          </ion-col>
+          <ion-col size="6" class="ion-text-right">
+            <div>{{ ingredients.ingredients_values }}</div>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+
+      <div billingDe d-flex>
+        <h5 subhdng>Nutritional Info Allergens</h5>
+      </div>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let nutritional of pageData.nutritional">
+          <ion-col size="6" class="ion-text-left">
+            <div>{{ nutritional.nutritional_quantity }}</div>
+          </ion-col>
+          <ion-col size="6" class="ion-text-right">
+            <div>{{ nutritional.nutritional_values }}</div>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      <div billingDe d-flex>
+        <h5 subhdng>Tools</h5>
+      </div>
+
+     <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let utensils of pageData.utensils">
+          <ion-col size="6" class="ion-text-left">
+            <div>{{ utensils.utensils_values }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+      <div billingDe d-flex>
+        <h5 subhdng>Allergen</h5>
+      </div>
+
+      <ion-grid class="ion-no-padding">
+        <ion-row *ngFor="let allergen of pageData.allergen">
+          <ion-col size="6" class="ion-text-left">
+            <div>{{ allergen.name }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+
+    </div>
+
+     <ion-button expand="full" btncontinue shape="round" color="success" (click)="addToCart()">Add</ion-button>
+  </div>
+
+</ion-content>

@@ -1,0 +1,85 @@
+ion-header {
+    --background: var(--ion-color-secondary);
+    background:var(--ion-color-secondary);
+    ion-toolbar {
+        --background: var(--ion-color-secondary);
+        ion-back-button{
+            color: var(--ion-color-white);
+        }
+        ion-title {
+            --background: var(--ion-color-secondary);
+            background: var(--ion-color-secondary);
+            color: var(--ion-color-white);
+        }
+    }
+   
+}
+
+ion-content {
+    --background: var(--ion-color-secondary);
+    background: var(--ion-color-secondary);
+    [main-im] {
+        text-align: center;
+        margin: 20px 0;
+    }
+    [slomo-tx] {
+        text-align: center;
+        color: #fff;
+        margin-top: 30px;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 500;
+    }
+    [invite-fields] {
+        padding: 0 25px;
+          ion-list {
+            border-radius: 12px;
+            --border-radius: 12px;
+            padding-top: 0;
+            padding-bottom: 0;
+            ion-input {
+                color: #000000ad;
+                font-size: 15px;
+                font-weight: 500;
+                --placeholder-opacity: 100%;
+            }
+            span {
+                z-index: 9;
+                color: #FD8A5E;
+                font-weight: 500;
+                font-size: 15px;
+            }
+        }
+    }
+    [subscriptionsBtm] {
+        padding: 0 25px;
+        [linktype] {
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            margin-top: 37px;
+        }
+        [copytext] {
+            border: 1px solid #ffffff57;
+            border-radius: 3px;
+            color: #fff;
+            height: 45px;
+            line-height: 50px;
+            margin: 0 auto;
+            padding: 0 10px;
+            margin-bottom: 60px;
+            margin-top: 30px;
+            font-size: 14px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a {
+                color: #fff;
+                display: inline-block;
+                position: relative;
+            }
+        }
+    }
+   
+}
