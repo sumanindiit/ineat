@@ -65,7 +65,7 @@ export class HomePage implements OnInit {
 
   }
 
-  geterrorCtr() {
+  get errorCtr() {
     return this.updateProfileForm.controls;
   }
 

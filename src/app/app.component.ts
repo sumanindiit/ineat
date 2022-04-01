@@ -13,6 +13,14 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
+  userImage: any;
+  userName: any;
+
+  userId: any = localStorage.getItem('ineat_userid');
+  userData: any = JSON.parse(localStorage.getItem('ineat_userData'));
+
+
   constructor(
     public router: Router,
     private platform: Platform,
@@ -23,7 +31,12 @@ export class AppComponent {
   }
 
   initializeApp() {
-    
+
+    if (this.userData != "") {
+      this.userImage = this.userData.image
+      this.userName = this.userData.first_name;
+    }
+
   }
 
   logout() {
