@@ -189,6 +189,7 @@ ion-slides{
 	&[flexRow]{
 		flex-direction: row;
 		display: flex;
+		    overflow-y: scroll;
 		li{
 			margin:0;
 			input{
