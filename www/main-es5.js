@@ -313,21 +313,21 @@
           this.platform = platform;
           this.common = common;
           this.api = api;
+          this.userImage = 'assets/img/logo.png';
+          this.userId = localStorage.getItem('ineat_userid');
+          this.userData = JSON.parse(localStorage.getItem('ineat_userData'));
           this.initializeApp();
         }
 
         _createClass(AppComponent, [{
           key: "initializeApp",
           value: function initializeApp() {
-            var _this = this;
+            var _a, _b;
 
-            this.platform.ready().then(function () {
-              if (localStorage.getItem('is_logged_in') == 'true') {
-                _this.router.navigate(['/tabs/home']);
-              } else {
-                _this.router.navigate(['/login']);
-              }
-            });
+            if (this.userData != "") {
+              this.userImage = (_a = this.userData) === null || _a === void 0 ? void 0 : _a.image;
+              this.userName = (_b = this.userData) === null || _b === void 0 ? void 0 : _b.first_name;
+            }
           }
         }, {
           key: "logout",
@@ -418,7 +418,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n\n\n<ion-app>\n  <ion-split-pane contentId=\"main-content\" >\n    <ion-menu contentId=\"main-content\" type=\"overlay\" >\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n\n          <div Userpro>\n            <img src=\"assets/img/img1.jpg\" alt=\"\">\n            <p>John Roelfsema</p>\n          </div>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"chatbubble-ellipses\"></ion-icon>\n              <ion-label>Messages</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"bag-handle\"></ion-icon>\n              <ion-label>Deliveries</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"information-circle\"></ion-icon>\n              <ion-label>Privacy & Policy</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-label>Profile</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"log-out\"></ion-icon>\n              <ion-label (click)=\"logout()\">Logout</ion-label>\n            </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
+      __webpack_exports__["default"] = "<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n\n\n<ion-app>\n  <ion-split-pane contentId=\"main-content\" >\n    <ion-menu contentId=\"main-content\" type=\"overlay\" >\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n\n          <div Userpro>\n            <img src=\"{{ userImage }}\"  alt=\"\">\n            <p>{{ userName }}</p>\n          </div>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"chatbubble-ellipses\"></ion-icon>\n              <ion-label>Messages</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"bag-handle\"></ion-icon>\n              <ion-label>Deliveries</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"information-circle\"></ion-icon>\n              <ion-label>Privacy & Policy</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-label>Profile</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"log-out\"></ion-icon>\n              <ion-label (click)=\"logout()\">Logout</ion-label>\n            </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
       /***/
     },
 
@@ -771,9 +771,9 @@
       }, {
         path: 'home',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | home-home-module */
-          "home-home-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null,
           /*! ./home/home.module */
           "ct+p")).then(function (m) {
             return m.HomePageModule;
@@ -890,7 +890,7 @@
           });
         }
       }, {
-        path: 'meal-details',
+        path: 'meal-details/:mealId',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | meal-details-meal-details-module */
@@ -920,6 +920,94 @@
           /*! ./deliveries/deliveries.module */
           "DhhR")).then(function (m) {
             return m.DeliveriesPageModule;
+          });
+        }
+      }, {
+        path: 'meals',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | meals-meals-module */
+          "meals-meals-module").then(__webpack_require__.bind(null,
+          /*! ./meals/meals.module */
+          "yns/")).then(function (m) {
+            return m.MealsPageModule;
+          });
+        }
+      }, {
+        path: 'settings',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | settings-settings-module */
+          "settings-settings-module").then(__webpack_require__.bind(null,
+          /*! ./settings/settings.module */
+          "7wo0")).then(function (m) {
+            return m.SettingsPageModule;
+          });
+        }
+      }, {
+        path: 'edit-profile',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | edit-profile-edit-profile-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("edit-profile-edit-profile-module")]).then(__webpack_require__.bind(null,
+          /*! ./edit-profile/edit-profile.module */
+          "Wvzw")).then(function (m) {
+            return m.EditProfilePageModule;
+          });
+        }
+      }, {
+        path: 'account-info',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | account-info-account-info-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("account-info-account-info-module")]).then(__webpack_require__.bind(null,
+          /*! ./account-info/account-info.module */
+          "pqwD")).then(function (m) {
+            return m.AccountInfoPageModule;
+          });
+        }
+      }, {
+        path: 'add-card',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | add-card-add-card-module */
+          "add-card-add-card-module").then(__webpack_require__.bind(null,
+          /*! ./add-card/add-card.module */
+          "jvsA")).then(function (m) {
+            return m.AddCardPageModule;
+          });
+        }
+      }, {
+        path: 'edit-card',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | edit-card-edit-card-module */
+          "edit-card-edit-card-module").then(__webpack_require__.bind(null,
+          /*! ./edit-card/edit-card.module */
+          "GHwY")).then(function (m) {
+            return m.EditCardPageModule;
+          });
+        }
+      }, {
+        path: 'manage-subscription',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | manage-subscription-manage-subscription-module */
+          "manage-subscription-manage-subscription-module").then(__webpack_require__.bind(null,
+          /*! ./manage-subscription/manage-subscription.module */
+          "5ima")).then(function (m) {
+            return m.ManageSubscriptionPageModule;
+          });
+        }
+      }, {
+        path: 'refer-a-friend',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | refer-a-friend-refer-a-friend-module */
+          "refer-a-friend-refer-a-friend-module").then(__webpack_require__.bind(null,
+          /*! ./refer-a-friend/refer-a-friend.module */
+          "uUPG")).then(function (m) {
+            return m.ReferAFriendPageModule;
           });
         }
       }];

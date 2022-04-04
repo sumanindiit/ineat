@@ -132,6 +132,14 @@
         _createClass(LoginPage, [{
           key: "initializeApp",
           value: function initializeApp() {
+            var _this = this;
+
+            this.platform.ready().then(function () {
+              if (localStorage.getItem('is_logged_in') == 'true') {
+                _this.router.navigate(['/tabs/home']);
+              }
+            });
+
             if (this.platform.is('android')) {} else {
               this.platform.ready().then(function () {
                 _codetrix_studio_capacitor_google_auth__WEBPACK_IMPORTED_MODULE_10__["GoogleAuth"].initialize({
@@ -237,7 +245,7 @@
         }, {
           key: "onSubmit",
           value: function onSubmit() {
-            var _this = this;
+            var _this2 = this;
 
             this.submitAttempt = true;
 
@@ -248,9 +256,9 @@
               this.common.presentLoading();
               var dict = this.logInForm.value;
               this.api.post('login', dict, '').subscribe(function (result) {
-                _this.submitAttempt = false;
+                _this2.submitAttempt = false;
 
-                _this.common.stopLoading();
+                _this2.common.stopLoading();
 
                 var res;
                 res = result;
@@ -272,11 +280,11 @@
                     _iterator.f();
                   }
 
-                  _this.common.presentToast(errMsgs, 'danger');
+                  _this2.common.presentToast(errMsgs, 'danger');
                 } else if (res.status == 200) {
                   localStorage.setItem('ineat_userData', JSON.stringify(res.data));
 
-                  var userId = _this.api.encryptData(res.userId, _config__WEBPACK_IMPORTED_MODULE_7__["config"].ENC_SALT);
+                  var userId = _this2.api.encryptData(res.userId, _config__WEBPACK_IMPORTED_MODULE_7__["config"].ENC_SALT);
 
                   localStorage.setItem('ineat_userid', res.userId);
                   localStorage.setItem('ineat_token', userId);
@@ -284,11 +292,11 @@
                   localStorage.setItem('user_access_token', userToken);
                   localStorage.setItem('is_logged_in', 'true');
 
-                  _this.logInForm.reset();
+                  _this2.logInForm.reset();
 
-                  _this.common.presentToast('Logged In Successfully!.', 'success');
+                  _this2.common.presentToast('Logged In Successfully!.', 'success');
 
-                  _this.api.navCtrl.navigateRoot('/tabs/home');
+                  _this2.api.navCtrl.navigateRoot('/tabs/home');
                 }
               }, function (error) {
                 console.log(error);
@@ -533,9 +541,9 @@
 
       var FacebookLogin = Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerPlugin"])('FacebookLogin', {
         web: function web() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | web */
-          "web").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("web")]).then(__webpack_require__.bind(null,
           /*! ./web */
           "OwEV")).then(function (m) {
             return new m.FacebookLoginWeb();

@@ -1338,6 +1338,9 @@ ion-button {
 }
 [flexHeader] [backHead] ion-back-button {
   --padding-start: 0;
+  display: block !important;
+  --color: #333;
+  --icon-font-size: 22px;
 }
 [ml-auto] {
   margin-left: auto;
@@ -1365,7 +1368,10 @@ ion-button {
   display: flex;
   border: 1px solid var(--ion-color-secondary);
 }
-[steps] li[active] {
+[steps] li ion-icon {
+  color: #fff;
+}
+[steps] li.active {
   width: 17px;
   height: 17px;
   background: var(--ion-color-secondary);
@@ -1403,6 +1409,12 @@ ion-button {
   --background: none;
 }
 .error ion-label {
+  color: red !important;
+  margin-top: 6px !important;
+  text-overflow: initial !important;
+  white-space: normal !important;
+}
+span.error {
   color: red !important;
   margin-top: 6px !important;
   text-overflow: initial !important;

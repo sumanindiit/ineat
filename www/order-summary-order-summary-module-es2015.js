@@ -66,6 +66,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
 /* harmony import */ var _confirm_modal_confirm_modal_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../confirm-modal/confirm-modal.page */ "MEpN");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _services_api_api_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/api/api.service */ "oZWX");
+/* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/common.service */ "OlR4");
+
+
+
 
 
 
@@ -73,10 +79,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let OrderSummaryPage = class OrderSummaryPage {
-    constructor(modalController) {
+    constructor(modalController, route, common, api) {
         this.modalController = modalController;
+        this.common = common;
+        this.api = api;
+        this.userId = localStorage.getItem('ineat_userid');
+        this.userData = localStorage.getItem('ineat_userData');
+    }
+    ionViewWillEnter() {
+        this.getCartData();
     }
     ngOnInit() {
+    }
+    getCartData() {
+        this.api.post('getCartSummary', { userId: this.userId }, '')
+            .subscribe((result) => {
+            this.common.stopLoading();
+            const res = result;
+            if (res.status === 422 || res.status === '422') {
+                let errMsgs = '';
+                for (const x of res.errors) {
+                    errMsgs += x + '</br>';
+                }
+                this.common.presentToast(errMsgs, 'danger');
+            }
+            else if (res.status === 200 || res.status === '200') {
+                this.cartData = res.data;
+                console.log(this.cartData);
+            }
+        }, (error) => {
+            console.log(error);
+        });
     }
     feedback() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -89,7 +122,10 @@ let OrderSummaryPage = class OrderSummaryPage {
     }
 };
 OrderSummaryPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] },
+    { type: _services_common_service__WEBPACK_IMPORTED_MODULE_8__["CommonService"] },
+    { type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_7__["ApiService"] }
 ];
 OrderSummaryPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -112,7 +148,7 @@ OrderSummaryPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n\t<ion-toolbar>\n\t\t<div flexHeader>\n\t\t\t<div backHead>\n\t\t\t\t<ion-back-button></ion-back-button>\n\t\t\t</div>\n\t\t\t<ion-title>Order Summary</ion-title>\n\t\t</div>\n\t</ion-toolbar>\n</ion-header>\n<ion-content>\n\t<ul mybowlsPage>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label>High</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label medium>Medium</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label low>Low</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label>High</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t</ul>\n\t<ion-button btncontinue (click)=\"feedback()\">Continue</ion-button>\n\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n\t<ion-toolbar>\n\t\t<div flexHeader>\n\t\t\t<div backHead>\n\t\t\t\t<ion-back-button></ion-back-button>\n\t\t\t</div>\n\t\t\t<ion-title>Order Summary</ion-title>\n\t\t</div>\n\t</ion-toolbar>\n</ion-header>\n<ion-content>\n\t<ul mybowlsPage *ngIf=\"cartData\">\n\t\t<ng-container *ngFor=\"let data of cartData | keyvalue\">\n\t\t\t<li routerLink=\"/meal-details/{{recepie.item_id}}\"  *ngFor=\"let recepie of data.value\" >\n\t\t\t\t<span bowlimg><img src=\"{{recepie.image}}\" alt=\"\"> <label>{{recepie.difficulty_level}}</label></span>\n\t\t\t\t<div ritBowl>\n\t\t\t\t\t<h4>{{recepie.recipe_name}}</h4>\n\t\t\t\t\t<p>Quantity: {{recepie.quantity}}</p>\n\t\t\t\t\t<p>{{data.key}}</p>\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t</ng-container>\n\n\t</ul>\n\t<ion-button btncontinue (click)=\"feedback()\">Continue</ion-button>\n\n\n</ion-content>");
 
 /***/ }),
 

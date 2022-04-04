@@ -9,7 +9,35 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n\t<div confirmBox>\n\t\t<h4>Order Confirmation</h4>\n\t\t<p>Are you sure you want to place this order?</p>\n\t\t<div d-flex>\n\t\t\t<ion-button btncontinue btnCancel (click)=\"dismiss()\">Cancel</ion-button>\n\t\t\t<ion-button btncontinue (click)=\"dismiss()\">Confirm</ion-button>\n\t\t</div>\n\t</div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n\t<div confirmBox>\n\t\t<h4>Order Confirmation</h4>\n\t\t<p>Are you sure you want to place this order?</p>\n\t\t<div d-flex>\n\t\t\t<ion-button btncontinue btnCancel (click)=\"dismiss()\">Cancel</ion-button>\n\t\t\t<ion-button btncontinue (click)=\"confirm()\">Confirm</ion-button>\n\t\t</div>\n\t</div>\n</ion-content>\n");
+
+/***/ }),
+
+/***/ "/s3u":
+/*!**********************************************************!*\
+  !*** ./node_modules/@capacitor/camera/dist/esm/index.js ***!
+  \**********************************************************/
+/*! exports provided: CameraSource, CameraDirection, CameraResultType, Camera */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Camera", function() { return Camera; });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ "FUe0");
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ "dTEF");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CameraSource", function() { return _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CameraDirection", function() { return _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraDirection"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CameraResultType", function() { return _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraResultType"]; });
+
+
+const Camera = Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerPlugin"])('Camera', {
+    web: () => Promise.all(/*! import() | web */[__webpack_require__.e("common"), __webpack_require__.e("web")]).then(__webpack_require__.bind(null, /*! ./web */ "wzPO")).then(m => new m.CameraWeb()),
+});
+
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -89,6 +117,43 @@ const createButtonActiveGesture = (el, isButton) => {
   });
 };
 
+
+
+
+/***/ }),
+
+/***/ "3IAD":
+/*!******************************************************!*\
+  !*** ./src/app/services/globalFooService.service.ts ***!
+  \******************************************************/
+/*! exports provided: GlobalFooService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalFooService", function() { return GlobalFooService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+
+
+
+let GlobalFooService = class GlobalFooService {
+    constructor() {
+        this.fooSubject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+    }
+    publishSomeData(data) {
+        this.fooSubject.next(data);
+    }
+    getObservable() {
+        return this.fooSubject;
+    }
+};
+GlobalFooService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], GlobalFooService);
 
 
 
@@ -178,17 +243,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _confirm_modal_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confirm-modal.page.scss */ "F+fE");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _services_api_api_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/api/api.service */ "oZWX");
+/* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/common.service */ "OlR4");
+
+
+
 
 
 
 
 
 let ConfirmModalPage = class ConfirmModalPage {
-    constructor(modalController) {
+    constructor(modalController, route, common, api) {
         this.modalController = modalController;
+        this.common = common;
+        this.api = api;
+        this.userId = localStorage.getItem('ineat_userid');
+        this.userData = localStorage.getItem('ineat_userData');
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     dismiss() {
         // using the injected ModalController this page
         // can "dismiss" itself and optionally pass back data
@@ -196,9 +270,38 @@ let ConfirmModalPage = class ConfirmModalPage {
             'dismissed': true
         });
     }
+    confirm() {
+        this.modalController.dismiss({
+            'dismissed': true
+        });
+        this.api.navCtrl.navigateRoot('/order-placed');
+        // this.api.post('confirmUserMeal', { userId: this.userId }, '')
+        //   .subscribe(
+        //     (result) => {
+        //       this.common.stopLoading();
+        //       const res: any = result;
+        //       if (res.status === 422 || res.status === '422') {
+        //         let errMsgs = '';
+        //         for (const x of res.errors) {
+        //           errMsgs += x + '</br>';
+        //         }
+        //         this.common.presentToast(errMsgs, 'danger');
+        //       }
+        //       else if (res.status === 200 || res.status === '200') {
+        //         this.api.navCtrl.navigateRoot('/order-placed');
+        //         //console.log(res);
+        //       }
+        //     },
+        //     (error) => {
+        //       console.log(error);
+        //     });
+    }
 };
 ConfirmModalPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"] },
+    { type: _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"] },
+    { type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_6__["ApiService"] }
 ];
 ConfirmModalPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -258,6 +361,48 @@ const detachComponent = (delegate, element) => {
 
 
 
+
+/***/ }),
+
+/***/ "dTEF":
+/*!****************************************************************!*\
+  !*** ./node_modules/@capacitor/camera/dist/esm/definitions.js ***!
+  \****************************************************************/
+/*! exports provided: CameraSource, CameraDirection, CameraResultType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraSource", function() { return CameraSource; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraDirection", function() { return CameraDirection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraResultType", function() { return CameraResultType; });
+var CameraSource;
+(function (CameraSource) {
+    /**
+     * Prompts the user to select either the photo album or take a photo.
+     */
+    CameraSource["Prompt"] = "PROMPT";
+    /**
+     * Take a new photo using the camera.
+     */
+    CameraSource["Camera"] = "CAMERA";
+    /**
+     * Pick an existing photo fron the gallery or photo album.
+     */
+    CameraSource["Photos"] = "PHOTOS";
+})(CameraSource || (CameraSource = {}));
+var CameraDirection;
+(function (CameraDirection) {
+    CameraDirection["Rear"] = "REAR";
+    CameraDirection["Front"] = "FRONT";
+})(CameraDirection || (CameraDirection = {}));
+var CameraResultType;
+(function (CameraResultType) {
+    CameraResultType["Uri"] = "uri";
+    CameraResultType["Base64"] = "base64";
+    CameraResultType["DataUrl"] = "dataUrl";
+})(CameraResultType || (CameraResultType = {}));
+//# sourceMappingURL=definitions.js.map
 
 /***/ }),
 

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n\t\t<ion-tab-button tab=\"home\">\n\t\t\t<ion-icon name=\"home-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\">\n\t\t\t<ion-icon name=\"bag-handle-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"notifications\">\n\t\t\t<ion-icon name=\"hand-right-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\" home>\n\t\t\t<ion-icon name=\"settings-outline\"></ion-icon>\n\t\t</ion-tab-button>\n    </ion-tab-bar>\n</ion-tabs>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n\t\t<ion-tab-button tab=\"home\">\n\t\t\t<ion-icon name=\"home-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\">\n\t\t\t<ion-icon name=\"bag-handle-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"notifications\">\n\t\t\t<ion-icon name=\"hand-right-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"settings\" home>\n\t\t\t<ion-icon name=\"settings-outline\"></ion-icon>\n\t\t</ion-tab-button>\n    </ion-tab-bar>\n</ion-tabs>");
 
 /***/ }),
 
@@ -127,7 +127,7 @@ const routes = [
         children: [
             {
                 path: 'home',
-                loadChildren: () => __webpack_require__.e(/*! import() | home-home-module */ "home-home-module").then(__webpack_require__.bind(null, /*! ../home/home.module */ "ct+p")).then(m => m.HomePageModule)
+                loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ../home/home.module */ "ct+p")).then(m => m.HomePageModule)
             },
             // {
             //   path: 'profile',
@@ -141,6 +141,10 @@ const routes = [
             //   path: 'search',
             //   loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
             // },	
+            {
+                path: 'settings',
+                loadChildren: () => __webpack_require__.e(/*! import() | settings-settings-module */ "settings-settings-module").then(__webpack_require__.bind(null, /*! ../settings/settings.module */ "7wo0")).then(m => m.SettingsPageModule)
+            },
             {
                 path: '',
                 redirectTo: '/tabs/home',

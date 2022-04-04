@@ -600,6 +600,539 @@
 
       /***/
 
+    },
+
+    /***/
+    "wzPO":
+    /*!********************************************************!*\
+      !*** ./node_modules/@capacitor/camera/dist/esm/web.js ***!
+      \********************************************************/
+
+    /*! exports provided: CameraWeb, Camera */
+
+    /***/
+    function wzPO(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraWeb", function () {
+        return CameraWeb;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Camera", function () {
+        return Camera;
+      });
+      /* harmony import */
+
+
+      var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @capacitor/core */
+      "FUe0");
+      /* harmony import */
+
+
+      var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./definitions */
+      "dTEF");
+
+      var CameraWeb = /*#__PURE__*/function (_capacitor_core__WEBP3) {
+        _inherits(CameraWeb, _capacitor_core__WEBP3);
+
+        var _super3 = _createSuper(CameraWeb);
+
+        function CameraWeb() {
+          _classCallCheck(this, CameraWeb);
+
+          return _super3.apply(this, arguments);
+        }
+
+        _createClass(CameraWeb, [{
+          key: "getPhoto",
+          value: function () {
+            var _getPhoto = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(options) {
+              var _this6 = this;
+
+              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+                while (1) {
+                  switch (_context12.prev = _context12.next) {
+                    case 0:
+                      return _context12.abrupt("return", new Promise( /*#__PURE__*/function () {
+                        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(resolve, reject) {
+                          var actionSheet;
+                          return regeneratorRuntime.wrap(function _callee11$(_context11) {
+                            while (1) {
+                              switch (_context11.prev = _context11.next) {
+                                case 0:
+                                  if (options.webUseInput || options.source === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"].Photos) {
+                                    _this6.fileInputExperience(options, resolve);
+                                  } else if (options.source === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"].Prompt) {
+                                    actionSheet = document.querySelector('pwa-action-sheet');
+
+                                    if (!actionSheet) {
+                                      actionSheet = document.createElement('pwa-action-sheet');
+                                      document.body.appendChild(actionSheet);
+                                    }
+
+                                    actionSheet.header = options.promptLabelHeader || 'Photo';
+                                    actionSheet.cancelable = false;
+                                    actionSheet.options = [{
+                                      title: options.promptLabelPhoto || 'From Photos'
+                                    }, {
+                                      title: options.promptLabelPicture || 'Take Picture'
+                                    }];
+                                    actionSheet.addEventListener('onSelection', /*#__PURE__*/function () {
+                                      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(e) {
+                                        var selection;
+                                        return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                                          while (1) {
+                                            switch (_context10.prev = _context10.next) {
+                                              case 0:
+                                                selection = e.detail;
+
+                                                if (selection === 0) {
+                                                  _this6.fileInputExperience(options, resolve);
+                                                } else {
+                                                  _this6.cameraExperience(options, resolve, reject);
+                                                }
+
+                                              case 2:
+                                              case "end":
+                                                return _context10.stop();
+                                            }
+                                          }
+                                        }, _callee10);
+                                      }));
+
+                                      return function (_x8) {
+                                        return _ref3.apply(this, arguments);
+                                      };
+                                    }());
+                                  } else {
+                                    _this6.cameraExperience(options, resolve, reject);
+                                  }
+
+                                case 1:
+                                case "end":
+                                  return _context11.stop();
+                              }
+                            }
+                          }, _callee11);
+                        }));
+
+                        return function (_x6, _x7) {
+                          return _ref2.apply(this, arguments);
+                        };
+                      }()));
+
+                    case 1:
+                    case "end":
+                      return _context12.stop();
+                  }
+                }
+              }, _callee12);
+            }));
+
+            function getPhoto(_x5) {
+              return _getPhoto.apply(this, arguments);
+            }
+
+            return getPhoto;
+          }()
+        }, {
+          key: "pickImages",
+          value: function () {
+            var _pickImages = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14(_options) {
+              var _this7 = this;
+
+              return regeneratorRuntime.wrap(function _callee14$(_context14) {
+                while (1) {
+                  switch (_context14.prev = _context14.next) {
+                    case 0:
+                      return _context14.abrupt("return", new Promise( /*#__PURE__*/function () {
+                        var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(resolve) {
+                          return regeneratorRuntime.wrap(function _callee13$(_context13) {
+                            while (1) {
+                              switch (_context13.prev = _context13.next) {
+                                case 0:
+                                  _this7.multipleFileInputExperience(resolve);
+
+                                case 1:
+                                case "end":
+                                  return _context13.stop();
+                              }
+                            }
+                          }, _callee13);
+                        }));
+
+                        return function (_x10) {
+                          return _ref4.apply(this, arguments);
+                        };
+                      }()));
+
+                    case 1:
+                    case "end":
+                      return _context14.stop();
+                  }
+                }
+              }, _callee14);
+            }));
+
+            function pickImages(_x9) {
+              return _pickImages.apply(this, arguments);
+            }
+
+            return pickImages;
+          }()
+        }, {
+          key: "cameraExperience",
+          value: function () {
+            var _cameraExperience = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee16(options, resolve, reject) {
+              var _this8 = this;
+
+              var cameraModal;
+              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+                while (1) {
+                  switch (_context16.prev = _context16.next) {
+                    case 0:
+                      if (!customElements.get('pwa-camera-modal')) {
+                        _context16.next = 16;
+                        break;
+                      }
+
+                      cameraModal = document.createElement('pwa-camera-modal');
+                      cameraModal.facingMode = options.direction === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraDirection"].Front ? 'user' : 'environment';
+                      document.body.appendChild(cameraModal);
+                      _context16.prev = 4;
+                      _context16.next = 7;
+                      return cameraModal.componentOnReady();
+
+                    case 7:
+                      cameraModal.addEventListener('onPhoto', /*#__PURE__*/function () {
+                        var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(e) {
+                          var photo;
+                          return regeneratorRuntime.wrap(function _callee15$(_context15) {
+                            while (1) {
+                              switch (_context15.prev = _context15.next) {
+                                case 0:
+                                  photo = e.detail;
+
+                                  if (!(photo === null)) {
+                                    _context15.next = 5;
+                                    break;
+                                  }
+
+                                  reject(new _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["CapacitorException"]('User cancelled photos app'));
+                                  _context15.next = 14;
+                                  break;
+
+                                case 5:
+                                  if (!(photo instanceof Error)) {
+                                    _context15.next = 9;
+                                    break;
+                                  }
+
+                                  reject(photo);
+                                  _context15.next = 14;
+                                  break;
+
+                                case 9:
+                                  _context15.t0 = resolve;
+                                  _context15.next = 12;
+                                  return _this8._getCameraPhoto(photo, options);
+
+                                case 12:
+                                  _context15.t1 = _context15.sent;
+                                  (0, _context15.t0)(_context15.t1);
+
+                                case 14:
+                                  cameraModal.dismiss();
+                                  document.body.removeChild(cameraModal);
+
+                                case 16:
+                                case "end":
+                                  return _context15.stop();
+                              }
+                            }
+                          }, _callee15);
+                        }));
+
+                        return function (_x14) {
+                          return _ref5.apply(this, arguments);
+                        };
+                      }());
+                      cameraModal.present();
+                      _context16.next = 14;
+                      break;
+
+                    case 11:
+                      _context16.prev = 11;
+                      _context16.t0 = _context16["catch"](4);
+                      this.fileInputExperience(options, resolve);
+
+                    case 14:
+                      _context16.next = 18;
+                      break;
+
+                    case 16:
+                      console.error("Unable to load PWA Element 'pwa-camera-modal'. See the docs: https://capacitorjs.com/docs/pwa-elements.");
+                      this.fileInputExperience(options, resolve);
+
+                    case 18:
+                    case "end":
+                      return _context16.stop();
+                  }
+                }
+              }, _callee16, this, [[4, 11]]);
+            }));
+
+            function cameraExperience(_x11, _x12, _x13) {
+              return _cameraExperience.apply(this, arguments);
+            }
+
+            return cameraExperience;
+          }()
+        }, {
+          key: "fileInputExperience",
+          value: function fileInputExperience(options, resolve) {
+            var input = document.querySelector('#_capacitor-camera-input');
+
+            var cleanup = function cleanup() {
+              var _a;
+
+              (_a = input.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(input);
+            };
+
+            if (!input) {
+              input = document.createElement('input');
+              input.id = '_capacitor-camera-input';
+              input.type = 'file';
+              input.hidden = true;
+              document.body.appendChild(input);
+              input.addEventListener('change', function (_e) {
+                var file = input.files[0];
+                var format = 'jpeg';
+
+                if (file.type === 'image/png') {
+                  format = 'png';
+                } else if (file.type === 'image/gif') {
+                  format = 'gif';
+                }
+
+                if (options.resultType === 'dataUrl' || options.resultType === 'base64') {
+                  var reader = new FileReader();
+                  reader.addEventListener('load', function () {
+                    if (options.resultType === 'dataUrl') {
+                      resolve({
+                        dataUrl: reader.result,
+                        format: format
+                      });
+                    } else if (options.resultType === 'base64') {
+                      var b64 = reader.result.split(',')[1];
+                      resolve({
+                        base64String: b64,
+                        format: format
+                      });
+                    }
+
+                    cleanup();
+                  });
+                  reader.readAsDataURL(file);
+                } else {
+                  resolve({
+                    webPath: URL.createObjectURL(file),
+                    format: format
+                  });
+                  cleanup();
+                }
+              });
+            }
+
+            input.accept = 'image/*';
+            input.capture = true;
+
+            if (options.source === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"].Photos || options.source === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"].Prompt) {
+              input.removeAttribute('capture');
+            } else if (options.direction === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraDirection"].Front) {
+              input.capture = 'user';
+            } else if (options.direction === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraDirection"].Rear) {
+              input.capture = 'environment';
+            }
+
+            input.click();
+          }
+        }, {
+          key: "multipleFileInputExperience",
+          value: function multipleFileInputExperience(resolve) {
+            var input = document.querySelector('#_capacitor-camera-input-multiple');
+
+            var cleanup = function cleanup() {
+              var _a;
+
+              (_a = input.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(input);
+            };
+
+            if (!input) {
+              input = document.createElement('input');
+              input.id = '_capacitor-camera-input-multiple';
+              input.type = 'file';
+              input.hidden = true;
+              input.multiple = true;
+              document.body.appendChild(input);
+              input.addEventListener('change', function (_e) {
+                var photos = []; // eslint-disable-next-line @typescript-eslint/prefer-for-of
+
+                for (var i = 0; i < input.files.length; i++) {
+                  var file = input.files[i];
+                  var format = 'jpeg';
+
+                  if (file.type === 'image/png') {
+                    format = 'png';
+                  } else if (file.type === 'image/gif') {
+                    format = 'gif';
+                  }
+
+                  photos.push({
+                    webPath: URL.createObjectURL(file),
+                    format: format
+                  });
+                }
+
+                resolve({
+                  photos: photos
+                });
+                cleanup();
+              });
+            }
+
+            input.accept = 'image/*';
+            input.click();
+          }
+        }, {
+          key: "_getCameraPhoto",
+          value: function _getCameraPhoto(photo, options) {
+            return new Promise(function (resolve, reject) {
+              var reader = new FileReader();
+              var format = photo.type.split('/')[1];
+
+              if (options.resultType === 'uri') {
+                resolve({
+                  webPath: URL.createObjectURL(photo),
+                  format: format,
+                  saved: false
+                });
+              } else {
+                reader.readAsDataURL(photo);
+
+                reader.onloadend = function () {
+                  var r = reader.result;
+
+                  if (options.resultType === 'dataUrl') {
+                    resolve({
+                      dataUrl: r,
+                      format: format,
+                      saved: false
+                    });
+                  } else {
+                    resolve({
+                      base64String: r.split(',')[1],
+                      format: format,
+                      saved: false
+                    });
+                  }
+                };
+
+                reader.onerror = function (e) {
+                  reject(e);
+                };
+              }
+            });
+          }
+        }, {
+          key: "checkPermissions",
+          value: function () {
+            var _checkPermissions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
+              var permission;
+              return regeneratorRuntime.wrap(function _callee17$(_context17) {
+                while (1) {
+                  switch (_context17.prev = _context17.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.permissions)) {
+                        _context17.next = 2;
+                        break;
+                      }
+
+                      throw this.unavailable('Permissions API not available in this browser');
+
+                    case 2:
+                      _context17.prev = 2;
+                      _context17.next = 5;
+                      return window.navigator.permissions.query({
+                        name: 'camera'
+                      });
+
+                    case 5:
+                      permission = _context17.sent;
+                      return _context17.abrupt("return", {
+                        camera: permission.state,
+                        photos: 'granted'
+                      });
+
+                    case 9:
+                      _context17.prev = 9;
+                      _context17.t0 = _context17["catch"](2);
+                      throw this.unavailable('Camera permissions are not available in this browser');
+
+                    case 12:
+                    case "end":
+                      return _context17.stop();
+                  }
+                }
+              }, _callee17, this, [[2, 9]]);
+            }));
+
+            function checkPermissions() {
+              return _checkPermissions.apply(this, arguments);
+            }
+
+            return checkPermissions;
+          }()
+        }, {
+          key: "requestPermissions",
+          value: function () {
+            var _requestPermissions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+                while (1) {
+                  switch (_context18.prev = _context18.next) {
+                    case 0:
+                      throw this.unimplemented('Not implemented on web.');
+
+                    case 1:
+                    case "end":
+                      return _context18.stop();
+                  }
+                }
+              }, _callee18, this);
+            }));
+
+            function requestPermissions() {
+              return _requestPermissions.apply(this, arguments);
+            }
+
+            return requestPermissions;
+          }()
+        }]);
+
+        return CameraWeb;
+      }(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["WebPlugin"]);
+
+      var Camera = new CameraWeb(); //# sourceMappingURL=web.js.map
+
+      /***/
     }
   }]);
 })();

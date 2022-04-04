@@ -54,6 +54,11 @@ let LoginPage = class LoginPage {
         this.initializeApp();
     }
     initializeApp() {
+        this.platform.ready().then(() => {
+            if (localStorage.getItem('is_logged_in') == 'true') {
+                this.router.navigate(['/tabs/home']);
+            }
+        });
         if (this.platform.is('android')) {
         }
         else {
@@ -285,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ "n93f");
 /* empty/unused harmony star reexport */
 const FacebookLogin = Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerPlugin"])('FacebookLogin', {
-    web: () => __webpack_require__.e(/*! import() | web */ "web").then(__webpack_require__.bind(null, /*! ./web */ "OwEV")).then(m => new m.FacebookLoginWeb()),
+    web: () => Promise.all(/*! import() | web */[__webpack_require__.e("common"), __webpack_require__.e("web")]).then(__webpack_require__.bind(null, /*! ./web */ "OwEV")).then(m => new m.FacebookLoginWeb()),
 });
 
 

@@ -46,7 +46,7 @@ HomePageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n  \t<ion-menu-button slot=\"start\"><div navToggle><span></span><span></span><span></span></div></ion-menu-button>\n    <ion-title>Home</ion-title>\n    <ion-button slot=\"end\" btngetsocial routerLink=\"/feed\">Get Social</ion-button>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<div padding>\n\t\t<p center>Setup Your Social Profile Here</p>\n\t\t<div userImg><img src=\"../assets/img/img1.jpg\" alt=\"\"><ion-button><ion-icon name=\"camera\"></ion-icon></ion-button> </div>\n\n\t\t<div form>\n\t\t<form [formGroup]=\"updateProfileForm\" (ngSubmit)=\"onSubmit()\" novalidate>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>First Name</label>\n\t\t\t\t<ion-input  formControlName=\"firstName\"  placeholder=\"First Name\"></ion-input>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.firstName.errors?.required\">\n\t\t\t\t\t<ion-label no-margin stacked>First Name is required.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.firstName.errors?.minlength\">\n\t\t\t\t\t<ion-label no-margin stacked>Min 3 chars long.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.firstName.errors?.pattern\">\n\t\t\t\t\t<ion-label no-margin stacked>Only alphabets allowed.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t</ion-col>\n\t\t\t<ion-col>\n\t\t\t\t<label>Last Name</label>\n\t\t\t\t<ion-input  formControlName=\"lastName\" placeholder=\"Last Name\"></ion-input>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.lastName.errors?.required\">\n\t\t\t\t\t<ion-label no-margin stacked>Last Name is required.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.lastName.errors?.minlength\">\n\t\t\t\t\t<ion-label no-margin stacked>Min 3 chars long.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.lastName.errors?.pattern\">\n\t\t\t\t\t<ion-label no-margin stacked>Only alphabets allowed.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Username</label>\n\t\t\t\t<ion-input  formControlName=\"email\" placeholder=\"Email\"></ion-input>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.email.errors?.required\">\n\t\t\t\t\t<ion-label no-margin stacked>Email is required.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.email.errors?.pattern\">\n\t\t\t\t\t<ion-label no-margin stacked>Enter valid email.</ion-label>\n\t\t\t\t</ion-item>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Description</label>\n\t\t\t\t<ion-textarea formControlName=\"description\" ></ion-textarea>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<ion-button type=\"submit\"   btnsave>Save</ion-button>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t</form>\n\t</div>\n\n\t</div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n\t<ion-toolbar>\n\t\t<ion-menu-button slot=\"start\">\n\t\t\t<div navToggle><span></span><span></span><span></span></div>\n\t\t</ion-menu-button>\n\t\t<ion-title>Home</ion-title>\n\t\t<ion-button slot=\"end\" btngetsocial routerLink=\"/feed\">Get Social</ion-button>\n\t</ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<div padding>\n\t\t<p center>Setup Your Social Profile Here</p>\n\t\t<div userImg><img src=\"{{ userImage }}\" alt=\"\">\n\t\t\t<ion-button (click)=\"selectImageSource()\">\n\t\t\t\t<ion-icon name=\"camera\"></ion-icon>\n\t\t\t</ion-button>\n\t\t</div>\n\n\t\t<div form>\n\t\t\t<form [formGroup]=\"updateProfileForm\" (ngSubmit)=\"onSubmit()\" novalidate>\n\t\t\t\t<input type=\"file\" accept=\"image/*\" id=\"fileupload\" (change)=\"uploadFile($event)\" name=\"fileupload\"\n\t\t\t\t\tstyle=\"display:none\" />\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>First Name</label>\n\t\t\t\t\t\t<ion-input formControlName=\"firstName\" placeholder=\"First Name\"></ion-input>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.firstName.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>First Name is required.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.firstName.errors?.minlength\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Min 3 chars long.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.firstName.errors?.pattern\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Only alphabets allowed.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Last Name</label>\n\t\t\t\t\t\t<ion-input formControlName=\"lastName\" placeholder=\"Last Name\"></ion-input>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.lastName.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Last Name is required.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.lastName.errors?.minlength\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Min 3 chars long.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.lastName.errors?.pattern\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Only alphabets allowed.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Username</label>\n\t\t\t\t\t\t<ion-input formControlName=\"email\" placeholder=\"Email\"></ion-input>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.email.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Email is required.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\" *ngIf=\"submitAttempt && errorCtr.email.errors?.pattern\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Enter valid email.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Description</label>\n\t\t\t\t\t\t<ion-textarea formControlName=\"description\"></ion-textarea>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<ion-button type=\"submit\" btnsave>Save</ion-button>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t</form>\n\t\t</div>\n\n\t</div>\n</ion-content>");
 
 /***/ }),
 
@@ -126,6 +126,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_api_api_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/api/api.service */ "oZWX");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../config */ "Vx+w");
 /* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../services/common.service */ "OlR4");
+/* harmony import */ var _capacitor_camera__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @capacitor/camera */ "/s3u");
+
+
 
 
 
@@ -137,17 +140,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-    constructor(route, common, api, router, menuController, formBuilder) {
+    constructor(route, common, api, router, menuController, formBuilder, plt, actionSheetCtrl) {
         this.route = route;
         this.common = common;
         this.api = api;
         this.router = router;
         this.menuController = menuController;
         this.formBuilder = formBuilder;
+        this.plt = plt;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.submitAttempt = false;
+        this.userImage = '../assets/img/logo.png';
+        this.userId = localStorage.getItem('ineat_userid');
         this.menuController.enable(true);
         this.route.queryParams.subscribe(params => {
             let data = this.router.getCurrentNavigation().extras.state;
-            if (data.user) {
+            if (data === null || data === void 0 ? void 0 : data.user) {
                 this.user = data.user;
                 this.saveUserData(this.user);
                 console.log(this.user);
@@ -155,14 +163,131 @@ let HomePage = class HomePage {
         });
     }
     ngOnInit() {
-        var _a, _b, _c;
-        this.userData = JSON.parse(localStorage.getItem('ineat_userData'));
+        this.fetchUserSocialData();
         this.updateProfileForm = this.formBuilder.group({
-            firstName: [(_a = this.userData) === null || _a === void 0 ? void 0 : _a.first_name, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-zA-Z][a-zA-Z ]+')]],
-            lastName: [(_b = this.userData) === null || _b === void 0 ? void 0 : _b.last_name, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-zA-Z][a-zA-Z ]+')]],
-            email: [(_c = this.userData) === null || _c === void 0 ? void 0 : _c.email, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-            description: [""]
+            firstName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-zA-Z][a-zA-Z ]+')]],
+            lastName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-zA-Z][a-zA-Z ]+')]],
+            email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+            description: ['']
         });
+    }
+    ionViewDidEnter() {
+    }
+    get errorCtr() {
+        return this.updateProfileForm.controls;
+    }
+    selectImageSource() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const buttons = [
+                {
+                    text: 'Take Photo',
+                    icon: 'camera',
+                    handler: () => {
+                        this.addImage(_capacitor_camera__WEBPACK_IMPORTED_MODULE_10__["CameraSource"].Camera);
+                    }
+                },
+                {
+                    text: 'Choose From Gallery',
+                    icon: 'image',
+                    handler: () => {
+                        this.addImage(_capacitor_camera__WEBPACK_IMPORTED_MODULE_10__["CameraSource"].Photos);
+                    }
+                }
+            ];
+            // Only allow file selection inside a browser
+            if (!this.plt.is('hybrid')) {
+                buttons.push({
+                    text: 'Choose a File',
+                    icon: 'attach',
+                    handler: () => {
+                        this.fileInput.nativeElement.click();
+                    }
+                });
+            }
+            const actionSheet = yield this.actionSheetCtrl.create({
+                header: 'Select Image Source',
+                buttons
+            });
+            yield actionSheet.present();
+        });
+    }
+    addImage(source) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const image = yield _capacitor_camera__WEBPACK_IMPORTED_MODULE_10__["Camera"].getPhoto({
+                quality: 60,
+                allowEditing: false,
+                resultType: _capacitor_camera__WEBPACK_IMPORTED_MODULE_10__["CameraResultType"].Base64,
+                source
+            });
+            const blobData = this.b64toBlob(image.base64String, 'image/${image.format}');
+            const imageName = 'imagee';
+            this.userImage = 'data:image/png;base64,' + image.base64String;
+            this.uploadBlobData = blobData;
+            this.uploadedExtension = image.format;
+        });
+    }
+    uploadFile(event) {
+        const eventObj = event;
+        const target = eventObj.target;
+        const file = target.files[0];
+    }
+    // Helper function
+    b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+        const byteCharacters = atob(b64Data);
+        const byteArrays = [];
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize);
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        const blob = new Blob(byteArrays, { type: contentType });
+        return blob;
+    }
+    onSubmit() {
+        this.submitAttempt = true;
+        if (!this.updateProfileForm.valid) {
+            return false;
+        }
+        else {
+            this.common.presentLoading();
+            let dict = this.updateProfileForm.value;
+            const imgName = (+new Date).toString(36).slice(-5);
+            const formData = new FormData();
+            if (typeof this.uploadBlobData === 'undefined') { }
+            else {
+                console.log(this.uploadedExtension);
+                formData.append('file', this.uploadBlobData, 'myimage.' + this.uploadedExtension);
+            }
+            formData.append('firstName', this.updateProfileForm.value.firstName);
+            formData.append('lastName', this.updateProfileForm.value.lastName);
+            formData.append('email', this.updateProfileForm.value.email);
+            formData.append('description', this.updateProfileForm.value.description);
+            formData.append('userId', this.userId);
+            this.api.post('updateSocialProfile', formData, '')
+                .subscribe((result) => {
+                this.submitAttempt = false;
+                this.common.stopLoading();
+                let res;
+                res = result;
+                if (res.status == 422) {
+                    var errMsgs = '';
+                    for (var i = 0; i < res.errors.length; i++) {
+                        var obj = res.errors[i];
+                        errMsgs += obj + '</br>';
+                    }
+                    this.common.presentToast(errMsgs, 'danger');
+                }
+                else if (res.status == 200) {
+                    this.common.presentToast('Profile Updated Successfully!.', 'success');
+                }
+            }, (error) => {
+                console.log(error);
+            });
+        }
     }
     saveUserData(userData) {
         this.api.post('googlelogin', userData, '')
@@ -189,6 +314,31 @@ let HomePage = class HomePage {
             console.log(error);
         });
     }
+    fetchUserSocialData() {
+        this.common.presentLoading();
+        this.api.post('getSocialData', { userId: this.userId }, '')
+            .subscribe((result) => {
+            this.common.stopLoading();
+            const res = result;
+            if (res.status === 422 || res.status === '422') {
+                let errMsgs = '';
+                for (const x of res.errors) {
+                    errMsgs += x + '</br>';
+                }
+                this.common.presentToast(errMsgs, 'danger');
+            }
+            else if (res.status === 200 || res.status === '200') {
+                this.socialData = res.data;
+                this.userImage = this.socialData.image;
+                this.updateProfileForm.controls.firstName.setValue(this.socialData.first_name);
+                this.updateProfileForm.controls.lastName.setValue(this.socialData.last_name);
+                this.updateProfileForm.controls.email.setValue(this.socialData.username);
+                this.updateProfileForm.controls.description.setValue(this.socialData.description);
+            }
+        }, (error) => {
+            this.common.stopLoading();
+        });
+    }
 };
 HomePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] },
@@ -196,8 +346,13 @@ HomePage.ctorParameters = () => [
     { type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_7__["ApiService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"] },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"] }
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ActionSheetController"] }
 ];
+HomePage.propDecorators = {
+    fileInput: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["ViewChild"], args: ['fileInput', { static: false },] }]
+};
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
         selector: 'app-home',

@@ -1,4 +1,10 @@
 (function () {
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -141,17 +147,82 @@
       var _confirm_modal_confirm_modal_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! ../confirm-modal/confirm-modal.page */
       "MEpN");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var _services_api_api_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ../services/api/api.service */
+      "oZWX");
+      /* harmony import */
+
+
+      var _services_common_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ../services/common.service */
+      "OlR4");
 
       var OrderSummaryPage = /*#__PURE__*/function () {
-        function OrderSummaryPage(modalController) {
+        function OrderSummaryPage(modalController, route, common, api) {
           _classCallCheck(this, OrderSummaryPage);
 
           this.modalController = modalController;
+          this.common = common;
+          this.api = api;
+          this.userId = localStorage.getItem('ineat_userid');
+          this.userData = localStorage.getItem('ineat_userData');
         }
 
         _createClass(OrderSummaryPage, [{
+          key: "ionViewWillEnter",
+          value: function ionViewWillEnter() {
+            this.getCartData();
+          }
+        }, {
           key: "ngOnInit",
           value: function ngOnInit() {}
+        }, {
+          key: "getCartData",
+          value: function getCartData() {
+            var _this = this;
+
+            this.api.post('getCartSummary', {
+              userId: this.userId
+            }, '').subscribe(function (result) {
+              _this.common.stopLoading();
+
+              var res = result;
+
+              if (res.status === 422 || res.status === '422') {
+                var errMsgs = '';
+
+                var _iterator = _createForOfIteratorHelper(res.errors),
+                    _step;
+
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    var x = _step.value;
+                    errMsgs += x + '</br>';
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+
+                _this.common.presentToast(errMsgs, 'danger');
+              } else if (res.status === 200 || res.status === '200') {
+                _this.cartData = res.data;
+                console.log(_this.cartData);
+              }
+            }, function (error) {
+              console.log(error);
+            });
+          }
         }, {
           key: "feedback",
           value: function feedback() {
@@ -191,6 +262,12 @@
       OrderSummaryPage.ctorParameters = function () {
         return [{
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]
+        }, {
+          type: _services_common_service__WEBPACK_IMPORTED_MODULE_8__["CommonService"]
+        }, {
+          type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_7__["ApiService"]
         }];
       };
 
@@ -218,7 +295,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n\t<ion-toolbar>\n\t\t<div flexHeader>\n\t\t\t<div backHead>\n\t\t\t\t<ion-back-button></ion-back-button>\n\t\t\t</div>\n\t\t\t<ion-title>Order Summary</ion-title>\n\t\t</div>\n\t</ion-toolbar>\n</ion-header>\n<ion-content>\n\t<ul mybowlsPage>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label>High</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label medium>Medium</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label low>Low</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t\t<li routerLink=\"/bowl-details\">\n\t\t\t<span bowlimg><img src=\"assets/img/img2.png\" alt=\"\"> <label>High</label></span>\n\t\t\t<div ritBowl>\n\t\t\t\t<h4>Romada Product</h4>\n\t\t\t\t<p>Prep. Time: 15:30 mins</p>\n\t\t\t</div>\n\t\t</li>\n\t</ul>\n\t<ion-button btncontinue (click)=\"feedback()\">Continue</ion-button>\n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n\t<ion-toolbar>\n\t\t<div flexHeader>\n\t\t\t<div backHead>\n\t\t\t\t<ion-back-button></ion-back-button>\n\t\t\t</div>\n\t\t\t<ion-title>Order Summary</ion-title>\n\t\t</div>\n\t</ion-toolbar>\n</ion-header>\n<ion-content>\n\t<ul mybowlsPage *ngIf=\"cartData\">\n\t\t<ng-container *ngFor=\"let data of cartData | keyvalue\">\n\t\t\t<li routerLink=\"/meal-details/{{recepie.item_id}}\"  *ngFor=\"let recepie of data.value\" >\n\t\t\t\t<span bowlimg><img src=\"{{recepie.image}}\" alt=\"\"> <label>{{recepie.difficulty_level}}</label></span>\n\t\t\t\t<div ritBowl>\n\t\t\t\t\t<h4>{{recepie.recipe_name}}</h4>\n\t\t\t\t\t<p>Quantity: {{recepie.quantity}}</p>\n\t\t\t\t\t<p>{{data.key}}</p>\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t</ng-container>\n\n\t</ul>\n\t<ion-button btncontinue (click)=\"feedback()\">Continue</ion-button>\n\n\n</ion-content>";
       /***/
     },
 

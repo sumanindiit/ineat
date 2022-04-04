@@ -39,6 +39,7 @@ export class HomePage implements OnInit {
     public plt: Platform,
     public actionSheetCtrl: ActionSheetController
   ) {
+    this.common.redirectToLogin();
     this.menuController.enable(true);
     this.route.queryParams.subscribe(params => {
       let data = this.router.getCurrentNavigation().extras.state;
@@ -49,6 +50,8 @@ export class HomePage implements OnInit {
         console.log(this.user);
       }
     });
+
+    
   }
 
   ngOnInit() {
@@ -164,7 +167,7 @@ export class HomePage implements OnInit {
 
       if (typeof this.uploadBlobData === 'undefined') { } else {
         console.log(this.uploadedExtension);
-        formData.append('file', this.uploadBlobData, 'myimage.'+this.uploadedExtension);
+        formData.append('file', this.uploadBlobData, 'myimage.' + this.uploadedExtension);
       }
 
       formData.append('firstName', this.updateProfileForm.value.firstName);
@@ -253,7 +256,7 @@ export class HomePage implements OnInit {
             this.updateProfileForm.controls.lastName.setValue(this.socialData.last_name);
             this.updateProfileForm.controls.email.setValue(this.socialData.username);
             this.updateProfileForm.controls.description.setValue(this.socialData.description);
-         
+
           }
         },
         (error) => {

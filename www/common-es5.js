@@ -1,15 +1,15 @@
 (function () {
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
   function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"], {
     /***/
@@ -28,7 +28,72 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content>\n\t<div confirmBox>\n\t\t<h4>Order Confirmation</h4>\n\t\t<p>Are you sure you want to place this order?</p>\n\t\t<div d-flex>\n\t\t\t<ion-button btncontinue btnCancel (click)=\"dismiss()\">Cancel</ion-button>\n\t\t\t<ion-button btncontinue (click)=\"dismiss()\">Confirm</ion-button>\n\t\t</div>\n\t</div>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-content>\n\t<div confirmBox>\n\t\t<h4>Order Confirmation</h4>\n\t\t<p>Are you sure you want to place this order?</p>\n\t\t<div d-flex>\n\t\t\t<ion-button btncontinue btnCancel (click)=\"dismiss()\">Cancel</ion-button>\n\t\t\t<ion-button btncontinue (click)=\"confirm()\">Confirm</ion-button>\n\t\t</div>\n\t</div>\n</ion-content>\n";
+      /***/
+    },
+
+    /***/
+    "/s3u":
+    /*!**********************************************************!*\
+      !*** ./node_modules/@capacitor/camera/dist/esm/index.js ***!
+      \**********************************************************/
+
+    /*! exports provided: CameraSource, CameraDirection, CameraResultType, Camera */
+
+    /***/
+    function s3u(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Camera", function () {
+        return Camera;
+      });
+      /* harmony import */
+
+
+      var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @capacitor/core */
+      "FUe0");
+      /* harmony import */
+
+
+      var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./definitions */
+      "dTEF");
+      /* harmony reexport (safe) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraSource", function () {
+        return _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"];
+      });
+      /* harmony reexport (safe) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraDirection", function () {
+        return _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraDirection"];
+      });
+      /* harmony reexport (safe) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraResultType", function () {
+        return _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraResultType"];
+      });
+
+      var Camera = Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerPlugin"])('Camera', {
+        web: function web() {
+          return Promise.all(
+          /*! import() | web */
+          [__webpack_require__.e("common"), __webpack_require__.e("web")]).then(__webpack_require__.bind(null,
+          /*! ./web */
+          "wzPO")).then(function (m) {
+            return new m.CameraWeb();
+          });
+        }
+      }); //# sourceMappingURL=index.js.map
+
       /***/
     },
 
@@ -152,6 +217,72 @@
       };
       /***/
 
+    },
+
+    /***/
+    "3IAD":
+    /*!******************************************************!*\
+      !*** ./src/app/services/globalFooService.service.ts ***!
+      \******************************************************/
+
+    /*! exports provided: GlobalFooService */
+
+    /***/
+    function IAD(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "GlobalFooService", function () {
+        return GlobalFooService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! rxjs */
+      "qCKp");
+
+      var GlobalFooService = /*#__PURE__*/function () {
+        function GlobalFooService() {
+          _classCallCheck(this, GlobalFooService);
+
+          this.fooSubject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        }
+
+        _createClass(GlobalFooService, [{
+          key: "publishSomeData",
+          value: function publishSomeData(data) {
+            this.fooSubject.next(data);
+          }
+        }, {
+          key: "getObservable",
+          value: function getObservable() {
+            return this.fooSubject;
+          }
+        }]);
+
+        return GlobalFooService;
+      }();
+
+      GlobalFooService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], GlobalFooService);
+      /***/
     },
 
     /***/
@@ -344,12 +475,34 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var _services_api_api_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../services/api/api.service */
+      "oZWX");
+      /* harmony import */
+
+
+      var _services_common_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ../services/common.service */
+      "OlR4");
 
       var ConfirmModalPage = /*#__PURE__*/function () {
-        function ConfirmModalPage(modalController) {
+        function ConfirmModalPage(modalController, route, common, api) {
           _classCallCheck(this, ConfirmModalPage);
 
           this.modalController = modalController;
+          this.common = common;
+          this.api = api;
+          this.userId = localStorage.getItem('ineat_userid');
+          this.userData = localStorage.getItem('ineat_userData');
         }
 
         _createClass(ConfirmModalPage, [{
@@ -364,6 +517,33 @@
               'dismissed': true
             });
           }
+        }, {
+          key: "confirm",
+          value: function confirm() {
+            this.modalController.dismiss({
+              'dismissed': true
+            });
+            this.api.navCtrl.navigateRoot('/order-placed'); // this.api.post('confirmUserMeal', { userId: this.userId }, '')
+            //   .subscribe(
+            //     (result) => {
+            //       this.common.stopLoading();
+            //       const res: any = result;
+            //       if (res.status === 422 || res.status === '422') {
+            //         let errMsgs = '';
+            //         for (const x of res.errors) {
+            //           errMsgs += x + '</br>';
+            //         }
+            //         this.common.presentToast(errMsgs, 'danger');
+            //       }
+            //       else if (res.status === 200 || res.status === '200') {
+            //         this.api.navCtrl.navigateRoot('/order-placed');
+            //         //console.log(res);
+            //       }
+            //     },
+            //     (error) => {
+            //       console.log(error);
+            //     });
+          }
         }]);
 
         return ConfirmModalPage;
@@ -372,6 +552,12 @@
       ConfirmModalPage.ctorParameters = function () {
         return [{
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]
+        }, {
+          type: _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"]
+        }, {
+          type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_6__["ApiService"]
         }];
       };
 
@@ -482,6 +668,76 @@
 
         return Promise.resolve();
       };
+      /***/
+
+    },
+
+    /***/
+    "dTEF":
+    /*!****************************************************************!*\
+      !*** ./node_modules/@capacitor/camera/dist/esm/definitions.js ***!
+      \****************************************************************/
+
+    /*! exports provided: CameraSource, CameraDirection, CameraResultType */
+
+    /***/
+    function dTEF(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraSource", function () {
+        return CameraSource;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraDirection", function () {
+        return CameraDirection;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraResultType", function () {
+        return CameraResultType;
+      });
+
+      var CameraSource;
+
+      (function (CameraSource) {
+        /**
+         * Prompts the user to select either the photo album or take a photo.
+         */
+        CameraSource["Prompt"] = "PROMPT";
+        /**
+         * Take a new photo using the camera.
+         */
+
+        CameraSource["Camera"] = "CAMERA";
+        /**
+         * Pick an existing photo fron the gallery or photo album.
+         */
+
+        CameraSource["Photos"] = "PHOTOS";
+      })(CameraSource || (CameraSource = {}));
+
+      var CameraDirection;
+
+      (function (CameraDirection) {
+        CameraDirection["Rear"] = "REAR";
+        CameraDirection["Front"] = "FRONT";
+      })(CameraDirection || (CameraDirection = {}));
+
+      var CameraResultType;
+
+      (function (CameraResultType) {
+        CameraResultType["Uri"] = "uri";
+        CameraResultType["Base64"] = "base64";
+        CameraResultType["DataUrl"] = "dataUrl";
+      })(CameraResultType || (CameraResultType = {})); //# sourceMappingURL=definitions.js.map
+
       /***/
 
     },

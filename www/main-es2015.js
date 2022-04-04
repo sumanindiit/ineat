@@ -154,17 +154,17 @@ let AppComponent = class AppComponent {
         this.platform = platform;
         this.common = common;
         this.api = api;
+        this.userImage = 'assets/img/logo.png';
+        this.userId = localStorage.getItem('ineat_userid');
+        this.userData = JSON.parse(localStorage.getItem('ineat_userData'));
         this.initializeApp();
     }
     initializeApp() {
-        this.platform.ready().then(() => {
-            if (localStorage.getItem('is_logged_in') == 'true') {
-                this.router.navigate(['/tabs/home']);
-            }
-            else {
-                this.router.navigate(['/login']);
-            }
-        });
+        var _a, _b;
+        if (this.userData != "") {
+            this.userImage = (_a = this.userData) === null || _a === void 0 ? void 0 : _a.image;
+            this.userName = (_b = this.userData) === null || _b === void 0 ? void 0 : _b.first_name;
+        }
     }
     logout() {
         _codetrix_studio_capacitor_google_auth__WEBPACK_IMPORTED_MODULE_8__["GoogleAuth"].signOut();
@@ -226,7 +226,7 @@ const social_config = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n\n\n<ion-app>\n  <ion-split-pane contentId=\"main-content\" >\n    <ion-menu contentId=\"main-content\" type=\"overlay\" >\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n\n          <div Userpro>\n            <img src=\"assets/img/img1.jpg\" alt=\"\">\n            <p>John Roelfsema</p>\n          </div>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"chatbubble-ellipses\"></ion-icon>\n              <ion-label>Messages</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"bag-handle\"></ion-icon>\n              <ion-label>Deliveries</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"information-circle\"></ion-icon>\n              <ion-label>Privacy & Policy</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-label>Profile</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"log-out\"></ion-icon>\n              <ion-label (click)=\"logout()\">Logout</ion-label>\n            </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n\n\n<ion-app>\n  <ion-split-pane contentId=\"main-content\" >\n    <ion-menu contentId=\"main-content\" type=\"overlay\" >\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n\n          <div Userpro>\n            <img src=\"{{ userImage }}\"  alt=\"\">\n            <p>{{ userName }}</p>\n          </div>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"chatbubble-ellipses\"></ion-icon>\n              <ion-label>Messages</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"bag-handle\"></ion-icon>\n              <ion-label>Deliveries</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"information-circle\"></ion-icon>\n              <ion-label>Privacy & Policy</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-label>Profile</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"log-out\"></ion-icon>\n              <ion-label (click)=\"logout()\">Logout</ion-label>\n            </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n");
 
 /***/ }),
 
@@ -603,7 +603,7 @@ const routes = [
     },
     {
         path: 'home',
-        loadChildren: () => __webpack_require__.e(/*! import() | home-home-module */ "home-home-module").then(__webpack_require__.bind(null, /*! ./home/home.module */ "ct+p")).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ./home/home.module */ "ct+p")).then(m => m.HomePageModule)
     },
     {
         path: 'notifications',
@@ -646,7 +646,7 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() | confirm-modal-confirm-modal-module */[__webpack_require__.e("common"), __webpack_require__.e("confirm-modal-confirm-modal-module")]).then(__webpack_require__.bind(null, /*! ./confirm-modal/confirm-modal.module */ "HfQG")).then(m => m.ConfirmModalPageModule)
     },
     {
-        path: 'meal-details',
+        path: 'meal-details/:mealId',
         loadChildren: () => __webpack_require__.e(/*! import() | meal-details-meal-details-module */ "meal-details-meal-details-module").then(__webpack_require__.bind(null, /*! ./meal-details/meal-details.module */ "lWfY")).then(m => m.MealDetailsPageModule)
     },
     {
@@ -656,6 +656,38 @@ const routes = [
     {
         path: 'deliveries',
         loadChildren: () => __webpack_require__.e(/*! import() | deliveries-deliveries-module */ "deliveries-deliveries-module").then(__webpack_require__.bind(null, /*! ./deliveries/deliveries.module */ "DhhR")).then(m => m.DeliveriesPageModule)
+    },
+    {
+        path: 'meals',
+        loadChildren: () => __webpack_require__.e(/*! import() | meals-meals-module */ "meals-meals-module").then(__webpack_require__.bind(null, /*! ./meals/meals.module */ "yns/")).then(m => m.MealsPageModule)
+    },
+    {
+        path: 'settings',
+        loadChildren: () => __webpack_require__.e(/*! import() | settings-settings-module */ "settings-settings-module").then(__webpack_require__.bind(null, /*! ./settings/settings.module */ "7wo0")).then(m => m.SettingsPageModule)
+    },
+    {
+        path: 'edit-profile',
+        loadChildren: () => Promise.all(/*! import() | edit-profile-edit-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("edit-profile-edit-profile-module")]).then(__webpack_require__.bind(null, /*! ./edit-profile/edit-profile.module */ "Wvzw")).then(m => m.EditProfilePageModule)
+    },
+    {
+        path: 'account-info',
+        loadChildren: () => Promise.all(/*! import() | account-info-account-info-module */[__webpack_require__.e("common"), __webpack_require__.e("account-info-account-info-module")]).then(__webpack_require__.bind(null, /*! ./account-info/account-info.module */ "pqwD")).then(m => m.AccountInfoPageModule)
+    },
+    {
+        path: 'add-card',
+        loadChildren: () => __webpack_require__.e(/*! import() | add-card-add-card-module */ "add-card-add-card-module").then(__webpack_require__.bind(null, /*! ./add-card/add-card.module */ "jvsA")).then(m => m.AddCardPageModule)
+    },
+    {
+        path: 'edit-card',
+        loadChildren: () => __webpack_require__.e(/*! import() | edit-card-edit-card-module */ "edit-card-edit-card-module").then(__webpack_require__.bind(null, /*! ./edit-card/edit-card.module */ "GHwY")).then(m => m.EditCardPageModule)
+    },
+    {
+        path: 'manage-subscription',
+        loadChildren: () => __webpack_require__.e(/*! import() | manage-subscription-manage-subscription-module */ "manage-subscription-manage-subscription-module").then(__webpack_require__.bind(null, /*! ./manage-subscription/manage-subscription.module */ "5ima")).then(m => m.ManageSubscriptionPageModule)
+    },
+    {
+        path: 'refer-a-friend',
+        loadChildren: () => __webpack_require__.e(/*! import() | refer-a-friend-refer-a-friend-module */ "refer-a-friend-refer-a-friend-module").then(__webpack_require__.bind(null, /*! ./refer-a-friend/refer-a-friend.module */ "uUPG")).then(m => m.ReferAFriendPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
