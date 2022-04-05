@@ -97,6 +97,14 @@ const routes: Routes = [
   },  {
     path: 'add-group',
     loadChildren: () => import('./add-group/add-group.module').then( m => m.AddGroupPageModule)
+  },
+  {
+    path: 'comment-form',
+    loadChildren: () => import('./comment-form/comment-form.module').then( m => m.CommentFormPageModule)
+  },
+  {
+    path: 'mealfilters',
+    loadChildren: () => import('./mealfilters/mealfilters.module').then( m => m.MealfiltersPageModule)
   }
 
 

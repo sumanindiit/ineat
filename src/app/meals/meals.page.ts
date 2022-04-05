@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuController, IonInfiniteScroll } from '@ionic/angular';
+import { MenuController, IonInfiniteScroll, ModalController } from '@ionic/angular';
 import { IonSlides } from '@ionic/angular';
 import { ApiService } from '../services/api/api.service';
-import { config } from '../config';
 import { CommonService } from '../services/common.service';
-import { first } from 'rxjs-compat/operator/first';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { MealfiltersPage } from '../mealfilters/mealfilters.page';
 @Component({
   selector: 'app-meals',
   templateUrl: './meals.page.html',
@@ -33,8 +31,8 @@ export class MealsPage implements OnInit {
     private menuController: MenuController,
     private common: CommonService,
     public api: ApiService,
-    private cd: ChangeDetectorRef
-
+    private cd: ChangeDetectorRef,
+    public modalController: ModalController
   ) {
     this.menuController.enable(false);
     this.recordsPerPage = 6;
@@ -129,5 +127,11 @@ export class MealsPage implements OnInit {
           });
     }, 500);
   }
-
+  async presentMealsModal() {
+    const modal = await this.modalController.create({
+      component: MealfiltersPage,
+      cssClass: 'MealsFiltersModal'
+    });
+    return await modal.present();
+  }
 }

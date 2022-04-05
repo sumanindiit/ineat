@@ -1,0 +1,28 @@
+
+	
+[form]{
+	margin:0px 0 0;
+	ion-row{
+		margin:10px 0 0;
+		ion-col{
+			label{
+                font-size: 17px;
+                font-weight: 600;
+                letter-spacing: -0.5px;
+			}
+			ion-input, ion-textarea, ion-select{
+				border:1px solid #eee;
+				border-radius: 5px;
+				font-size: 14px;
+				color: #222;
+				padding:10px;
+			}
+		}
+	}
+}
+[btnsave]{
+	height: 50px;
+	border-radius: 10px;
+	width: 100%;
+	margin-top: 0;
+}

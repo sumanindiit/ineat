@@ -48,7 +48,7 @@
 								<div commentcounts>
 									<div posticons>
 										<a href="javascript:void(0)" hearticon><ion-icon name="heart"></ion-icon></a>
-										<a href="javascript:void(0)"><ion-icon name="chatbubble-outline"></ion-icon></a>
+										<a href="javascript:void(0)" (click)="presentCommentModal()"><ion-icon name="chatbubble-outline"></ion-icon></a>
 										<a href="javascript:void(0)"><ion-icon name="arrow-redo-outline"></ion-icon></a>
 									</div>
 									<ion-row>
@@ -92,7 +92,7 @@
 								<div commentcounts>
 									<div posticons>
 										<a href="javascript:void(0)" hearticon><ion-icon name="heart"></ion-icon></a>
-										<a href="javascript:void(0)"><ion-icon name="chatbubble-outline"></ion-icon></a>
+										<a href="javascript:void(0)" (click)="presentCommentModal()"><ion-icon name="chatbubble-outline"></ion-icon></a>
 										<a href="javascript:void(0)"><ion-icon name="arrow-redo-outline"></ion-icon></a>
 									</div>
 									<ion-row>
@@ -121,11 +121,7 @@
 						</ion-card>
 					</div>
 				</div>
-				<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed">	  
-					<ion-fab-button>
-						<ion-icon name="add-outline"></ion-icon>
-					</ion-fab-button>
-				  </ion-fab>
+				
 			</div>
 
 			<div *ngSwitchCase="'mybowls'">
@@ -209,7 +205,11 @@
 						</div>
 					</li>
 				</ul>
-			
+				<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed" routerLink="/add-group">	  
+					<ion-fab-button>
+						<ion-icon name="add-outline"></ion-icon>
+					</ion-fab-button>
+				  </ion-fab>
 			</div>
 		</div>
 
