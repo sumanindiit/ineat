@@ -40,7 +40,7 @@
 							<ion-label>
 								<h2 routerLink="/otherprofile">Ineat Official <span>8 min</span></h2>
 							</ion-label>
-							<ion-buttons slot="end"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
+							<ion-buttons slot="end" (click)="presentPopover($event)"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
 						</ion-item>
 						<p desc>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
 						<ion-card class="ion-no-margin">
@@ -84,7 +84,7 @@
 							<ion-label>
 								<h2 routerLink="/otherprofile">Ineat Official <span>8 min</span></h2>
 							</ion-label>
-							<ion-buttons slot="end"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
+							<ion-buttons slot="end" (click)="presentPopover($event)"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
 						</ion-item>
 						<p desc>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
 						<ion-card class="ion-no-margin">
@@ -121,6 +121,11 @@
 						</ion-card>
 					</div>
 				</div>
+				<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed">	  
+					<ion-fab-button>
+						<ion-icon name="add-outline"></ion-icon>
+					</ion-fab-button>
+				  </ion-fab>
 			</div>
 
 			<div *ngSwitchCase="'mybowls'">
@@ -154,6 +159,11 @@
 						</div>
 					</li>
 				</ul>
+				<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed">	  
+					<ion-fab-button routerLink="/add-bowl">
+						<ion-icon name="add-outline"></ion-icon>
+					</ion-fab-button>
+				  </ion-fab>
 			</div>
 
 			<div *ngSwitchCase="'explore'">
@@ -199,6 +209,7 @@
 						</div>
 					</li>
 				</ul>
+			
 			</div>
 		</div>
 

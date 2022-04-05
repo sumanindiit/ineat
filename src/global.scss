@@ -182,3 +182,7 @@ span.error {
     text-overflow: initial !important;
     white-space: normal !important;
 }
+
+*:focus {
+	outline: 0;
+}
