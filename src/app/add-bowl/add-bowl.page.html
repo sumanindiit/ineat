@@ -1,44 +1,72 @@
 <ion-header>
-  <ion-toolbar>
-    <div flexHeader>
-		<div backHead>
-			<ion-back-button></ion-back-button>
+	<ion-toolbar>
+		<div flexHeader>
+			<div backHead>
+				<ion-back-button routerLink="/tabs/feed"></ion-back-button>
+			</div>
+			<ion-title>Create Discussion</ion-title>
 		</div>
-		<ion-title>Add Bowl</ion-title>
-	</div>
-  </ion-toolbar>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<div padding>
 		<div form>
-		<ion-row>
-			<ion-col>
-				<label>Bowl Name</label>
-				<ion-input placeholder="Bowl Name"></ion-input>
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<label>Choose Bowl</label>
-				<ion-select placeholder="Choose">
-			      <ion-select-option value="f">Bowl Name One</ion-select-option>
-			      <ion-select-option value="m">Bowl Name Two</ion-select-option>
-			    </ion-select>
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<label>Description</label>
-				<ion-textarea placeholder="Desciption"></ion-textarea>
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<ion-button btnsave>Add Bowl</ion-button>
-			</ion-col>
-		</ion-row>
-	</div>
+			<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" novalidate>
+				<ion-row>
+					<ion-col>
+						<label>What's on Your Mind?</label>
+						<ion-input formControlName="postDescription" placeholder="What's on Your Mind"></ion-input>
+						<ion-item class="form-text error"
+							*ngIf="submitAttempt && errorCtr.postDescription.errors?.required">
+							<ion-label no-margin stacked>Please enter description</ion-label>
+						</ion-item>
+						<ion-item class="form-text error"
+							*ngIf="submitAttempt && errorCtr.postDescription.errors?.minlength">
+							<ion-label no-margin stacked>Min 3 chars long.</ion-label>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<label>Select Group</label>
+						<ion-select formControlName="postGroup" value="" [interfaceOptions]="customAlertOptions"
+							interface="action-sheet" placeholder="Select Group">
+							<ion-select-option *ngFor="let val of allGroups" value="{{val.id}}">{{val.title}}
+							</ion-select-option>
+						</ion-select>
+
+
+						<ion-item class='form-text error' *ngIf="submitAttempt && errorCtr.postGroup.errors?.required">
+							<ion-label no-margin stacked>Please select at least one group.</ion-label>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<label>Add a cover image</label>
+
+						<div>
+							<ion-button (click)="selectImageSource()">
+								<ion-icon name="camera"></ion-icon>
+							</ion-button>
+						</div>
+						<input type="file" accept="image/*" id="fileupload" (change)="uploadFile($event)"
+							name="fileupload" style="display:none;" />
+					</ion-col>
+					<ion-col size="12" *ngIf="postImage !=''">
+						<div class="coverImages">
+							<span><img src="{{ postImage }}" alt=""></span>
+						</div>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<ion-button type="submit" btnsave>Share</ion-button>
+					</ion-col>
+				</ion-row>
+			</form>
+		</div>
 
 	</div>
 </ion-content>

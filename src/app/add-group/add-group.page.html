@@ -1,49 +1,71 @@
 <ion-header>
-  <ion-toolbar>
-    <div flexHeader>
-		<div backHead>
-			<ion-back-button></ion-back-button>
+	<ion-toolbar>
+		<div flexHeader>
+			<div backHead>
+				<ion-back-button routerLink="/tabs/feed" ></ion-back-button>
+			</div>
+			<ion-title>Add Group</ion-title>
 		</div>
-		<ion-title>Add Group</ion-title>
-	</div>
-  </ion-toolbar>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<div padding>
 		<div form>
-		<ion-row>
-			<ion-col>
-				<label>Group Name</label>
-				<ion-input placeholder="Group Name"></ion-input>
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<label>Description</label>
-				<ion-textarea placeholder="Desciption"></ion-textarea>
-			</ion-col>
-		</ion-row>
-   		<ion-row>
-			<ion-col>
-				<label>Add a cover image</label>
-				<ion-input placeholder="" type="file"></ion-input>
-			</ion-col>
-			<ion-col size="12">
-				<div class="coverImages">
-						<span><img src="assets/img/bowl2.png" alt=""> <ion-icon name="trash"></ion-icon></span>
-						<span><img src="assets/img/bowl2.png" alt=""><ion-icon name="trash"></ion-icon></span>
-						<span><img src="assets/img/bowl2.png" alt=""> <ion-icon name="trash"></ion-icon></span>
-				</div>
-			</ion-col>
-		</ion-row>
-	
-		<ion-row>
-			<ion-col>
-				<ion-button btnsave>Add Group</ion-button>
-			</ion-col>
-		</ion-row>
-	</div>
+			<form [formGroup]="addGroupForm" (ngSubmit)="onSubmit()" novalidate>
+				<ion-row>
+					<ion-col>
+						<label>Group Name</label>
+						<ion-input placeholder="Group Name" formControlName="groupTitle"></ion-input>
+						<ion-item class="form-text error" *ngIf="submitAttempt && errorCtr.groupTitle.errors?.required">
+							<ion-label no-margin stacked>Please enter group name</ion-label>
+						</ion-item>
+						<ion-item class="form-text error"
+							*ngIf="submitAttempt && errorCtr.groupTitle.errors?.minlength">
+							<ion-label no-margin stacked>Min 10 chars long.</ion-label>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<label>Description</label>
+						<ion-textarea placeholder="Desciption" formControlName="groupDescription"></ion-textarea>
+						<ion-item class="form-text error"
+							*ngIf="submitAttempt && errorCtr.groupDescription.errors?.required">
+							<ion-label no-margin stacked>Please enter description</ion-label>
+						</ion-item>
+						<ion-item class="form-text error"
+							*ngIf="submitAttempt && errorCtr.groupDescription.errors?.minlength">
+							<ion-label no-margin stacked>Min 3 chars long.</ion-label>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<label>Add a cover image</label>
+
+						<div>
+							<ion-button (click)="selectImageSource()">
+								<ion-icon name="camera"></ion-icon>
+							</ion-button>
+						</div>
+						<input type="file" accept="image/*" id="fileupload" (change)="uploadFile($event)"
+							name="fileupload" style="display:none;" />
+					</ion-col>
+					<ion-col size="12" *ngIf="postImage !=''">
+						<div class="coverImages">
+							<span><img src="{{ postImage }}" alt=""></span>
+						</div>
+					</ion-col>
+				</ion-row>
+
+				<ion-row>
+					<ion-col>
+						<ion-button type="submit" btnsave>Add Group</ion-button>
+					</ion-col>
+				</ion-row>
+			</form>
+		</div>
 
 	</div>
 </ion-content>

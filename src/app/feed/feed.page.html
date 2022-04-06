@@ -2,13 +2,19 @@
 	<ion-toolbar>
 		<div flexHeader>
 			<div backHead>
-				<ion-back-button></ion-back-button>
-				<ion-title>Feed</ion-title>
+				<ion-back-button defaultHref="/tabs/home"></ion-back-button>
+				<ion-title>{{ tabTitle }}</ion-title>
 			</div>
 			<div ml-auto>
-				<ion-button routerLink="/messages" fill="none"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></ion-button>
-				<ion-button routerLink="/notifications" fill="none"><ion-icon name="notifications-outline"></ion-icon></ion-button>
-				<ion-button fill="none" ><ion-icon name="search-outline"></ion-icon></ion-button>
+				<ion-button routerLink="/messages" fill="none">
+					<ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+				</ion-button>
+				<ion-button routerLink="/notifications" fill="none">
+					<ion-icon name="notifications-outline"></ion-icon>
+				</ion-button>
+				<ion-button fill="none">
+					<ion-icon name="search-outline"></ion-icon>
+				</ion-button>
 			</div>
 		</div>
 	</ion-toolbar>
@@ -16,12 +22,12 @@
 
 <ion-content>
 	<div padding>
-		<ion-segment mode="ios" [(ngModel)]="tabs" segment>
+		<ion-segment (ionChange)="segmentChanged($event)" mode="ios" [(ngModel)]="tabs" segment>
 			<ion-segment-button value="feed">
 				<h6>Feed</h6>
 			</ion-segment-button>
 			<ion-segment-button value="mybowls">
-				<h6>My Bowls</h6>
+				<h6>My Groups</h6>
 			</ion-segment-button>
 			<ion-segment-button value="explore">
 				<h6>Explore</h6>
@@ -29,188 +35,106 @@
 		</ion-segment>
 	</div>
 
-		<div feedPage [ngSwitch]="tabs">
-			<div *ngSwitchCase="'feed'">
-				<div posts>
-					<div postinner class="ion-padding">
-						<ion-item lines="none" class="ion-no-padding"> 
-							<ion-avatar>
-								<img src="assets/img/bowl1.png"/>
-							</ion-avatar>
-							<ion-label>
-								<h2 routerLink="/otherprofile">Ineat Official <span>8 min</span></h2>
-							</ion-label>
-							<ion-buttons slot="end" (click)="presentPopover($event)"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
-						</ion-item>
-						<p desc>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-						<ion-card class="ion-no-margin">
-							<ion-card-content class="ion-no-padding">
-								<div commentcounts>
-									<div posticons>
-										<a href="javascript:void(0)" hearticon><ion-icon name="heart"></ion-icon></a>
-										<a href="javascript:void(0)" (click)="presentCommentModal()"><ion-icon name="chatbubble-outline"></ion-icon></a>
-										<a href="javascript:void(0)"><ion-icon name="arrow-redo-outline"></ion-icon></a>
-									</div>
-									<ion-row>
-										<ion-col size="8" pl-0>
-											<p>Liked <b>yanna_summer</b> and <b>12k more</b></p>
-										</ion-col>
-										<ion-col size="4" class="ion-text-right" pr-0>
-											<p>Comments  <b>15</b></p>
-										</ion-col>
-									</ion-row>
-
+	<div feedPage [ngSwitch]="tabs">
+		<div *ngSwitchCase="'feed'">
+			<div posts>
+				<div postinner class="ion-padding" *ngFor="let feed of feeds">
+					<ion-item lines="none" class="ion-no-padding">
+						<ion-avatar *ngIf="feed?.posted_user_image!=''">
+							<img src="{{ feed?.posted_user_image }}" />
+						</ion-avatar>
+						<ion-label>
+							<h2 routerLink="/otherprofile">{{ feed?.posted_by }} <span>{{ feed?.posted_time }}</span>
+							</h2>
+						</ion-label>
+						<ion-buttons slot="end" (click)="presentPopover($event)">
+							<ion-icon name="ellipsis-vertical"></ion-icon>
+						</ion-buttons>
+					</ion-item>
+					<p desc>{{ feed?.post_content }}</p>
+					<ion-card class="ion-no-margin">
+						<ion-card-content class="ion-no-padding">
+							<div commentcounts>
+								<div posticons>
+									<a href="javascript:void(0)" hearticon>
+										<ion-icon name="heart" *ngIf="feed?.is_like_by_user == 1"></ion-icon>
+										<ion-icon name="heart-outline" *ngIf="feed?.is_like_by_user == 0"></ion-icon>
+									</a>
+									<a href="javascript:void(0)" (click)="presentCommentModal()">
+										<ion-icon name="chatbubble-outline"></ion-icon>
+									</a>
+									<a href="javascript:void(0)">
+										<ion-icon name="arrow-redo-outline"></ion-icon>
+									</a>
 								</div>
-								<ion-item lines="none" class="ion-no-padding"> 
-									<ion-avatar>
-										<img src="assets/img/img2.jpg" alt="" />
-									</ion-avatar>
-									<ion-label>
-										<h2>Moa Rotunia . <span>2 min</span></h2>
-										<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-										<div btns>
-											<a href="javascript:void(0)">Like</a>
-										</div>
-									</ion-label>
-								</ion-item>
-							</ion-card-content>
-						</ion-card>
-					</div>
-					<div postinner class="ion-padding">
-						<ion-item lines="none" class="ion-no-padding"> 
-							<ion-avatar>
-								<img src="assets/img/bowl1.png"/>
-							</ion-avatar>
-							<ion-label>
-								<h2 routerLink="/otherprofile">Ineat Official <span>8 min</span></h2>
-							</ion-label>
-							<ion-buttons slot="end" (click)="presentPopover($event)"><ion-icon name="ellipsis-vertical"></ion-icon></ion-buttons>
-						</ion-item>
-						<p desc>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-						<ion-card class="ion-no-margin">
-							<ion-card-content class="ion-no-padding">
-								<div commentcounts>
-									<div posticons>
-										<a href="javascript:void(0)" hearticon><ion-icon name="heart"></ion-icon></a>
-										<a href="javascript:void(0)" (click)="presentCommentModal()"><ion-icon name="chatbubble-outline"></ion-icon></a>
-										<a href="javascript:void(0)"><ion-icon name="arrow-redo-outline"></ion-icon></a>
-									</div>
-									<ion-row>
-										<ion-col size="8" pl-0>
-											<p>Liked <b>yanna_summer</b> and <b>12k more</b></p>
-										</ion-col>
-										<ion-col size="4" class="ion-text-right" pr-0>
-											<p>Comments  <b>15</b></p>
-										</ion-col>
-									</ion-row>
+								<ion-row>
+									<ion-col size="8" pl-0>
+										<div [innerHTML]="feed?.liked_message"></div>
+										
+									</ion-col>
+									<ion-col size="4" class="ion-text-right" pr-0 *ngIf="feed?.comments.length > 0">
+										<p>Comments <b>{{ feed?.comments.length }}</b></p>
+									</ion-col>
+								</ion-row>
 
-								</div>
-								<ion-item lines="none" class="ion-no-padding"> 
-									<ion-avatar>
-										<img src="assets/img/img2.jpg" alt="" />
-									</ion-avatar>
-									<ion-label>
-										<h2>Moa Rotunia . <span>2 min</span></h2>
-										<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-										<div btns>
-											<a href="javascript:void(0)">Like</a>
-										</div>
-									</ion-label>
-								</ion-item>
-							</ion-card-content>
-						</ion-card>
-					</div>
+							</div>
+							<ion-item lines="none" class="ion-no-padding" *ngFor="let comment of feed?.comments">
+								<ion-avatar>
+									<img src="{{ comment.posted_by_image }}" alt="" />
+								</ion-avatar>
+								<ion-label>
+									<h2>{{ comment.posted_by }} <span>{{ comment.posted_on }}</span></h2>
+									<p>{{ comment.comment_content }}</p>
+								</ion-label>
+							</ion-item>
+						</ion-card-content>
+					</ion-card>
 				</div>
-				
-			</div>
 
-			<div *ngSwitchCase="'mybowls'">
-				<ul mybowlsPage>
-					<li routerLink="/bowl-details">
-						<span bowlimg><img src="assets/img/bowl1.png" alt=""> </span>
-						<div ritBowl>
-							<h4>Consulting</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-						</div>
-					</li>
-					<li routerLink="/bowl-details">
-						<span bowlimg><img src="assets/img/bowl2.png" alt=""> </span>
-						<div ritBowl>
-							<h4>Black Consultants</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-						</div>
-					</li>
-					<li routerLink="/bowl-details">
-						<span bowlimg><img src="assets/img/bowl1.png" alt=""> </span>
-						<div ritBowl>
-							<h4>All Things MBB</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-						</div>
-					</li>
-					<li routerLink="/bowl-details">
-						<span bowlimg><img src="assets/img/bowl2.png" alt=""> </span>
-						<div ritBowl>
-							<h4>Consulting Exit Oppo...</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-						</div>
-					</li>
-				</ul>
-				<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed">	  
-					<ion-fab-button routerLink="/add-bowl">
-						<ion-icon name="add-outline"></ion-icon>
-					</ion-fab-button>
-				  </ion-fab>
 			</div>
+			<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed">
+				<ion-fab-button routerLink="/add-bowl">
+					<ion-icon name="add-outline"></ion-icon>
+				</ion-fab-button>
+			</ion-fab>
 
-			<div *ngSwitchCase="'explore'">
-				<ul mybowlsPage explorePage>
-					<li>
-						<span bowlimg><img src="assets/img/bowl1.png" alt=""> <label> <ion-icon name="people"></ion-icon> 99,583</label> </span>
-						<div ritBowl>
-							<h4>Startup and Entrepreneurship</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-							<ion-button btn-join>Join</ion-button>
-						</div>
-					</li>
-					<li>
-						<span bowlimg><img src="assets/img/bowl2.png" alt=""> <label> <ion-icon name="people"></ion-icon> 99,583</label> </span>
-						<div ritBowl>
-							<h4>Startup and Entrepreneurship</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-							<ion-button btn-join>Join</ion-button>
-						</div>
-					</li>
-					<li>
-						<span bowlimg><img src="assets/img/bowl1.png" alt=""> <label> <ion-icon name="people"></ion-icon> 99,583</label> </span>
-						<div ritBowl>
-							<h4>Startup and Entrepreneurship</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-							<ion-button btn-join>Join</ion-button>
-						</div>
-					</li>
-					<li>
-						<span bowlimg><img src="assets/img/bowl2.png" alt=""> <label> <ion-icon name="people"></ion-icon> 99,583</label> </span>
-						<div ritBowl>
-							<h4>Startup and Entrepreneurship</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-							<ion-button btn-join>Join</ion-button>
-						</div>
-					</li>
-					<li>
-						<span bowlimg><img src="assets/img/bowl1.png" alt=""> <label> <ion-icon name="people"></ion-icon> 99,583</label> </span>
-						<div ritBowl>
-							<h4>Startup and Entrepreneurship</h4>
-							<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci...</p>
-							<ion-button btn-join>Join</ion-button>
-						</div>
-					</li>
-				</ul>
-				<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed" routerLink="/add-group">	  
-					<ion-fab-button>
-						<ion-icon name="add-outline"></ion-icon>
-					</ion-fab-button>
-				  </ion-fab>
-			</div>
 		</div>
+
+		<div *ngSwitchCase="'mybowls'">
+			<ul mybowlsPage>
+				<li routerLink="/bowl-details/{{myGroup?.id}}"  *ngFor="let myGroup of myGroups" >
+					<span bowlimg><img src="{{ myGroup?.image }}" alt=""> </span>
+					<div ritBowl>
+						<h4>{{ myGroup?.name }}</h4>
+						<p>{{ myGroup?.description }}</p>
+					</div>
+				</li>
+			</ul>
+			
+			<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed" routerLink="/add-group">
+				<ion-fab-button>
+					<ion-icon name="add-outline"></ion-icon>
+				</ion-fab-button>
+			</ion-fab>
+		</div>
+
+		<div *ngSwitchCase="'explore'">
+			<ul mybowlsPage explorePage>
+				<li *ngFor="let exploreGroup of explore" >
+					<span bowlimg><img src="{{ exploreGroup?.image }}" alt=""> <label>
+							<ion-icon name="people"></ion-icon> {{ exploreGroup?.peoples}}
+						</label> </span>
+					<div ritBowl>
+						<h4>{{ exploreGroup?.name }}</h4>
+						<p>{{ exploreGroup?.description }}</p>
+						<ion-button btn-join>Join</ion-button>
+						<ion-button btn-join>Preview</ion-button>
+					</div>
+				</li>
+				
+			</ul>
+			
+		</div>
+	</div>
 
 </ion-content>

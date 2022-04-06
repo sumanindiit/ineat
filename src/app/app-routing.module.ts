@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
   },
   {
-    path: 'bowl-details',
+    path: 'bowl-details/:bowlId',
     loadChildren: () => import('./bowl-details/bowl-details.module').then( m => m.BowlDetailsPageModule)
   },
   {
@@ -94,7 +94,8 @@ const routes: Routes = [
   {
     path: 'refer-a-friend',
     loadChildren: () => import('./refer-a-friend/refer-a-friend.module').then( m => m.ReferAFriendPageModule)
-  },  {
+  },
+  {
     path: 'add-group',
     loadChildren: () => import('./add-group/add-group.module').then( m => m.AddGroupPageModule)
   },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController,Platform } from '@ionic/angular';
+import { ToastController, LoadingController, Platform } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
@@ -10,8 +10,8 @@ export class CommonService {
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController,
-    public plt:Platform,
-    public router:Router,
+    public plt: Platform,
+    public router: Router,
   ) { }
 
   async presentToast(message, color) {
@@ -43,9 +43,13 @@ export class CommonService {
       }, 1000);
     }
   }
-  
-  async redirectToLogin()
-  {
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
+  }
+
+  async redirectToLogin() {
     await this.plt.ready().then(() => {
       if (localStorage.getItem('is_logged_in') != 'true') {
         this.router.navigate(['/login']);

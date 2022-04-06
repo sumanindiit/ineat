@@ -11,10 +11,10 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },  
-      // {
-      //   path: 'profile',
-      //   loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
-      // },   
+      {
+        path: 'feed',
+        loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
+      },   
       {
         path: 'notifications',
         loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
