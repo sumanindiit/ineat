@@ -52,13 +52,11 @@ export class ReferAFriendPage implements OnInit {
         });
   }
 
-  copyLink(textToCopy) {
-    const writeToClipboard = async () => {
-      await Clipboard.write({
-        string: textToCopy
-      });
-      this.common.presentToast('Copied Successfully.', 'success');
-    };
+  async copyLink(textToCopy) {
+    await Clipboard.write({
+      string: textToCopy
+    });
+    this.common.presentToast('Copied Successfully.', 'success');
   }
 
   sendInvite() {
@@ -68,7 +66,7 @@ export class ReferAFriendPage implements OnInit {
       return false;
     }
     else {
-       this.common.presentLoading();
+      this.common.presentLoading();
       this.api.post('sendInviteToUser', { userId: this.userId, userEmail: this.userEmail }, '')
         .subscribe(
           (result) => {

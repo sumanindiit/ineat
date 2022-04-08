@@ -68,6 +68,7 @@ AddBowlPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _add_bowl_routing_module__WEBPACK_IMPORTED_MODULE_5__["AddBowlPageRoutingModule"]
         ],
@@ -88,7 +89,7 @@ AddBowlPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <div flexHeader>\n\t\t<div backHead>\n\t\t\t<ion-back-button></ion-back-button>\n\t\t</div>\n\t\t<ion-title>Add Bowl</ion-title>\n\t</div>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<div padding>\n\t\t<div form>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Bowl Name</label>\n\t\t\t\t<ion-input placeholder=\"Bowl Name\"></ion-input>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Choose Bowl</label>\n\t\t\t\t<ion-select placeholder=\"Choose\">\n\t\t\t      <ion-select-option value=\"f\">Bowl Name One</ion-select-option>\n\t\t\t      <ion-select-option value=\"m\">Bowl Name Two</ion-select-option>\n\t\t\t    </ion-select>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Description</label>\n\t\t\t\t<ion-textarea placeholder=\"Desciption\"></ion-textarea>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<ion-button btnsave>Add Bowl</ion-button>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t</div>\n\n\t</div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n\t<ion-toolbar>\n\t\t<div flexHeader>\n\t\t\t<div backHead>\n\t\t\t\t<ion-back-button routerLink=\"/tabs/feed\"></ion-back-button>\n\t\t\t</div>\n\t\t\t<ion-title>Create Discussion</ion-title>\n\t\t</div>\n\t</ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<div padding>\n\t\t<div form>\n\t\t\t<form [formGroup]=\"addPostForm\" (ngSubmit)=\"onSubmit()\" novalidate>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>What's on Your Mind?</label>\n\t\t\t\t\t\t<ion-input formControlName=\"postDescription\" placeholder=\"What's on Your Mind\"></ion-input>\n\t\t\t\t\t\t<ion-item class=\"form-text error\"\n\t\t\t\t\t\t\t*ngIf=\"submitAttempt && errorCtr.postDescription.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Please enter description</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\"\n\t\t\t\t\t\t\t*ngIf=\"submitAttempt && errorCtr.postDescription.errors?.minlength\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Min 3 chars long.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Select Group</label>\n\t\t\t\t\t\t<ion-select formControlName=\"postGroup\" value=\"\" [interfaceOptions]=\"customAlertOptions\"\n\t\t\t\t\t\t\tinterface=\"action-sheet\" placeholder=\"Select Group\">\n\t\t\t\t\t\t\t<ion-select-option *ngFor=\"let val of allGroups\" value=\"{{val.id}}\">{{val.title}}\n\t\t\t\t\t\t\t</ion-select-option>\n\t\t\t\t\t\t</ion-select>\n\n\n\t\t\t\t\t\t<ion-item class='form-text error' *ngIf=\"submitAttempt && errorCtr.postGroup.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Please select at least one group.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Add a cover image</label>\n\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<ion-button (click)=\"selectImageSource()\">\n\t\t\t\t\t\t\t\t<ion-icon name=\"camera\"></ion-icon>\n\t\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<input type=\"file\" accept=\"image/*\" id=\"fileupload\" (change)=\"uploadFile($event)\"\n\t\t\t\t\t\t\tname=\"fileupload\" style=\"display:none;\" />\n\t\t\t\t\t</ion-col>\n\t\t\t\t\t<ion-col size=\"12\" *ngIf=\"postImage !=''\">\n\t\t\t\t\t\t<div class=\"coverImages\">\n\t\t\t\t\t\t\t<span><img src=\"{{ postImage }}\" alt=\"\"></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<ion-button type=\"submit\" btnsave>Share</ion-button>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t</form>\n\t\t</div>\n\n\t</div>\n</ion-content>");
 
 /***/ }),
 
@@ -119,16 +120,189 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_add_bowl_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./add-bowl.page.html */ "6ykE");
 /* harmony import */ var _add_bowl_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./add-bowl.page.scss */ "9voO");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _services_api_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/api/api.service */ "oZWX");
+/* harmony import */ var _services_globalFooService_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/globalFooService.service */ "3IAD");
+/* harmony import */ var _services_common_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/common.service */ "OlR4");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _capacitor_camera__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @capacitor/camera */ "/s3u");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+
+
+
+
+
+
+
 
 
 
 
 let AddBowlPage = class AddBowlPage {
-    constructor() { }
+    constructor(formBuilder, globalFooService, common, api, router, plt, actionSheetCtrl) {
+        this.formBuilder = formBuilder;
+        this.globalFooService = globalFooService;
+        this.common = common;
+        this.api = api;
+        this.router = router;
+        this.plt = plt;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.userId = localStorage.getItem('ineat_userid');
+        this.submitAttempt = false;
+        this.userData = JSON.parse(localStorage.getItem('ineat_userData'));
+    }
     ngOnInit() {
+        this.addPostForm = this.formBuilder.group({
+            postDescription: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(3)]],
+            postGroup: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
+        });
+        this.getGroups();
+    }
+    getGroups() {
+        this.api.post('getUserSocialGroups', { userId: this.userId }, '')
+            .subscribe((result) => {
+            const res = result;
+            if (res.status === 422 || res.status === '422') {
+                let errMsgs = '';
+                for (const x of res.errors) {
+                    errMsgs += x + '</br>';
+                }
+                this.allGroups = [];
+            }
+            else if (res.status === 200 || res.status === '200') {
+                this.allGroups = res.data;
+            }
+        }, (error) => {
+            console.log(error);
+        });
+    }
+    get errorCtr() {
+        return this.addPostForm.controls;
+    }
+    selectImageSource() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const buttons = [
+                {
+                    text: 'Take Photo',
+                    icon: 'camera',
+                    handler: () => {
+                        this.addImage(_capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["CameraSource"].Camera);
+                    }
+                },
+                {
+                    text: 'Choose From Gallery',
+                    icon: 'image',
+                    handler: () => {
+                        this.addImage(_capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["CameraSource"].Photos);
+                    }
+                }
+            ];
+            // Only allow file selection inside a browser
+            if (!this.plt.is('hybrid')) {
+                buttons.push({
+                    text: 'Choose a File',
+                    icon: 'attach',
+                    handler: () => {
+                        this.fileInput.nativeElement.click();
+                    }
+                });
+            }
+            const actionSheet = yield this.actionSheetCtrl.create({
+                header: 'Select Image Source',
+                buttons
+            });
+            yield actionSheet.present();
+        });
+    }
+    addImage(source) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const image = yield _capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["Camera"].getPhoto({
+                quality: 60,
+                allowEditing: false,
+                resultType: _capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["CameraResultType"].Base64,
+                source
+            });
+            const blobData = this.b64toBlob(image.base64String, `image/${image.format}`);
+            const imageName = 'imagee';
+            this.postImage = 'data:image/png;base64,' + image.base64String;
+            this.uploadBlobData = blobData;
+            this.uploadedExtension = image.format;
+        });
+    }
+    uploadFile(event) {
+        const eventObj = event;
+        const target = eventObj.target;
+        const file = target.files[0];
+    }
+    // Helper function
+    b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+        const byteCharacters = atob(b64Data);
+        const byteArrays = [];
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize);
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        const blob = new Blob(byteArrays, { type: contentType });
+        return blob;
+    }
+    onSubmit() {
+        this.submitAttempt = true;
+        if (!this.addPostForm.valid) {
+            return false;
+        }
+        else {
+            this.common.presentLoading();
+            let dict = this.addPostForm.value;
+            const imgName = (+new Date).toString(36).slice(-5);
+            const formData = new FormData();
+            if (typeof this.uploadBlobData === 'undefined') { }
+            else {
+                formData.append('file', this.uploadBlobData, 'myimage.' + this.uploadedExtension);
+            }
+            formData.append('description', this.addPostForm.value.postDescription);
+            formData.append('group', this.addPostForm.value.postGroup);
+            formData.append('userId', this.userId);
+            this.api.post('addSocialPost', formData, '')
+                .subscribe((result) => {
+                this.submitAttempt = false;
+                this.common.stopLoading();
+                let res;
+                res = result;
+                if (res.status == 422) {
+                    var errMsgs = '';
+                    for (var i = 0; i < res.errors.length; i++) {
+                        var obj = res.errors[i];
+                        errMsgs += obj + '</br>';
+                    }
+                    this.common.presentToast(errMsgs, 'danger');
+                }
+                else if (res.status == 200) {
+                    this.common.presentToast('Feed added successfully!.', 'success');
+                    this.api.navCtrl.navigateRoot('/tabs/feed');
+                }
+            }, (error) => {
+                console.log(error);
+            });
+        }
     }
 };
-AddBowlPage.ctorParameters = () => [];
+AddBowlPage.ctorParameters = () => [
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
+    { type: _services_globalFooService_service__WEBPACK_IMPORTED_MODULE_6__["GlobalFooService"] },
+    { type: _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"] },
+    { type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["Platform"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ActionSheetController"] }
+];
+AddBowlPage.propDecorators = {
+    fileInput: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["ViewChild"], args: ['fileInput', { static: false },] }]
+};
 AddBowlPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
         selector: 'app-add-bowl',

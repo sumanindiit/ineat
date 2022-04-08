@@ -137,7 +137,7 @@ export class AddGroupPage implements OnInit {
 
       if(typeof this.uploadBlobData === 'undefined'){ }else
       {
-        formData.append('file', this.uploadBlobData, 'myimage.${this.uploadedExtension}');
+        formData.append('file', this.uploadBlobData, 'myimage.'+this.uploadedExtension);
       }
 
       formData.append('description', this.addGroupForm.value.groupDescription);

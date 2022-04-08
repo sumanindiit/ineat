@@ -168,7 +168,7 @@ export class AddBowlPage implements OnInit {
 
       if(typeof this.uploadBlobData === 'undefined'){ }else
       {
-        formData.append('file', this.uploadBlobData, 'myimage.${this.uploadedExtension}');
+        formData.append('file', this.uploadBlobData, 'myimage.'+this.uploadedExtension);
       }
 
       formData.append('description', this.addPostForm.value.postDescription);

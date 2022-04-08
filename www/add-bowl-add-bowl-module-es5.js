@@ -1,4 +1,10 @@
 (function () {
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -133,7 +139,7 @@
       };
 
       AddBowlPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _add_bowl_routing_module__WEBPACK_IMPORTED_MODULE_5__["AddBowlPageRoutingModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _add_bowl_routing_module__WEBPACK_IMPORTED_MODULE_5__["AddBowlPageRoutingModule"]],
         declarations: [_add_bowl_page__WEBPACK_IMPORTED_MODULE_6__["AddBowlPage"]]
       })], AddBowlPageModule);
       /***/
@@ -155,7 +161,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <div flexHeader>\n\t\t<div backHead>\n\t\t\t<ion-back-button></ion-back-button>\n\t\t</div>\n\t\t<ion-title>Add Bowl</ion-title>\n\t</div>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<div padding>\n\t\t<div form>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Bowl Name</label>\n\t\t\t\t<ion-input placeholder=\"Bowl Name\"></ion-input>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Choose Bowl</label>\n\t\t\t\t<ion-select placeholder=\"Choose\">\n\t\t\t      <ion-select-option value=\"f\">Bowl Name One</ion-select-option>\n\t\t\t      <ion-select-option value=\"m\">Bowl Name Two</ion-select-option>\n\t\t\t    </ion-select>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<label>Description</label>\n\t\t\t\t<ion-textarea placeholder=\"Desciption\"></ion-textarea>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t\t<ion-row>\n\t\t\t<ion-col>\n\t\t\t\t<ion-button btnsave>Add Bowl</ion-button>\n\t\t\t</ion-col>\n\t\t</ion-row>\n\t</div>\n\n\t</div>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n\t<ion-toolbar>\n\t\t<div flexHeader>\n\t\t\t<div backHead>\n\t\t\t\t<ion-back-button routerLink=\"/tabs/feed\"></ion-back-button>\n\t\t\t</div>\n\t\t\t<ion-title>Create Discussion</ion-title>\n\t\t</div>\n\t</ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<div padding>\n\t\t<div form>\n\t\t\t<form [formGroup]=\"addPostForm\" (ngSubmit)=\"onSubmit()\" novalidate>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>What's on Your Mind?</label>\n\t\t\t\t\t\t<ion-input formControlName=\"postDescription\" placeholder=\"What's on Your Mind\"></ion-input>\n\t\t\t\t\t\t<ion-item class=\"form-text error\"\n\t\t\t\t\t\t\t*ngIf=\"submitAttempt && errorCtr.postDescription.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Please enter description</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t\t<ion-item class=\"form-text error\"\n\t\t\t\t\t\t\t*ngIf=\"submitAttempt && errorCtr.postDescription.errors?.minlength\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Min 3 chars long.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Select Group</label>\n\t\t\t\t\t\t<ion-select formControlName=\"postGroup\" value=\"\" [interfaceOptions]=\"customAlertOptions\"\n\t\t\t\t\t\t\tinterface=\"action-sheet\" placeholder=\"Select Group\">\n\t\t\t\t\t\t\t<ion-select-option *ngFor=\"let val of allGroups\" value=\"{{val.id}}\">{{val.title}}\n\t\t\t\t\t\t\t</ion-select-option>\n\t\t\t\t\t\t</ion-select>\n\n\n\t\t\t\t\t\t<ion-item class='form-text error' *ngIf=\"submitAttempt && errorCtr.postGroup.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Please select at least one group.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Add a cover image</label>\n\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<ion-button (click)=\"selectImageSource()\">\n\t\t\t\t\t\t\t\t<ion-icon name=\"camera\"></ion-icon>\n\t\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<input type=\"file\" accept=\"image/*\" id=\"fileupload\" (change)=\"uploadFile($event)\"\n\t\t\t\t\t\t\tname=\"fileupload\" style=\"display:none;\" />\n\t\t\t\t\t</ion-col>\n\t\t\t\t\t<ion-col size=\"12\" *ngIf=\"postImage !=''\">\n\t\t\t\t\t\t<div class=\"coverImages\">\n\t\t\t\t\t\t\t<span><img src=\"{{ postImage }}\" alt=\"\"></span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<ion-button type=\"submit\" btnsave>Share</ion-button>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t</form>\n\t\t</div>\n\n\t</div>\n</ion-content>";
       /***/
     },
 
@@ -222,24 +228,314 @@
       var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _services_api_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../services/api/api.service */
+      "oZWX");
+      /* harmony import */
+
+
+      var _services_globalFooService_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../services/globalFooService.service */
+      "3IAD");
+      /* harmony import */
+
+
+      var _services_common_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ../services/common.service */
+      "OlR4");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
+      /* harmony import */
+
+
+      var _capacitor_camera__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @capacitor/camera */
+      "/s3u");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
 
       var AddBowlPage = /*#__PURE__*/function () {
-        function AddBowlPage() {
+        function AddBowlPage(formBuilder, globalFooService, common, api, router, plt, actionSheetCtrl) {
           _classCallCheck(this, AddBowlPage);
+
+          this.formBuilder = formBuilder;
+          this.globalFooService = globalFooService;
+          this.common = common;
+          this.api = api;
+          this.router = router;
+          this.plt = plt;
+          this.actionSheetCtrl = actionSheetCtrl;
+          this.userId = localStorage.getItem('ineat_userid');
+          this.submitAttempt = false;
+          this.userData = JSON.parse(localStorage.getItem('ineat_userData'));
         }
 
         _createClass(AddBowlPage, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            this.addPostForm = this.formBuilder.group({
+              postDescription: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].minLength(3)]],
+              postGroup: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]]
+            });
+            this.getGroups();
+          }
+        }, {
+          key: "getGroups",
+          value: function getGroups() {
+            var _this = this;
+
+            this.api.post('getUserSocialGroups', {
+              userId: this.userId
+            }, '').subscribe(function (result) {
+              var res = result;
+
+              if (res.status === 422 || res.status === '422') {
+                var errMsgs = '';
+
+                var _iterator = _createForOfIteratorHelper(res.errors),
+                    _step;
+
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    var x = _step.value;
+                    errMsgs += x + '</br>';
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+
+                _this.allGroups = [];
+              } else if (res.status === 200 || res.status === '200') {
+                _this.allGroups = res.data;
+              }
+            }, function (error) {
+              console.log(error);
+            });
+          }
+        }, {
+          key: "errorCtr",
+          get: function get() {
+            return this.addPostForm.controls;
+          }
+        }, {
+          key: "selectImageSource",
+          value: function selectImageSource() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var _this2 = this;
+
+              var buttons, actionSheet;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      buttons = [{
+                        text: 'Take Photo',
+                        icon: 'camera',
+                        handler: function handler() {
+                          _this2.addImage(_capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["CameraSource"].Camera);
+                        }
+                      }, {
+                        text: 'Choose From Gallery',
+                        icon: 'image',
+                        handler: function handler() {
+                          _this2.addImage(_capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["CameraSource"].Photos);
+                        }
+                      }]; // Only allow file selection inside a browser
+
+                      if (!this.plt.is('hybrid')) {
+                        buttons.push({
+                          text: 'Choose a File',
+                          icon: 'attach',
+                          handler: function handler() {
+                            _this2.fileInput.nativeElement.click();
+                          }
+                        });
+                      }
+
+                      _context.next = 4;
+                      return this.actionSheetCtrl.create({
+                        header: 'Select Image Source',
+                        buttons: buttons
+                      });
+
+                    case 4:
+                      actionSheet = _context.sent;
+                      _context.next = 7;
+                      return actionSheet.present();
+
+                    case 7:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          }
+        }, {
+          key: "addImage",
+          value: function addImage(source) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              var image, blobData, imageName;
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
+                      _context2.next = 2;
+                      return _capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["Camera"].getPhoto({
+                        quality: 60,
+                        allowEditing: false,
+                        resultType: _capacitor_camera__WEBPACK_IMPORTED_MODULE_9__["CameraResultType"].Base64,
+                        source: source
+                      });
+
+                    case 2:
+                      image = _context2.sent;
+                      blobData = this.b64toBlob(image.base64String, "image/".concat(image.format));
+                      imageName = 'imagee';
+                      this.postImage = 'data:image/png;base64,' + image.base64String;
+                      this.uploadBlobData = blobData;
+                      this.uploadedExtension = image.format;
+
+                    case 8:
+                    case "end":
+                      return _context2.stop();
+                  }
+                }
+              }, _callee2, this);
+            }));
+          }
+        }, {
+          key: "uploadFile",
+          value: function uploadFile(event) {
+            var eventObj = event;
+            var target = eventObj.target;
+            var file = target.files[0];
+          } // Helper function
+
+        }, {
+          key: "b64toBlob",
+          value: function b64toBlob(b64Data) {
+            var contentType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+            var sliceSize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 512;
+            var byteCharacters = atob(b64Data);
+            var byteArrays = [];
+
+            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+              var slice = byteCharacters.slice(offset, offset + sliceSize);
+              var byteNumbers = new Array(slice.length);
+
+              for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+              }
+
+              var byteArray = new Uint8Array(byteNumbers);
+              byteArrays.push(byteArray);
+            }
+
+            var blob = new Blob(byteArrays, {
+              type: contentType
+            });
+            return blob;
+          }
+        }, {
+          key: "onSubmit",
+          value: function onSubmit() {
+            var _this3 = this;
+
+            this.submitAttempt = true;
+
+            if (!this.addPostForm.valid) {
+              return false;
+            } else {
+              this.common.presentLoading();
+              var dict = this.addPostForm.value;
+              var imgName = (+new Date()).toString(36).slice(-5);
+              var formData = new FormData();
+
+              if (typeof this.uploadBlobData === 'undefined') {} else {
+                formData.append('file', this.uploadBlobData, 'myimage.' + this.uploadedExtension);
+              }
+
+              formData.append('description', this.addPostForm.value.postDescription);
+              formData.append('group', this.addPostForm.value.postGroup);
+              formData.append('userId', this.userId);
+              this.api.post('addSocialPost', formData, '').subscribe(function (result) {
+                _this3.submitAttempt = false;
+
+                _this3.common.stopLoading();
+
+                var res;
+                res = result;
+
+                if (res.status == 422) {
+                  var errMsgs = '';
+
+                  for (var i = 0; i < res.errors.length; i++) {
+                    var obj = res.errors[i];
+                    errMsgs += obj + '</br>';
+                  }
+
+                  _this3.common.presentToast(errMsgs, 'danger');
+                } else if (res.status == 200) {
+                  _this3.common.presentToast('Feed added successfully!.', 'success');
+
+                  _this3.api.navCtrl.navigateRoot('/tabs/feed');
+                }
+              }, function (error) {
+                console.log(error);
+              });
+            }
+          }
         }]);
 
         return AddBowlPage;
       }();
 
       AddBowlPage.ctorParameters = function () {
-        return [];
+        return [{
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
+        }, {
+          type: _services_globalFooService_service__WEBPACK_IMPORTED_MODULE_6__["GlobalFooService"]
+        }, {
+          type: _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"]
+        }, {
+          type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["Platform"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ActionSheetController"]
+        }];
       };
 
+      AddBowlPage.propDecorators = {
+        fileInput: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["ViewChild"],
+          args: ['fileInput', {
+            "static": false
+          }]
+        }]
+      };
       AddBowlPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
         selector: 'app-add-bowl',
         template: _raw_loader_add_bowl_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],

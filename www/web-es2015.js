@@ -125,6 +125,43 @@ class FacebookLoginWeb extends _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Web
 
 /***/ }),
 
+/***/ "mxtL":
+/*!*******************************************************!*\
+  !*** ./node_modules/@capacitor/share/dist/esm/web.js ***!
+  \*******************************************************/
+/*! exports provided: ShareWeb */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShareWeb", function() { return ShareWeb; });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ "FUe0");
+
+class ShareWeb extends _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["WebPlugin"] {
+    async canShare() {
+        if (typeof navigator === 'undefined' || !navigator.share) {
+            return { value: false };
+        }
+        else {
+            return { value: true };
+        }
+    }
+    async share(options) {
+        if (typeof navigator === 'undefined' || !navigator.share) {
+            throw this.unavailable('Share API not available in this browser');
+        }
+        await navigator.share({
+            title: options.title,
+            text: options.text,
+            url: options.url,
+        });
+        return {};
+    }
+}
+//# sourceMappingURL=web.js.map
+
+/***/ }),
+
 /***/ "npad":
 /*!*****************************************************************************!*\
   !*** ./node_modules/@codetrix-studio/capacitor-google-auth/dist/esm/web.js ***!

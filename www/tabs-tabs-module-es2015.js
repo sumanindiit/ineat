@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n\t\t<ion-tab-button tab=\"home\">\n\t\t\t<ion-icon name=\"home-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\">\n\t\t\t<ion-icon name=\"bag-handle-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"notifications\">\n\t\t\t<ion-icon name=\"hand-right-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"settings\" home>\n\t\t\t<ion-icon name=\"settings-outline\"></ion-icon>\n\t\t</ion-tab-button>\n    </ion-tab-bar>\n</ion-tabs>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n\t\t<ion-tab-button tab=\"home\">\n\t\t\t<ion-icon name=\"home-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"feed\">\n\t\t\t<ion-icon name=\"person\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\">\n\t\t\t<ion-icon name=\"bag-handle-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"notifications\">\n\t\t\t<ion-icon name=\"hand-right-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"settings\" home>\n\t\t\t<ion-icon name=\"settings-outline\"></ion-icon>\n\t\t</ion-tab-button>\n    </ion-tab-bar>\n</ion-tabs>");
 
 /***/ }),
 
@@ -129,10 +129,10 @@ const routes = [
                 path: 'home',
                 loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ../home/home.module */ "ct+p")).then(m => m.HomePageModule)
             },
-            // {
-            //   path: 'profile',
-            //   loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
-            // },   
+            {
+                path: 'feed',
+                loadChildren: () => Promise.all(/*! import() | feed-feed-module */[__webpack_require__.e("common"), __webpack_require__.e("feed-feed-module")]).then(__webpack_require__.bind(null, /*! ../feed/feed.module */ "xQww")).then(m => m.FeedPageModule)
+            },
             {
                 path: 'notifications',
                 loadChildren: () => __webpack_require__.e(/*! import() | notifications-notifications-module */ "notifications-notifications-module").then(__webpack_require__.bind(null, /*! ../notifications/notifications.module */ "wMrW")).then(m => m.NotificationsPageModule)

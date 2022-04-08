@@ -112,13 +112,21 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
 
       var CommonService = /*#__PURE__*/function () {
-        function CommonService(toastController, loadingController) {
+        function CommonService(toastController, loadingController, plt, router) {
           _classCallCheck(this, CommonService);
 
           this.toastController = toastController;
           this.loadingController = loadingController;
+          this.plt = plt;
+          this.router = router;
         }
 
         _createClass(CommonService, [{
@@ -212,6 +220,42 @@
               }, _callee3, this);
             }));
           }
+        }, {
+          key: "redirectTo",
+          value: function redirectTo(uri) {
+            var _this = this;
+
+            this.router.navigateByUrl('/', {
+              skipLocationChange: true
+            }).then(function () {
+              return _this.router.navigate([uri]);
+            });
+          }
+        }, {
+          key: "redirectToLogin",
+          value: function redirectToLogin() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+              var _this2 = this;
+
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      _context4.next = 2;
+                      return this.plt.ready().then(function () {
+                        if (localStorage.getItem('is_logged_in') != 'true') {
+                          _this2.router.navigate(['/login']);
+                        }
+                      });
+
+                    case 2:
+                    case "end":
+                      return _context4.stop();
+                  }
+                }
+              }, _callee4, this);
+            }));
+          }
         }]);
 
         return CommonService;
@@ -222,6 +266,10 @@
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
         }];
       };
 
@@ -418,7 +466,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<!-- <ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app> -->\n\n\n<ion-app>\n  <ion-split-pane contentId=\"main-content\" >\n    <ion-menu contentId=\"main-content\" type=\"overlay\" >\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n\n          <div Userpro>\n            <img src=\"{{ userImage }}\"  alt=\"\">\n            <p>{{ userName }}</p>\n          </div>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"chatbubble-ellipses\"></ion-icon>\n              <ion-label>Messages</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"bag-handle\"></ion-icon>\n              <ion-label>Deliveries</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"information-circle\"></ion-icon>\n              <ion-label>Privacy & Policy</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-label>Profile</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"log-out\"></ion-icon>\n              <ion-label (click)=\"logout()\">Logout</ion-label>\n            </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
+      __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\" >\n    <ion-menu contentId=\"main-content\" type=\"overlay\" >\n      <ion-content>\n        <ion-list id=\"inbox-list\">\n\n          <div Userpro>\n            <img src=\"{{ userImage }}\"  alt=\"\">\n            <p>{{ userName }}</p>\n          </div>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"chatbubble-ellipses\"></ion-icon>\n              <ion-label>Messages</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"bag-handle\"></ion-icon>\n              <ion-label>Deliveries</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"information-circle\"></ion-icon>\n              <ion-label>Privacy & Policy</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"person\"></ion-icon>\n              <ion-label>Profile</ion-label>\n            </ion-item>\n            <ion-item lines=\"none\" detail=\"false\">\n              <ion-icon name=\"log-out\"></ion-icon>\n              <ion-label (click)=\"logout()\">Logout</ion-label>\n            </ion-item>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
       /***/
     },
 
@@ -468,25 +516,31 @@
       /* harmony import */
 
 
-      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/common/http */
       "tk/3");
       /* harmony import */
 
 
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
       /* harmony import */
 
 
-      var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ./app-routing.module */
       "vY5A");
       /* harmony import */
 
 
-      var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./app.component */
       "Sy1n");
 
@@ -495,14 +549,14 @@
       };
 
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"].forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"].forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"]],
         providers: [{
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
-          useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicRouteStrategy"]
+          useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicRouteStrategy"]
         }],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
       })], AppModule);
       /***/
     },
@@ -793,16 +847,16 @@
       }, {
         path: 'feed',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | feed-feed-module */
-          "feed-feed-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("feed-feed-module")]).then(__webpack_require__.bind(null,
           /*! ./feed/feed.module */
           "xQww")).then(function (m) {
             return m.FeedPageModule;
           });
         }
       }, {
-        path: 'bowl-details',
+        path: 'bowl-details/:bowlId',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() | bowl-details-bowl-details-module */
@@ -815,9 +869,9 @@
       }, {
         path: 'add-bowl',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | add-bowl-add-bowl-module */
-          "add-bowl-add-bowl-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("add-bowl-add-bowl-module")]).then(__webpack_require__.bind(null,
           /*! ./add-bowl/add-bowl.module */
           "/4TZ")).then(function (m) {
             return m.AddBowlPageModule;
@@ -925,9 +979,9 @@
       }, {
         path: 'meals',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | meals-meals-module */
-          "meals-meals-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~mealfilters-mealfilters-module~meals-meals-module"), __webpack_require__.e("meals-meals-module")]).then(__webpack_require__.bind(null,
           /*! ./meals/meals.module */
           "yns/")).then(function (m) {
             return m.MealsPageModule;
@@ -1002,12 +1056,45 @@
       }, {
         path: 'refer-a-friend',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | refer-a-friend-refer-a-friend-module */
-          "refer-a-friend-refer-a-friend-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("refer-a-friend-refer-a-friend-module")]).then(__webpack_require__.bind(null,
           /*! ./refer-a-friend/refer-a-friend.module */
           "uUPG")).then(function (m) {
             return m.ReferAFriendPageModule;
+          });
+        }
+      }, {
+        path: 'add-group',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | add-group-add-group-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("add-group-add-group-module")]).then(__webpack_require__.bind(null,
+          /*! ./add-group/add-group.module */
+          "sUlC")).then(function (m) {
+            return m.AddGroupPageModule;
+          });
+        }
+      }, {
+        path: 'comment-form',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | comment-form-comment-form-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("comment-form-comment-form-module")]).then(__webpack_require__.bind(null,
+          /*! ./comment-form/comment-form.module */
+          "yFYm")).then(function (m) {
+            return m.CommentFormPageModule;
+          });
+        }
+      }, {
+        path: 'mealfilters',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | mealfilters-mealfilters-module */
+          [__webpack_require__.e("default~mealfilters-mealfilters-module~meals-meals-module"), __webpack_require__.e("mealfilters-mealfilters-module")]).then(__webpack_require__.bind(null,
+          /*! ./mealfilters/mealfilters.module */
+          "mgSH")).then(function (m) {
+            return m.MealfiltersPageModule;
           });
         }
       }];

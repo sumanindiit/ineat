@@ -280,6 +280,128 @@
     },
 
     /***/
+    "mxtL":
+    /*!*******************************************************!*\
+      !*** ./node_modules/@capacitor/share/dist/esm/web.js ***!
+      \*******************************************************/
+
+    /*! exports provided: ShareWeb */
+
+    /***/
+    function mxtL(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ShareWeb", function () {
+        return ShareWeb;
+      });
+      /* harmony import */
+
+
+      var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @capacitor/core */
+      "FUe0");
+
+      var ShareWeb = /*#__PURE__*/function (_capacitor_core__WEBP2) {
+        _inherits(ShareWeb, _capacitor_core__WEBP2);
+
+        var _super2 = _createSuper(ShareWeb);
+
+        function ShareWeb() {
+          _classCallCheck(this, ShareWeb);
+
+          return _super2.apply(this, arguments);
+        }
+
+        _createClass(ShareWeb, [{
+          key: "canShare",
+          value: function () {
+            var _canShare = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.share)) {
+                        _context5.next = 4;
+                        break;
+                      }
+
+                      return _context5.abrupt("return", {
+                        value: false
+                      });
+
+                    case 4:
+                      return _context5.abrupt("return", {
+                        value: true
+                      });
+
+                    case 5:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5);
+            }));
+
+            function canShare() {
+              return _canShare.apply(this, arguments);
+            }
+
+            return canShare;
+          }()
+        }, {
+          key: "share",
+          value: function () {
+            var _share = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(options) {
+              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                while (1) {
+                  switch (_context6.prev = _context6.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.share)) {
+                        _context6.next = 2;
+                        break;
+                      }
+
+                      throw this.unavailable('Share API not available in this browser');
+
+                    case 2:
+                      _context6.next = 4;
+                      return navigator.share({
+                        title: options.title,
+                        text: options.text,
+                        url: options.url
+                      });
+
+                    case 4:
+                      return _context6.abrupt("return", {});
+
+                    case 5:
+                    case "end":
+                      return _context6.stop();
+                  }
+                }
+              }, _callee6, this);
+            }));
+
+            function share(_x3) {
+              return _share.apply(this, arguments);
+            }
+
+            return share;
+          }()
+        }]);
+
+        return ShareWeb;
+      }(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["WebPlugin"]); //# sourceMappingURL=web.js.map
+
+      /***/
+
+    },
+
+    /***/
     "npad":
     /*!*****************************************************************************!*\
       !*** ./node_modules/@codetrix-studio/capacitor-google-auth/dist/esm/web.js ***!
@@ -305,15 +427,15 @@
       /*! @capacitor/core */
       "FUe0");
 
-      var GoogleAuthWeb = /*#__PURE__*/function (_capacitor_core__WEBP2) {
-        _inherits(GoogleAuthWeb, _capacitor_core__WEBP2);
+      var GoogleAuthWeb = /*#__PURE__*/function (_capacitor_core__WEBP3) {
+        _inherits(GoogleAuthWeb, _capacitor_core__WEBP3);
 
-        var _super2 = _createSuper(GoogleAuthWeb);
+        var _super3 = _createSuper(GoogleAuthWeb);
 
         function GoogleAuthWeb() {
           _classCallCheck(this, GoogleAuthWeb);
 
-          return _super2.call(this);
+          return _super3.call(this);
         }
 
         _createClass(GoogleAuthWeb, [{
@@ -398,84 +520,84 @@
         }, {
           key: "signIn",
           value: function () {
-            var _signIn = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var _signIn = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
               var _this4 = this;
 
-              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
                 while (1) {
-                  switch (_context6.prev = _context6.next) {
+                  switch (_context8.prev = _context8.next) {
                     case 0:
-                      return _context6.abrupt("return", new Promise( /*#__PURE__*/function () {
-                        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(resolve, reject) {
+                      return _context8.abrupt("return", new Promise( /*#__PURE__*/function () {
+                        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(resolve, reject) {
                           var _a, serverAuthCode, needsOfflineAccess, offlineAccessResponse, googleUser, user;
 
-                          return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                          return regeneratorRuntime.wrap(function _callee7$(_context7) {
                             while (1) {
-                              switch (_context5.prev = _context5.next) {
+                              switch (_context7.prev = _context7.next) {
                                 case 0:
-                                  _context5.prev = 0;
+                                  _context7.prev = 0;
                                   needsOfflineAccess = (_a = _this4.options.grantOfflineAccess) !== null && _a !== void 0 ? _a : false;
 
                                   if (!needsOfflineAccess) {
-                                    _context5.next = 9;
+                                    _context7.next = 9;
                                     break;
                                   }
 
-                                  _context5.next = 5;
+                                  _context7.next = 5;
                                   return gapi.auth2.getAuthInstance().grantOfflineAccess();
 
                                 case 5:
-                                  offlineAccessResponse = _context5.sent;
+                                  offlineAccessResponse = _context7.sent;
                                   serverAuthCode = offlineAccessResponse.code;
-                                  _context5.next = 11;
+                                  _context7.next = 11;
                                   break;
 
                                 case 9:
-                                  _context5.next = 11;
+                                  _context7.next = 11;
                                   return gapi.auth2.getAuthInstance().signIn();
 
                                 case 11:
                                   googleUser = gapi.auth2.getAuthInstance().currentUser.get();
 
                                   if (!needsOfflineAccess) {
-                                    _context5.next = 15;
+                                    _context7.next = 15;
                                     break;
                                   }
 
-                                  _context5.next = 15;
+                                  _context7.next = 15;
                                   return googleUser.reloadAuthResponse();
 
                                 case 15:
                                   user = _this4.getUserFrom(googleUser);
                                   user.serverAuthCode = serverAuthCode;
                                   resolve(user);
-                                  _context5.next = 23;
+                                  _context7.next = 23;
                                   break;
 
                                 case 20:
-                                  _context5.prev = 20;
-                                  _context5.t0 = _context5["catch"](0);
-                                  reject(_context5.t0);
+                                  _context7.prev = 20;
+                                  _context7.t0 = _context7["catch"](0);
+                                  reject(_context7.t0);
 
                                 case 23:
                                 case "end":
-                                  return _context5.stop();
+                                  return _context7.stop();
                               }
                             }
-                          }, _callee5, null, [[0, 20]]);
+                          }, _callee7, null, [[0, 20]]);
                         }));
 
-                        return function (_x3, _x4) {
+                        return function (_x4, _x5) {
                           return _ref.apply(this, arguments);
                         };
                       }()));
 
                     case 1:
                     case "end":
-                      return _context6.stop();
+                      return _context8.stop();
                   }
                 }
-              }, _callee6);
+              }, _callee8);
             }));
 
             function signIn() {
@@ -487,18 +609,18 @@
         }, {
           key: "refresh",
           value: function () {
-            var _refresh = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+            var _refresh = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
               var authResponse;
-              return regeneratorRuntime.wrap(function _callee7$(_context7) {
+              return regeneratorRuntime.wrap(function _callee9$(_context9) {
                 while (1) {
-                  switch (_context7.prev = _context7.next) {
+                  switch (_context9.prev = _context9.next) {
                     case 0:
-                      _context7.next = 2;
+                      _context9.next = 2;
                       return gapi.auth2.getAuthInstance().currentUser.get().reloadAuthResponse();
 
                     case 2:
-                      authResponse = _context7.sent;
-                      return _context7.abrupt("return", {
+                      authResponse = _context9.sent;
+                      return _context9.abrupt("return", {
                         accessToken: authResponse.access_token,
                         idToken: authResponse.id_token,
                         refreshToken: ''
@@ -506,10 +628,10 @@
 
                     case 4:
                     case "end":
-                      return _context7.stop();
+                      return _context9.stop();
                   }
                 }
-              }, _callee7);
+              }, _callee9);
             }));
 
             function refresh() {
@@ -521,19 +643,19 @@
         }, {
           key: "signOut",
           value: function () {
-            var _signOut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+            var _signOut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
                 while (1) {
-                  switch (_context8.prev = _context8.next) {
+                  switch (_context10.prev = _context10.next) {
                     case 0:
-                      return _context8.abrupt("return", gapi.auth2.getAuthInstance().signOut());
+                      return _context10.abrupt("return", gapi.auth2.getAuthInstance().signOut());
 
                     case 1:
                     case "end":
-                      return _context8.stop();
+                      return _context10.stop();
                   }
                 }
-              }, _callee8);
+              }, _callee10);
             }));
 
             function signOut() {
@@ -545,14 +667,14 @@
         }, {
           key: "addUserChangeListener",
           value: function () {
-            var _addUserChangeListener = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+            var _addUserChangeListener = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
               var _this5 = this;
 
-              return regeneratorRuntime.wrap(function _callee9$(_context9) {
+              return regeneratorRuntime.wrap(function _callee11$(_context11) {
                 while (1) {
-                  switch (_context9.prev = _context9.next) {
+                  switch (_context11.prev = _context11.next) {
                     case 0:
-                      _context9.next = 2;
+                      _context11.next = 2;
                       return this.gapiLoaded;
 
                     case 2:
@@ -562,10 +684,10 @@
 
                     case 3:
                     case "end":
-                      return _context9.stop();
+                      return _context11.stop();
                   }
                 }
-              }, _callee9, this);
+              }, _callee11, this);
             }));
 
             function addUserChangeListener() {
@@ -640,33 +762,33 @@
       /*! ./definitions */
       "dTEF");
 
-      var CameraWeb = /*#__PURE__*/function (_capacitor_core__WEBP3) {
-        _inherits(CameraWeb, _capacitor_core__WEBP3);
+      var CameraWeb = /*#__PURE__*/function (_capacitor_core__WEBP4) {
+        _inherits(CameraWeb, _capacitor_core__WEBP4);
 
-        var _super3 = _createSuper(CameraWeb);
+        var _super4 = _createSuper(CameraWeb);
 
         function CameraWeb() {
           _classCallCheck(this, CameraWeb);
 
-          return _super3.apply(this, arguments);
+          return _super4.apply(this, arguments);
         }
 
         _createClass(CameraWeb, [{
           key: "getPhoto",
           value: function () {
-            var _getPhoto = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(options) {
+            var _getPhoto = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14(options) {
               var _this6 = this;
 
-              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+              return regeneratorRuntime.wrap(function _callee14$(_context14) {
                 while (1) {
-                  switch (_context12.prev = _context12.next) {
+                  switch (_context14.prev = _context14.next) {
                     case 0:
-                      return _context12.abrupt("return", new Promise( /*#__PURE__*/function () {
-                        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(resolve, reject) {
+                      return _context14.abrupt("return", new Promise( /*#__PURE__*/function () {
+                        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(resolve, reject) {
                           var actionSheet;
-                          return regeneratorRuntime.wrap(function _callee11$(_context11) {
+                          return regeneratorRuntime.wrap(function _callee13$(_context13) {
                             while (1) {
-                              switch (_context11.prev = _context11.next) {
+                              switch (_context13.prev = _context13.next) {
                                 case 0:
                                   if (options.webUseInput || options.source === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraSource"].Photos) {
                                     _this6.fileInputExperience(options, resolve);
@@ -686,11 +808,11 @@
                                       title: options.promptLabelPicture || 'Take Picture'
                                     }];
                                     actionSheet.addEventListener('onSelection', /*#__PURE__*/function () {
-                                      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(e) {
+                                      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(e) {
                                         var selection;
-                                        return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                                        return regeneratorRuntime.wrap(function _callee12$(_context12) {
                                           while (1) {
-                                            switch (_context10.prev = _context10.next) {
+                                            switch (_context12.prev = _context12.next) {
                                               case 0:
                                                 selection = e.detail;
 
@@ -702,13 +824,13 @@
 
                                               case 2:
                                               case "end":
-                                                return _context10.stop();
+                                                return _context12.stop();
                                             }
                                           }
-                                        }, _callee10);
+                                        }, _callee12);
                                       }));
 
-                                      return function (_x8) {
+                                      return function (_x9) {
                                         return _ref3.apply(this, arguments);
                                       };
                                     }());
@@ -718,59 +840,14 @@
 
                                 case 1:
                                 case "end":
-                                  return _context11.stop();
-                              }
-                            }
-                          }, _callee11);
-                        }));
-
-                        return function (_x6, _x7) {
-                          return _ref2.apply(this, arguments);
-                        };
-                      }()));
-
-                    case 1:
-                    case "end":
-                      return _context12.stop();
-                  }
-                }
-              }, _callee12);
-            }));
-
-            function getPhoto(_x5) {
-              return _getPhoto.apply(this, arguments);
-            }
-
-            return getPhoto;
-          }()
-        }, {
-          key: "pickImages",
-          value: function () {
-            var _pickImages = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14(_options) {
-              var _this7 = this;
-
-              return regeneratorRuntime.wrap(function _callee14$(_context14) {
-                while (1) {
-                  switch (_context14.prev = _context14.next) {
-                    case 0:
-                      return _context14.abrupt("return", new Promise( /*#__PURE__*/function () {
-                        var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(resolve) {
-                          return regeneratorRuntime.wrap(function _callee13$(_context13) {
-                            while (1) {
-                              switch (_context13.prev = _context13.next) {
-                                case 0:
-                                  _this7.multipleFileInputExperience(resolve);
-
-                                case 1:
-                                case "end":
                                   return _context13.stop();
                               }
                             }
                           }, _callee13);
                         }));
 
-                        return function (_x10) {
-                          return _ref4.apply(this, arguments);
+                        return function (_x7, _x8) {
+                          return _ref2.apply(this, arguments);
                         };
                       }()));
 
@@ -782,7 +859,52 @@
               }, _callee14);
             }));
 
-            function pickImages(_x9) {
+            function getPhoto(_x6) {
+              return _getPhoto.apply(this, arguments);
+            }
+
+            return getPhoto;
+          }()
+        }, {
+          key: "pickImages",
+          value: function () {
+            var _pickImages = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee16(_options) {
+              var _this7 = this;
+
+              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+                while (1) {
+                  switch (_context16.prev = _context16.next) {
+                    case 0:
+                      return _context16.abrupt("return", new Promise( /*#__PURE__*/function () {
+                        var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(resolve) {
+                          return regeneratorRuntime.wrap(function _callee15$(_context15) {
+                            while (1) {
+                              switch (_context15.prev = _context15.next) {
+                                case 0:
+                                  _this7.multipleFileInputExperience(resolve);
+
+                                case 1:
+                                case "end":
+                                  return _context15.stop();
+                              }
+                            }
+                          }, _callee15);
+                        }));
+
+                        return function (_x11) {
+                          return _ref4.apply(this, arguments);
+                        };
+                      }()));
+
+                    case 1:
+                    case "end":
+                      return _context16.stop();
+                  }
+                }
+              }, _callee16);
+            }));
+
+            function pickImages(_x10) {
               return _pickImages.apply(this, arguments);
             }
 
@@ -791,63 +913,63 @@
         }, {
           key: "cameraExperience",
           value: function () {
-            var _cameraExperience = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee16(options, resolve, reject) {
+            var _cameraExperience = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee18(options, resolve, reject) {
               var _this8 = this;
 
               var cameraModal;
-              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
                 while (1) {
-                  switch (_context16.prev = _context16.next) {
+                  switch (_context18.prev = _context18.next) {
                     case 0:
                       if (!customElements.get('pwa-camera-modal')) {
-                        _context16.next = 16;
+                        _context18.next = 16;
                         break;
                       }
 
                       cameraModal = document.createElement('pwa-camera-modal');
                       cameraModal.facingMode = options.direction === _definitions__WEBPACK_IMPORTED_MODULE_1__["CameraDirection"].Front ? 'user' : 'environment';
                       document.body.appendChild(cameraModal);
-                      _context16.prev = 4;
-                      _context16.next = 7;
+                      _context18.prev = 4;
+                      _context18.next = 7;
                       return cameraModal.componentOnReady();
 
                     case 7:
                       cameraModal.addEventListener('onPhoto', /*#__PURE__*/function () {
-                        var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(e) {
+                        var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee17(e) {
                           var photo;
-                          return regeneratorRuntime.wrap(function _callee15$(_context15) {
+                          return regeneratorRuntime.wrap(function _callee17$(_context17) {
                             while (1) {
-                              switch (_context15.prev = _context15.next) {
+                              switch (_context17.prev = _context17.next) {
                                 case 0:
                                   photo = e.detail;
 
                                   if (!(photo === null)) {
-                                    _context15.next = 5;
+                                    _context17.next = 5;
                                     break;
                                   }
 
                                   reject(new _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["CapacitorException"]('User cancelled photos app'));
-                                  _context15.next = 14;
+                                  _context17.next = 14;
                                   break;
 
                                 case 5:
                                   if (!(photo instanceof Error)) {
-                                    _context15.next = 9;
+                                    _context17.next = 9;
                                     break;
                                   }
 
                                   reject(photo);
-                                  _context15.next = 14;
+                                  _context17.next = 14;
                                   break;
 
                                 case 9:
-                                  _context15.t0 = resolve;
-                                  _context15.next = 12;
+                                  _context17.t0 = resolve;
+                                  _context17.next = 12;
                                   return _this8._getCameraPhoto(photo, options);
 
                                 case 12:
-                                  _context15.t1 = _context15.sent;
-                                  (0, _context15.t0)(_context15.t1);
+                                  _context17.t1 = _context17.sent;
+                                  (0, _context17.t0)(_context17.t1);
 
                                 case 14:
                                   cameraModal.dismiss();
@@ -855,27 +977,27 @@
 
                                 case 16:
                                 case "end":
-                                  return _context15.stop();
+                                  return _context17.stop();
                               }
                             }
-                          }, _callee15);
+                          }, _callee17);
                         }));
 
-                        return function (_x14) {
+                        return function (_x15) {
                           return _ref5.apply(this, arguments);
                         };
                       }());
                       cameraModal.present();
-                      _context16.next = 14;
+                      _context18.next = 14;
                       break;
 
                     case 11:
-                      _context16.prev = 11;
-                      _context16.t0 = _context16["catch"](4);
+                      _context18.prev = 11;
+                      _context18.t0 = _context18["catch"](4);
                       this.fileInputExperience(options, resolve);
 
                     case 14:
-                      _context16.next = 18;
+                      _context18.next = 18;
                       break;
 
                     case 16:
@@ -884,13 +1006,13 @@
 
                     case 18:
                     case "end":
-                      return _context16.stop();
+                      return _context18.stop();
                   }
                 }
-              }, _callee16, this, [[4, 11]]);
+              }, _callee18, this, [[4, 11]]);
             }));
 
-            function cameraExperience(_x11, _x12, _x13) {
+            function cameraExperience(_x12, _x13, _x14) {
               return _cameraExperience.apply(this, arguments);
             }
 
@@ -1055,44 +1177,44 @@
         }, {
           key: "checkPermissions",
           value: function () {
-            var _checkPermissions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
+            var _checkPermissions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
               var permission;
-              return regeneratorRuntime.wrap(function _callee17$(_context17) {
+              return regeneratorRuntime.wrap(function _callee19$(_context19) {
                 while (1) {
-                  switch (_context17.prev = _context17.next) {
+                  switch (_context19.prev = _context19.next) {
                     case 0:
                       if (!(typeof navigator === 'undefined' || !navigator.permissions)) {
-                        _context17.next = 2;
+                        _context19.next = 2;
                         break;
                       }
 
                       throw this.unavailable('Permissions API not available in this browser');
 
                     case 2:
-                      _context17.prev = 2;
-                      _context17.next = 5;
+                      _context19.prev = 2;
+                      _context19.next = 5;
                       return window.navigator.permissions.query({
                         name: 'camera'
                       });
 
                     case 5:
-                      permission = _context17.sent;
-                      return _context17.abrupt("return", {
+                      permission = _context19.sent;
+                      return _context19.abrupt("return", {
                         camera: permission.state,
                         photos: 'granted'
                       });
 
                     case 9:
-                      _context17.prev = 9;
-                      _context17.t0 = _context17["catch"](2);
+                      _context19.prev = 9;
+                      _context19.t0 = _context19["catch"](2);
                       throw this.unavailable('Camera permissions are not available in this browser');
 
                     case 12:
                     case "end":
-                      return _context17.stop();
+                      return _context19.stop();
                   }
                 }
-              }, _callee17, this, [[2, 9]]);
+              }, _callee19, this, [[2, 9]]);
             }));
 
             function checkPermissions() {
@@ -1104,19 +1226,19 @@
         }, {
           key: "requestPermissions",
           value: function () {
-            var _requestPermissions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
-              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+            var _requestPermissions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+              return regeneratorRuntime.wrap(function _callee20$(_context20) {
                 while (1) {
-                  switch (_context18.prev = _context18.next) {
+                  switch (_context20.prev = _context20.next) {
                     case 0:
                       throw this.unimplemented('Not implemented on web.');
 
                     case 1:
                     case "end":
-                      return _context18.stop();
+                      return _context20.stop();
                   }
                 }
-              }, _callee18, this);
+              }, _callee20, this);
             }));
 
             function requestPermissions() {

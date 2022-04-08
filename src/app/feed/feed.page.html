@@ -44,33 +44,36 @@
 							<img src="{{ feed?.posted_user_image }}" />
 						</ion-avatar>
 						<ion-label>
-							<h2 routerLink="/otherprofile">{{ feed?.posted_by }} <span>{{ feed?.posted_time }}</span>
+							<h2>{{ feed?.posted_by }} <span>{{ feed?.posted_time }}</span>
 							</h2>
 						</ion-label>
-						<ion-buttons slot="end" (click)="presentPopover($event)">
+						<ion-buttons slot="end" (click)="presentPopover($event , feed)">
 							<ion-icon name="ellipsis-vertical"></ion-icon>
 						</ion-buttons>
 					</ion-item>
+					<ng-container *ngIf="feed?.post_image!=''">
+						<img src="{{ feed?.post_image }}" alt="" mainImg>
+					</ng-container>
 					<p desc>{{ feed?.post_content }}</p>
 					<ion-card class="ion-no-margin">
 						<ion-card-content class="ion-no-padding">
 							<div commentcounts>
 								<div posticons>
-									<a href="javascript:void(0)" hearticon>
-										<ion-icon name="heart" *ngIf="feed?.is_like_by_user == 1"></ion-icon>
-										<ion-icon name="heart-outline" *ngIf="feed?.is_like_by_user == 0"></ion-icon>
+									<a href="javascript:void(0)" (click)="toggleLiked(feed)" hearticon>
+										<ion-icon [name]="feed?.icon"></ion-icon>
+
 									</a>
-									<a href="javascript:void(0)" (click)="presentCommentModal()">
+									<a href="javascript:void(0)" (click)="presentCommentModal(feed)">
 										<ion-icon name="chatbubble-outline"></ion-icon>
 									</a>
-									<a href="javascript:void(0)">
+									<a href="javascript:void(0)" (click)="shareFeed(feed)">
 										<ion-icon name="arrow-redo-outline"></ion-icon>
 									</a>
 								</div>
 								<ion-row>
 									<ion-col size="8" pl-0>
 										<div [innerHTML]="feed?.liked_message"></div>
-										
+
 									</ion-col>
 									<ion-col size="4" class="ion-text-right" pr-0 *ngIf="feed?.comments.length > 0">
 										<p>Comments <b>{{ feed?.comments.length }}</b></p>
@@ -102,7 +105,7 @@
 
 		<div *ngSwitchCase="'mybowls'">
 			<ul mybowlsPage>
-				<li routerLink="/bowl-details/{{myGroup?.id}}"  *ngFor="let myGroup of myGroups" >
+				<li routerLink="/bowl-details/{{myGroup?.id}}" *ngFor="let myGroup of myGroups">
 					<span bowlimg><img src="{{ myGroup?.image }}" alt=""> </span>
 					<div ritBowl>
 						<h4>{{ myGroup?.name }}</h4>
@@ -110,7 +113,7 @@
 					</div>
 				</li>
 			</ul>
-			
+
 			<ion-fab class="add-fab-btn" vertical="bottom" horizontal="end" slot="fixed" routerLink="/add-group">
 				<ion-fab-button>
 					<ion-icon name="add-outline"></ion-icon>
@@ -120,20 +123,20 @@
 
 		<div *ngSwitchCase="'explore'">
 			<ul mybowlsPage explorePage>
-				<li *ngFor="let exploreGroup of explore" >
+				<li *ngFor="let exploreGroup of explore">
 					<span bowlimg><img src="{{ exploreGroup?.image }}" alt=""> <label>
 							<ion-icon name="people"></ion-icon> {{ exploreGroup?.peoples}}
 						</label> </span>
 					<div ritBowl>
 						<h4>{{ exploreGroup?.name }}</h4>
 						<p>{{ exploreGroup?.description }}</p>
-						<ion-button btn-join>Join</ion-button>
-						<ion-button btn-join>Preview</ion-button>
+						<ion-button (click)="joinBowl(exploreGroup)" btn-join>Join</ion-button>
+						<ion-button btn-join routerLink="/bowl-details/{{exploreGroup?.id}}">Preview</ion-button>
 					</div>
 				</li>
-				
+
 			</ul>
-			
+
 		</div>
 	</div>
 

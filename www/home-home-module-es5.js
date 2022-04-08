@@ -288,6 +288,7 @@
           this.submitAttempt = false;
           this.userImage = '../assets/img/logo.png';
           this.userId = localStorage.getItem('ineat_userid');
+          this.common.redirectToLogin();
           this.menuController.enable(true);
           this.route.queryParams.subscribe(function (params) {
             var data = _this.router.getCurrentNavigation().extras.state;
@@ -309,7 +310,7 @@
             this.updateProfileForm = this.formBuilder.group({
               firstName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-zA-Z][a-zA-Z ]+')]],
               lastName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-zA-Z][a-zA-Z ]+')]],
-              email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+              email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
               description: ['']
             });
           }

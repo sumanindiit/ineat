@@ -88,7 +88,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <h3>Select Meals</h3>\n  <ul steps>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\" #active4></li>\n  </ul>\n</ion-header>\n\n<ion-content botmbg>\n  <div slideBox>\n\n    <div padding>\n      <div searchbar>\n        <ion-searchbar [(ngModel)]=\"searchQuery\" (search)=\"filterMeals($event)\" autocorrect=\"off\" showCancelButton=\"focus\" mode=\"md\" placeholder=\"Search Meals...\" ></ion-searchbar>\n      </div>\n      <div billingDe d-flex>\n        <div>\n          <h5 subhdng>Build a meal plan</h5>\n          <p>Pick your meal for this week.</p>\n        </div>\n        <div sortIcons>\n          <a routerLink=\"/order-summary\"  cart>\n            <ion-icon name=\"cart\"></ion-icon>\n          </a>\n          <a href=\"javascript:void(0);\">\n            <ion-icon name=\"funnel\"></ion-icon>\n          </a>\n        </div>\n      </div>\n\n      <div selectMeal *ngIf=\"pageData\">\n        <ion-row>\n          <ion-col size=\"6\" *ngFor=\"let data of pageData\">\n            <div class=\"mealCol\">\n              <div class=\"absomeal lbl_{{ data.difficulty_level }}\">\n                <label>{{ data.difficulty_level }}</label>\n              </div>\n              <a routerLink=\"/meal-details/{{data.id}}\"><img src=\"{{ data.image }}\" alt=\"\" class=\"mealImg\"></a>\n              <div class=\"mealCont\">\n                <h6><a routerLink=\"/meal-details/{{data.id}}\">{{ data.title }}</a></h6>\n                <p>Prep. Time: {{ data.prepration_time }} mins</p>\n                <ul class=\"iconsRow\" *ngIf=\"data.allergen\">\n                  <li *ngFor=\"let allergen of data.allergen\" class=\"allerden_{{ allergen.name }}\">\n                    <a href=\"javascript:void(0)\" data-tooltip=\"{{ allergen.name }}\">\n                      <img src=\"{{ allergen.image }}\" alt=\"\">\n                    </a>\n                  </li>\n                </ul>\n              </div>\n            </div>\n          </ion-col>\n\n          <ion-infinite-scroll *ngIf=\"isMoreRecords\" threshold=\"100px\" (ionInfinite)=\"getMeals($event,'1')\">\n            <ion-infinite-scroll-content loadingSpinner=\"bubbles\" loadingText=\"Loading more Meals...\">\n            </ion-infinite-scroll-content>\n          </ion-infinite-scroll>\n        </ion-row>\n\n        \n      </div>\n    </div>\n\n  \n  </div>\n  <ion-button routerLink=\"/order-summary\"  btncontinue >Go to Cart ({{ cartCount }}) </ion-button>\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-header>\n  <h3>Select Meals</h3>\n  <ul steps>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\">\n      <ion-icon name=\"checkmark\"></ion-icon>\n    </li>\n    <li class=\"active\" #active4></li>\n  </ul>\n</ion-header>\n\n<ion-content botmbg>\n  <div slideBox>\n\n    <div padding>\n      <div searchbar>\n        <ion-searchbar [(ngModel)]=\"searchQuery\" (search)=\"filterMeals($event)\" autocorrect=\"off\" showCancelButton=\"focus\" mode=\"md\" placeholder=\"Search Meals...\" ></ion-searchbar>\n      </div>\n      <div billingDe d-flex>\n        <div>\n          <h5 subhdng>Build a meal plan</h5>\n          <p>Pick your meal for this week.</p>\n        </div>\n        <div sortIcons>\n          <a routerLink=\"/order-summary\"  cart>\n            <ion-icon name=\"cart\"></ion-icon>\n          </a>\n          <a href=\"javascript:void(0);\" (click)=\"presentMealsModal()\">\n            <ion-icon name=\"funnel\"></ion-icon>\n          </a>\n        </div>\n      </div>\n\n      <div selectMeal *ngIf=\"pageData\">\n        <ion-row>\n          <ion-col size=\"6\" *ngFor=\"let data of pageData\">\n            <div class=\"mealCol\">\n              <div class=\"absomeal lbl_{{ data.difficulty_level }}\">\n                <label>{{ data.difficulty_level }}</label>\n              </div>\n              <a routerLink=\"/meal-details/{{data.id}}\"><img src=\"{{ data.image }}\" alt=\"\" class=\"mealImg\"></a>\n              <div class=\"mealCont\">\n                <h6><a routerLink=\"/meal-details/{{data.id}}\">{{ data.title }}</a></h6>\n                <p>Prep. Time: {{ data.prepration_time }} mins</p>\n                <ul class=\"iconsRow\" *ngIf=\"data.allergen\">\n                  <li *ngFor=\"let allergen of data.allergen\" class=\"allerden_{{ allergen.name }}\">\n                    <a href=\"javascript:void(0)\" data-tooltip=\"{{ allergen.name }}\">\n                      <img src=\"{{ allergen.image }}\" alt=\"\">\n                    </a>\n                  </li>\n                </ul>\n              </div>\n            </div>\n          </ion-col>\n\n          <ion-infinite-scroll *ngIf=\"isMoreRecords\" threshold=\"100px\" (ionInfinite)=\"getMeals($event,'1')\">\n            <ion-infinite-scroll-content loadingSpinner=\"bubbles\" loadingText=\"Loading more Meals...\">\n            </ion-infinite-scroll-content>\n          </ion-infinite-scroll>\n        </ion-row>\n\n        \n      </div>\n    </div>\n\n  \n  </div>\n  <ion-button routerLink=\"/order-summary\"  btncontinue >Go to Cart ({{ cartCount }}) </ion-button>\n</ion-content>";
       /***/
     },
 
@@ -153,15 +153,22 @@
       var _services_common_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ../services/common.service */
       "OlR4");
+      /* harmony import */
+
+
+      var _mealfilters_mealfilters_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ../mealfilters/mealfilters.page */
+      "ISiu");
 
       var MealsPage = /*#__PURE__*/function () {
-        function MealsPage(menuController, common, api, cd) {
+        function MealsPage(menuController, common, api, cd, modalController) {
           _classCallCheck(this, MealsPage);
 
           this.menuController = menuController;
           this.common = common;
           this.api = api;
           this.cd = cd;
+          this.modalController = modalController;
           this.userId = localStorage.getItem('ineat_userid');
           this.is_loaded = false;
           this.isMoreRecords = true;
@@ -285,6 +292,37 @@
               });
             }, 500);
           }
+        }, {
+          key: "presentMealsModal",
+          value: function presentMealsModal() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var modal;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return this.modalController.create({
+                        component: _mealfilters_mealfilters_page__WEBPACK_IMPORTED_MODULE_7__["MealfiltersPage"],
+                        cssClass: 'MealsFiltersModal'
+                      });
+
+                    case 2:
+                      modal = _context.sent;
+                      _context.next = 5;
+                      return modal.present();
+
+                    case 5:
+                      return _context.abrupt("return", _context.sent);
+
+                    case 6:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          }
         }]);
 
         return MealsPage;
@@ -299,6 +337,8 @@
           type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"]
         }, {
           type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["ChangeDetectorRef"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
         }];
       };
 

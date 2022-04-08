@@ -1420,4 +1420,17 @@ span.error {
   text-overflow: initial !important;
   white-space: normal !important;
 }
+*:focus {
+  outline: 0;
+}
+ion-modal.commentformpage {
+  --width: calc(100% - 45px);
+  --max-height: 300px;
+  --border-radius: 20px;
+}
+ion-modal.MealsFiltersModal {
+  --width: calc(100% - 45px);
+  --max-height: 540px;
+  --border-radius: 20px;
+}
 

@@ -18,7 +18,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n\t\t<ion-tab-button tab=\"home\">\n\t\t\t<ion-icon name=\"home-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\">\n\t\t\t<ion-icon name=\"bag-handle-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"notifications\">\n\t\t\t<ion-icon name=\"hand-right-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"settings\" home>\n\t\t\t<ion-icon name=\"settings-outline\"></ion-icon>\n\t\t</ion-tab-button>\n    </ion-tab-bar>\n</ion-tabs>";
+      __webpack_exports__["default"] = "<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n\t\t<ion-tab-button tab=\"home\">\n\t\t\t<ion-icon name=\"home-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"feed\">\n\t\t\t<ion-icon name=\"person\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"\">\n\t\t\t<ion-icon name=\"bag-handle-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"notifications\">\n\t\t\t<ion-icon name=\"hand-right-outline\"></ion-icon>\n\t\t</ion-tab-button>\n\t\t<ion-tab-button tab=\"settings\" home>\n\t\t\t<ion-icon name=\"settings-outline\"></ion-icon>\n\t\t</ion-tab-button>\n    </ion-tab-bar>\n</ion-tabs>";
       /***/
     },
 
@@ -233,11 +233,18 @@
               return m.HomePageModule;
             });
           }
-        }, // {
-        //   path: 'profile',
-        //   loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
-        // },   
-        {
+        }, {
+          path: 'feed',
+          loadChildren: function loadChildren() {
+            return Promise.all(
+            /*! import() | feed-feed-module */
+            [__webpack_require__.e("common"), __webpack_require__.e("feed-feed-module")]).then(__webpack_require__.bind(null,
+            /*! ../feed/feed.module */
+            "xQww")).then(function (m) {
+              return m.FeedPageModule;
+            });
+          }
+        }, {
           path: 'notifications',
           loadChildren: function loadChildren() {
             return __webpack_require__.e(

@@ -1,4 +1,18 @@
 (function () {
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+  function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+  function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
   function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -570,6 +584,391 @@
     },
 
     /***/
+    "PH02":
+    /*!***********************************************************!*\
+      !*** ./node_modules/@capacitor/clipboard/dist/esm/web.js ***!
+      \***********************************************************/
+
+    /*! exports provided: ClipboardWeb */
+
+    /***/
+    function PH02(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ClipboardWeb", function () {
+        return ClipboardWeb;
+      });
+      /* harmony import */
+
+
+      var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @capacitor/core */
+      "FUe0");
+
+      var ClipboardWeb = /*#__PURE__*/function (_capacitor_core__WEBP) {
+        _inherits(ClipboardWeb, _capacitor_core__WEBP);
+
+        var _super = _createSuper(ClipboardWeb);
+
+        function ClipboardWeb() {
+          _classCallCheck(this, ClipboardWeb);
+
+          return _super.apply(this, arguments);
+        }
+
+        _createClass(ClipboardWeb, [{
+          key: "write",
+          value: function () {
+            var _write = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(options) {
+              var blob, clipboardItemInput;
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.clipboard)) {
+                        _context2.next = 2;
+                        break;
+                      }
+
+                      throw this.unavailable('Clipboard API not available in this browser');
+
+                    case 2:
+                      if (!(options.string !== undefined)) {
+                        _context2.next = 7;
+                        break;
+                      }
+
+                      _context2.next = 5;
+                      return this.writeText(options.string);
+
+                    case 5:
+                      _context2.next = 34;
+                      break;
+
+                    case 7:
+                      if (!options.url) {
+                        _context2.next = 12;
+                        break;
+                      }
+
+                      _context2.next = 10;
+                      return this.writeText(options.url);
+
+                    case 10:
+                      _context2.next = 34;
+                      break;
+
+                    case 12:
+                      if (!options.image) {
+                        _context2.next = 33;
+                        break;
+                      }
+
+                      if (!(typeof ClipboardItem !== 'undefined')) {
+                        _context2.next = 30;
+                        break;
+                      }
+
+                      _context2.prev = 14;
+                      _context2.next = 17;
+                      return fetch(options.image);
+
+                    case 17:
+                      _context2.next = 19;
+                      return _context2.sent.blob();
+
+                    case 19:
+                      blob = _context2.sent;
+                      clipboardItemInput = new ClipboardItem(_defineProperty({}, blob.type, blob));
+                      _context2.next = 23;
+                      return navigator.clipboard.write([clipboardItemInput]);
+
+                    case 23:
+                      _context2.next = 28;
+                      break;
+
+                    case 25:
+                      _context2.prev = 25;
+                      _context2.t0 = _context2["catch"](14);
+                      throw new Error('Failed to write image');
+
+                    case 28:
+                      _context2.next = 31;
+                      break;
+
+                    case 30:
+                      throw this.unavailable('Writing images to the clipboard is not supported in this browser');
+
+                    case 31:
+                      _context2.next = 34;
+                      break;
+
+                    case 33:
+                      throw new Error('Nothing to write');
+
+                    case 34:
+                    case "end":
+                      return _context2.stop();
+                  }
+                }
+              }, _callee2, this, [[14, 25]]);
+            }));
+
+            function write(_x5) {
+              return _write.apply(this, arguments);
+            }
+
+            return write;
+          }()
+        }, {
+          key: "read",
+          value: function () {
+            var _read = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var clipboardItems, type, clipboardBlob, data;
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.clipboard)) {
+                        _context3.next = 2;
+                        break;
+                      }
+
+                      throw this.unavailable('Clipboard API not available in this browser');
+
+                    case 2:
+                      if (!(typeof ClipboardItem !== 'undefined')) {
+                        _context3.next = 22;
+                        break;
+                      }
+
+                      _context3.prev = 3;
+                      _context3.next = 6;
+                      return navigator.clipboard.read();
+
+                    case 6:
+                      clipboardItems = _context3.sent;
+                      type = clipboardItems[0].types[0];
+                      _context3.next = 10;
+                      return clipboardItems[0].getType(type);
+
+                    case 10:
+                      clipboardBlob = _context3.sent;
+                      _context3.next = 13;
+                      return this._getBlobData(clipboardBlob, type);
+
+                    case 13:
+                      data = _context3.sent;
+                      return _context3.abrupt("return", {
+                        value: data,
+                        type: type
+                      });
+
+                    case 17:
+                      _context3.prev = 17;
+                      _context3.t0 = _context3["catch"](3);
+                      return _context3.abrupt("return", this.readText());
+
+                    case 20:
+                      _context3.next = 23;
+                      break;
+
+                    case 22:
+                      return _context3.abrupt("return", this.readText());
+
+                    case 23:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this, [[3, 17]]);
+            }));
+
+            function read() {
+              return _read.apply(this, arguments);
+            }
+
+            return read;
+          }()
+        }, {
+          key: "readText",
+          value: function () {
+            var _readText = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+              var text;
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.clipboard || !navigator.clipboard.readText)) {
+                        _context4.next = 2;
+                        break;
+                      }
+
+                      throw this.unavailable('Reading from clipboard not supported in this browser');
+
+                    case 2:
+                      _context4.next = 4;
+                      return navigator.clipboard.readText();
+
+                    case 4:
+                      text = _context4.sent;
+                      return _context4.abrupt("return", {
+                        value: text,
+                        type: 'text/plain'
+                      });
+
+                    case 6:
+                    case "end":
+                      return _context4.stop();
+                  }
+                }
+              }, _callee4, this);
+            }));
+
+            function readText() {
+              return _readText.apply(this, arguments);
+            }
+
+            return readText;
+          }()
+        }, {
+          key: "writeText",
+          value: function () {
+            var _writeText = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(text) {
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      if (!(typeof navigator === 'undefined' || !navigator.clipboard || !navigator.clipboard.writeText)) {
+                        _context5.next = 2;
+                        break;
+                      }
+
+                      throw this.unavailable('Writting to clipboard not supported in this browser');
+
+                    case 2:
+                      _context5.next = 4;
+                      return navigator.clipboard.writeText(text);
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5, this);
+            }));
+
+            function writeText(_x6) {
+              return _writeText.apply(this, arguments);
+            }
+
+            return writeText;
+          }()
+        }, {
+          key: "_getBlobData",
+          value: function _getBlobData(clipboardBlob, type) {
+            return new Promise(function (resolve, reject) {
+              var reader = new FileReader();
+
+              if (type.includes('image')) {
+                reader.readAsDataURL(clipboardBlob);
+              } else {
+                reader.readAsText(clipboardBlob);
+              }
+
+              reader.onloadend = function () {
+                var r = reader.result;
+                resolve(r);
+              };
+
+              reader.onerror = function (e) {
+                reject(e);
+              };
+            });
+          }
+        }]);
+
+        return ClipboardWeb;
+      }(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["WebPlugin"]); //# sourceMappingURL=web.js.map
+
+      /***/
+
+    },
+
+    /***/
+    "PJjM":
+    /*!*************************************************************!*\
+      !*** ./node_modules/@capacitor/clipboard/dist/esm/index.js ***!
+      \*************************************************************/
+
+    /*! exports provided: Clipboard */
+
+    /***/
+    function PJjM(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Clipboard", function () {
+        return Clipboard;
+      });
+      /* harmony import */
+
+
+      var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @capacitor/core */
+      "FUe0");
+      /* harmony import */
+
+
+      var _web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./web */
+      "PH02");
+      /* harmony import */
+
+
+      var _definitions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./definitions */
+      "v06m");
+      /* empty/unused harmony star reexport */
+
+
+      var Clipboard = Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerPlugin"])('Clipboard', {
+        web: function web() {
+          return new _web__WEBPACK_IMPORTED_MODULE_1__["ClipboardWeb"]();
+        }
+      }); //# sourceMappingURL=index.js.map
+
+      /***/
+    },
+
+    /***/
+    "W7Za":
+    /*!*******************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/comment-form/comment-form.page.html ***!
+      \*******************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function W7Za(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<ion-content>\n\t<div padding>\n\t\t<div form>\n\t\t\t<form [formGroup]=\"commentForm\" (ngSubmit)=\"onAddCommentSubmit()\" novalidate>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<label>Comment</label>\n\t\t\t\t\t\t<ion-textarea formControlName=\"commentDesc\" rows=\"5\" placeholder=\"Desciption\"></ion-textarea>\n\t\t\t\t\t\t<ion-item class=\"form-text error\"\n\t\t\t\t\t\t\t*ngIf=\"submitAttempt && erroraddCardCtr.commentDesc.errors?.required\">\n\t\t\t\t\t\t\t<ion-label no-margin stacked>Please enter Comment.</ion-label>\n\t\t\t\t\t\t</ion-item>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t\t<ion-row>\n\t\t\t\t\t<ion-col>\n\t\t\t\t\t\t<ion-button type=\"submit\" btnsave>Submit</ion-button>\n\t\t\t\t\t</ion-col>\n\t\t\t\t</ion-row>\n\t\t\t</form>\n\t\t</div>\n\n\t</div>\n</ion-content>";
+      /***/
+    },
+
+    /***/
     "ZaV5":
     /*!**************************************************************************!*\
       !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-4584ab5a.js ***!
@@ -596,22 +995,22 @@
       });
 
       var attachComponent = /*#__PURE__*/function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(delegate, container, component, cssClasses, componentProps) {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(delegate, container, component, cssClasses, componentProps) {
           var el;
-          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          return regeneratorRuntime.wrap(function _callee6$(_context6) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context6.prev = _context6.next) {
                 case 0:
                   if (!delegate) {
-                    _context2.next = 2;
+                    _context6.next = 2;
                     break;
                   }
 
-                  return _context2.abrupt("return", delegate.attachViewToDom(container, component, componentProps, cssClasses));
+                  return _context6.abrupt("return", delegate.attachViewToDom(container, component, componentProps, cssClasses));
 
                 case 2:
                   if (!(typeof component !== 'string' && !(component instanceof HTMLElement))) {
-                    _context2.next = 4;
+                    _context6.next = 4;
                     break;
                   }
 
@@ -633,25 +1032,25 @@
                   container.appendChild(el);
 
                   if (!el.componentOnReady) {
-                    _context2.next = 11;
+                    _context6.next = 11;
                     break;
                   }
 
-                  _context2.next = 11;
+                  _context6.next = 11;
                   return el.componentOnReady();
 
                 case 11:
-                  return _context2.abrupt("return", el);
+                  return _context6.abrupt("return", el);
 
                 case 12:
                 case "end":
-                  return _context2.stop();
+                  return _context6.stop();
               }
             }
-          }, _callee2);
+          }, _callee6);
         }));
 
-        return function attachComponent(_x5, _x6, _x7, _x8, _x9) {
+        return function attachComponent(_x7, _x8, _x9, _x10, _x11) {
           return _ref2.apply(this, arguments);
         };
       }();
@@ -874,6 +1273,172 @@
     },
 
     /***/
+    "pXy3":
+    /*!***************************************************!*\
+      !*** ./src/app/comment-form/comment-form.page.ts ***!
+      \***************************************************/
+
+    /*! exports provided: CommentFormPage */
+
+    /***/
+    function pXy3(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CommentFormPage", function () {
+        return CommentFormPage;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_comment_form_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./comment-form.page.html */
+      "W7Za");
+      /* harmony import */
+
+
+      var _comment_form_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./comment-form.page.scss */
+      "zzFy");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _services_api_api_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../services/api/api.service */
+      "oZWX");
+      /* harmony import */
+
+
+      var _services_common_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ../services/common.service */
+      "OlR4");
+
+      var CommentFormPage = /*#__PURE__*/function () {
+        function CommentFormPage(modalCtrl, common, formBuilder, api) {
+          _classCallCheck(this, CommentFormPage);
+
+          this.modalCtrl = modalCtrl;
+          this.common = common;
+          this.formBuilder = formBuilder;
+          this.api = api;
+          this.submitAttempt = false;
+        }
+
+        _createClass(CommentFormPage, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            this.commentForm = this.formBuilder.group({
+              commentDesc: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]]
+            });
+          }
+        }, {
+          key: "erroraddCardCtr",
+          get: function get() {
+            return this.commentForm.controls;
+          }
+        }, {
+          key: "onAddCommentSubmit",
+          value: function onAddCommentSubmit() {
+            var _this = this;
+
+            this.submitAttempt = true;
+
+            if (!this.commentForm.valid) {
+              return false;
+            } else {
+              this.common.presentLoading();
+              var dict = this.commentForm.value;
+              dict['userId'] = this.userId;
+              dict['feedId'] = this.feedId;
+              this.api.post('addComment', dict, '').subscribe(function (result) {
+                _this.submitAttempt = false;
+
+                _this.common.stopLoading();
+
+                var res;
+                res = result;
+
+                if (res.status == 422) {
+                  var errMsgs = '';
+
+                  for (var i = 0; i < res.errors.length; i++) {
+                    var obj = res.errors[i];
+                    errMsgs += obj + '</br>';
+                  }
+
+                  _this.common.presentToast(errMsgs, 'danger');
+                } else if (res.status == 200) {
+                  _this.common.presentToast('Comment added Successfully!.', 'success');
+
+                  _this.dismiss();
+                }
+              }, function (error) {
+                console.log(error);
+              });
+            }
+          }
+        }, {
+          key: "dismiss",
+          value: function dismiss() {
+            // using the injected ModalController this page
+            // can "dismiss" itself and optionally pass back data
+            this.modalCtrl.dismiss({
+              'dismissed': true
+            });
+          }
+        }]);
+
+        return CommentFormPage;
+      }();
+
+      CommentFormPage.ctorParameters = function () {
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+        }, {
+          type: _services_common_service__WEBPACK_IMPORTED_MODULE_7__["CommonService"]
+        }, {
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
+        }, {
+          type: _services_api_api_service__WEBPACK_IMPORTED_MODULE_6__["ApiService"]
+        }];
+      };
+
+      CommentFormPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-comment-form',
+        template: _raw_loader_comment_form_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_comment_form_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], CommentFormPage);
+      /***/
+    },
+
+    /***/
     "qULd":
     /*!**************************************************************!*\
       !*** ./node_modules/@ionic/core/dist/esm/haptic-27b3f981.js ***!
@@ -1045,6 +1610,44 @@
       };
       /***/
 
+    },
+
+    /***/
+    "v06m":
+    /*!*******************************************************************!*\
+      !*** ./node_modules/@capacitor/clipboard/dist/esm/definitions.js ***!
+      \*******************************************************************/
+
+    /*! no exports provided */
+
+    /***/
+    function v06m(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__); //# sourceMappingURL=definitions.js.map
+
+      /***/
+
+    },
+
+    /***/
+    "zzFy":
+    /*!*****************************************************!*\
+      !*** ./src/app/comment-form/comment-form.page.scss ***!
+      \*****************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function zzFy(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "[form] {\n  margin: 0px 0 0;\n}\n\n[form] ion-row {\n  margin: 10px 0 0;\n}\n\n[form] ion-row ion-col label {\n  font-size: 17px;\n  font-weight: 600;\n  letter-spacing: -0.5px;\n}\n\n[form] ion-row ion-col ion-input, [form] ion-row ion-col ion-textarea, [form] ion-row ion-col ion-select {\n  border: 1px solid #eee;\n  border-radius: 5px;\n  font-size: 14px;\n  color: #222;\n  padding: 10px;\n}\n\n[btnsave] {\n  height: 50px;\n  border-radius: 10px;\n  width: 100%;\n  margin-top: 0;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NvbW1lbnQtZm9ybS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFHQyxlQUFjO0FBRGY7O0FBRUE7RUFDRSxnQkFBZTtBQUNqQjs7QUFFQTtFQUFnQixlQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLHNCQUFzQjtBQUV0Qzs7QUFFQTtFQURJLHNCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLFdBQVc7RUFDWCxhQUFZO0FBR2hCOztBQUVBO0VBQ0MsWUFBWTtFQUNaLG1CQUFtQjtFQUNuQixXQUFXO0VBQ1gsYUFBYTtBQUNkIiwiZmlsZSI6ImNvbW1lbnQtZm9ybS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcblx0XG5bZm9ybV17XG5cdG1hcmdpbjowcHggMCAwO1xuXHRpb24tcm93e1xuXHRcdG1hcmdpbjoxMHB4IDAgMDtcblx0XHRpb24tY29se1xuXHRcdFx0bGFiZWx7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxN3B4O1xuICAgICAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICAgICAgICAgICAgbGV0dGVyLXNwYWNpbmc6IC0wLjVweDtcblx0XHRcdH1cblx0XHRcdGlvbi1pbnB1dCwgaW9uLXRleHRhcmVhLCBpb24tc2VsZWN0e1xuXHRcdFx0XHRib3JkZXI6MXB4IHNvbGlkICNlZWU7XG5cdFx0XHRcdGJvcmRlci1yYWRpdXM6IDVweDtcblx0XHRcdFx0Zm9udC1zaXplOiAxNHB4O1xuXHRcdFx0XHRjb2xvcjogIzIyMjtcblx0XHRcdFx0cGFkZGluZzoxMHB4O1xuXHRcdFx0fVxuXHRcdH1cblx0fVxufVxuW2J0bnNhdmVde1xuXHRoZWlnaHQ6IDUwcHg7XG5cdGJvcmRlci1yYWRpdXM6IDEwcHg7XG5cdHdpZHRoOiAxMDAlO1xuXHRtYXJnaW4tdG9wOiAwO1xufSJdfQ== */";
+      /***/
     }
   }]);
 })();

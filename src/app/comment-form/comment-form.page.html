@@ -1,20 +1,24 @@
-
-
 <ion-content>
 	<div padding>
 		<div form>
-		<ion-row>
-			<ion-col>
-				<label>Comment</label>
-				<ion-textarea rows="5" placeholder="Desciption"></ion-textarea>
-			</ion-col>
-		</ion-row>
-		<ion-row>
-			<ion-col>
-				<ion-button btnsave>Submit</ion-button>
-			</ion-col>
-		</ion-row>
-	</div>
+			<form [formGroup]="commentForm" (ngSubmit)="onAddCommentSubmit()" novalidate>
+				<ion-row>
+					<ion-col>
+						<label>Comment</label>
+						<ion-textarea formControlName="commentDesc" rows="5" placeholder="Desciption"></ion-textarea>
+						<ion-item class="form-text error"
+							*ngIf="submitAttempt && erroraddCardCtr.commentDesc.errors?.required">
+							<ion-label no-margin stacked>Please enter Comment.</ion-label>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<ion-button type="submit" btnsave>Submit</ion-button>
+					</ion-col>
+				</ion-row>
+			</form>
+		</div>
 
 	</div>
 </ion-content>
