@@ -1,86 +1,56 @@
 <ion-header>
   <ion-toolbar>
     <div flexHeader>
-		<ion-title>Filter</ion-title>
-    <ion-buttons slot="end" (click)="dismiss()">
-      <ion-icon name="close-outline"></ion-icon>
-     </ion-buttons>
-	</div>
+      <ion-title>Filter</ion-title>
+      <ion-buttons slot="end" (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-buttons>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content productfilters>
 
-<div formgroup pb-10>
-  <h5 subhdng>Type</h5>
-       <ion-item lines="none" checkbox >
-           <ion-checkbox mode="md" slot="start"></ion-checkbox>
-				<ion-label>Meat and Vegetables</ion-label>
-		</ion-item>
-		<ion-item lines="none" checkbox>
-           <ion-checkbox mode="md" slot="start"></ion-checkbox>
-				<ion-label>Vegetarian</ion-label>
-		</ion-item>
-</div>
-<div formgroup pb-10>
-  <h5 subhdng>Free From</h5>
-		<ion-item lines="none" checkbox>
-           <ion-checkbox mode="md" slot="start"></ion-checkbox>
-				<ion-label>luten</ion-label>
-		</ion-item>
-		<ion-item lines="none" checkbox>
-           <ion-checkbox mode="md" slot="start"></ion-checkbox>
-				<ion-label>Wheat</ion-label>
-		</ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Crustaceans</ion-label>
-    </ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Eggs</ion-label>
-    </ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Fish</ion-label>
-    </ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Lupin</ion-label>
-    </ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Milk</ion-label>
-    </ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Molluscs</ion-label>
-    </ion-item>
-    <ion-item lines="none" checkbox>
-      <ion-checkbox mode="md" slot="start"></ion-checkbox>
-    <ion-label>Wheat</ion-label>
-    </ion-item>
+  <div formgroup pb-10>
+    <h5 subhdng>Filter</h5>
+    <ng-container *ngFor="let filter of filterArray">
+      <ion-item lines="none" checkbox>
+        <ion-checkbox [(ngModel)]="filter.checked" mode="md" slot="start" [value]="filter.value"></ion-checkbox>
+        <ion-label>{{ filter.name}}</ion-label>
+      </ion-item>
+    </ng-container>
+  </div>
 
-</div>
-<div formgroup>
-  <h5 subhdng>Difficulty Level</h5>
-		<ion-item lines="none">
-				  <ion-range value="0" max="3"  step="3"> 
-          </ion-range>	
-		</ion-item>
+  <div formgroup pb-10>
+    <h5 subhdng>Free From</h5>
+    <ng-container *ngFor="let allergens of allergensArray">
+      <ion-item lines="none" checkbox>
+        <ion-checkbox [(ngModel)]="allergens.checked" mode="md" slot="start" [value]="allergens?.value"></ion-checkbox>
+        <ion-label>{{ allergens?.name}}</ion-label>
+      </ion-item>
+    </ng-container>
+  </div>
+
+  <div formgroup>
+    <h5 subhdng>Difficulty Level</h5>
+    <ion-item lines="none">
+      <ion-range [(ngModel)]="difficultyLevel" value="15" min="0" max="30" step="15" ></ion-range>
+    </ion-item>
     <div class="range-flx">
       <label>Low</label>
-       <label>medium</label> <label>high</label>
-       </div>   
-</div>
+      <label>medium</label>
+      <label>high</label>
+    </div>
+  </div>
+
 </ion-content>
 <ion-footer>
-<div btnbottom>
-		<ion-button  shape="rounded" (click)="dismiss()">
-		 Apply
-		</ion-button>
-		<ion-button  shape="rounded" fill="outline" (click)="dismiss()">
-		  Clear
-		</ion-button>
-</div>
+  <div btnbottom>
+    <ion-button shape="rounded" (click)="getFilterValues()">
+      Apply
+    </ion-button>
+    <ion-button shape="rounded" fill="outline" (click)="clearfilterValues()">
+      Clear
+    </ion-button>
+  </div>
 </ion-footer>

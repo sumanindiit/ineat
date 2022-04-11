@@ -52,7 +52,7 @@
                 <p>Prep. Time: {{ data.prepration_time }} mins</p>
                 <ul class="iconsRow" *ngIf="data.allergen">
                   <li *ngFor="let allergen of data.allergen" class="allerden_{{ allergen.name }}">
-                    <a href="javascript:void(0)" data-tooltip="{{ allergen.name }}">
+                    <a href="javascript:void(0)">
                       <img src="{{ allergen.image }}" alt="">
                     </a>
                   </li>

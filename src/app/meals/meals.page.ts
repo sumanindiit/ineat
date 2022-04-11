@@ -25,6 +25,15 @@ export class MealsPage implements OnInit {
   searchQuery: any;
   query: any;
   cartCount: any;
+  allergensArray: any;
+  filterArray: any = [
+    { value: 1, name: 'Meat and Vegetables', checked: false },
+    { value: 2, name: 'Vegetarian', checked: false }
+  ];
+
+  filteredDifficultyLevel: any;
+  filteredAllergen: any;
+  filteredFilters: any;
 
   userData: any;
   constructor(
@@ -50,7 +59,34 @@ export class MealsPage implements OnInit {
     this.hideMe = !this.hideMe;
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getAllergens();
+  }
+
+
+  getAllergens() {
+    this.api.post('getMealAllergens', { userId: this.userId }, '')
+      .subscribe(
+        (result) => {
+          this.common.stopLoading();
+          const res: any = result;
+          if (res.status === 422 || res.status === '422') {
+            let errMsgs = '';
+            for (const x of res.errors) {
+              errMsgs += x + '</br>';
+            }
+            this.common.presentToast(errMsgs, 'danger');
+          }
+          else if (res.status === 200 || res.status === '200') {
+            this.allergensArray = res.data;
+          }
+        },
+        (error) => {
+          this.common.presentToast(error.message, 'danger');
+          console.log(error);
+        });
+
+  }
 
   filterMeals(event) {
     this.searchQuery = event.srcElement.value;
@@ -65,7 +101,7 @@ export class MealsPage implements OnInit {
         (result) => {
           this.common.stopLoading();
           const res: any = result;
-          
+
           this.cartCount = res.cart_count;
         },
         (error) => {
@@ -87,7 +123,13 @@ export class MealsPage implements OnInit {
 
     setTimeout(() => {
 
-      self.api.post('getMeals', { userId: this.userId, recordsPerPage: self.recordsPerPage, start: self.start, search: query }, '')
+      console.log(this.filteredFilters);
+
+      self.api.post('getMeals', {
+        userId: this.userId, recordsPerPage: self.recordsPerPage,
+        start: self.start, search: query,
+        range: this.filteredDifficultyLevel, filter: this.filteredFilters, allergens: this.filteredAllergen
+      }, '')
         .subscribe(
           (result) => {
             const res: any = result;
@@ -130,8 +172,28 @@ export class MealsPage implements OnInit {
   async presentMealsModal() {
     const modal = await this.modalController.create({
       component: MealfiltersPage,
-      cssClass: 'MealsFiltersModal'
+      cssClass: 'MealsFiltersModal',
+      componentProps: {
+        allergensArray: this.allergensArray,
+        filterArray: this.filterArray
+      }
+
     });
-    return await modal.present();
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    this.filteredDifficultyLevel = data?.difficultyLevel;
+
+    if ((data.filterFilters.length) > 0) {
+      this.filteredFilters = data.filterFilters;
+    }
+
+    if ((data.filteredAllergen.length) > 0) {
+      this.filteredAllergen = data.filteredAllergen;
+    }
+
+    this.allMeals = [];
+    this.getMeals({}, '0', '');
+    console.log(data);
   }
 }
