@@ -19,10 +19,10 @@ const routes: Routes = [
         path: 'notifications',
         loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
       },  
-      // {
-      //   path: 'search',
-      //   loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
-      // },	
+       {
+         path: 'deliveries',
+         loadChildren: () => import('../deliveries/deliveries.module').then(m => m.DeliveriesPageModule)
+       },	
       {
        path: 'settings',
          loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)

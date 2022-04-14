@@ -106,7 +106,15 @@ const routes: Routes = [
   {
     path: 'mealfilters',
     loadChildren: () => import('./mealfilters/mealfilters.module').then( m => m.MealfiltersPageModule)
+  },  {
+    path: 'deliveries-holds',
+    loadChildren: () => import('./deliveries-holds/deliveries-holds.module').then( m => m.DeliveriesHoldsPageModule)
+  },
+  {
+    path: 'address',
+    loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   }
+
 
 
 ];

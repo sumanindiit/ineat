@@ -1,0 +1,88 @@
+
+ion-content {
+    [deliveries-hold-div] {
+        padding: 20px;
+        [title-h] {
+            font-size: 17px;
+            color: #fd8a5e;
+            border-left: 2px solid #fd8a5e;
+            padding-left: 10px;
+            margin: 0 0 10px;
+            font-weight: 600;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    [holiday-form] {
+        ion-row {
+            ion-col {
+                margin: 10px 0 0;
+                padding-left: 0;
+                padding-right: 0;
+                label {
+                    font-size: 14px;
+                    color: #777;
+                    display: block;
+                    margin: 0;
+                    font-weight: 500;
+                    margin: 0 0 10px;
+                }
+                ion-input {
+                    border: 1px solid #eee;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    color: #222;
+                    padding: 10px;
+                }
+            }
+            [btnsave] {
+                height: 50px;
+                border-radius: 10px;
+                width: 100%;
+                letter-spacing: 0;
+                margin-top: 10px;
+            }
+        }
+    }
+    [holidayLists] {
+        margin-top:  25px;
+            ion-list {
+                ion-item {
+                    --padding-start:0;
+                    --padding-top: 5px;
+                    ion-label {
+                        display: flex ;
+                        justify-content: space-between;
+                        margin-top: 0;
+                        [mainmom] {
+                            font-size: 35px;
+                            font-weight: 700;
+                            [days]{
+                                font-size: 14px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                            }
+                        }
+                        [sants]{
+                            color: #FD8A5E;
+                            margin-top: 1px;
+                            display: inline-block;
+                            font-weight: 500;
+                        }
+                    }
+                    [trash] {
+                        font-size: 16px;
+                        background: red;
+                        color: #fff;
+                        border-radius: 100px;
+                        padding: 7px;
+                    }
+                    &:last-child {
+                        --border-color: transparent;
+                    }
+                }
+            }
+    }
+}

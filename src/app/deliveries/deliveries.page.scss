@@ -1,0 +1,76 @@
+
+
+ion-content {
+    [padding] {
+        padding-top: 0;
+    }
+    [deliveries-item-lists] {
+        ion-item {
+            --background: transparent;
+            border-bottom: 1px solid #ddd;
+            --padding-bottom: 15px;
+            --padding-top: 15px;
+            --padding-start: 0;
+            --padding-end: 0;
+            --border-color: transparent;
+            ion-thumbnail {
+                width: 120px;
+                position: relative;
+                height: 120px;
+                border-radius: 12px;
+                overflow: hidden;
+                margin: 0 20px 0px 0px;
+                [badge] {
+                    font-size: 11px;
+                    background: #fff;
+                    width: 91px;
+                    height: 21px;
+                    position: absolute;
+                    bottom: 26px;
+                    text-align: center;
+                    line-height: 21px;
+                    opacity: .9;
+                    border-radius: 7px;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    bottom: 15px;
+                    color: #333;
+                }
+            }
+            ion-label {
+                [date] {
+                    margin-bottom: 6px;
+                    border: 1px solid #8888;
+                    display: inline-block;
+                    font-size: 11px;
+                    color: #999;
+                    width: 82px;
+                    text-align: center;
+                    height: 21px;
+                    line-height: 21px;
+                    border-radius: 7px;
+                }
+                h4 {
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin: 0 0 5px;
+                    color: #000;
+                }
+                h6{
+                    color: #FD8A5E;
+                    font-size: 20px;
+                    font-weight: bolder;
+                    margin-top: 10px !important;
+                }
+            }
+            &:first-child {
+                --padding-top:0;
+            }
+            &:last-child {
+                border-bottom:0;
+            }
+        }
+       
+    }
+}

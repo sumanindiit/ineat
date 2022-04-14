@@ -1,0 +1,78 @@
+<ion-header>
+	<ion-toolbar>
+		<div flexHeader>
+      <ion-menu-button slot="start"><div navToggle><span></span><span></span><span></span></div></ion-menu-button>
+			<ion-title>Delivery Holds</ion-title>
+			<div ml-auto>
+				<ion-button fill="none">
+				<img src="assets/img/map-icon.png">
+				</ion-button>
+			
+			</div>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div deliveries-hold-div>
+    <h4 title-h>Add Your Holiday</h4>
+    <form holiday-form>
+      <ion-row>
+        <ion-col size="12">
+          <label>Start From*</label>
+          <ion-input type="date" placeholder="DD/MM/YYYY" value=""></ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <label>End*</label>
+          <ion-input type="date" placeholder="DD/MM/YYYY" value=""></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" btnsave>Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <div holidayLists>
+      <h4 title-h>Lists of Holidays</h4>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <div con>
+              <div mainz><span mainMom>4 <span days>Days</span></span></div>
+              <span sants>Total</span>
+              </div>
+              <div con>
+                <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
+                <span sants>From</span>
+                </div>
+                <div con>
+                  <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
+                  <span sants>To</span>
+                  </div>
+          </ion-label>
+          <ion-icon name="trash" slot="end" trash></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <div con>
+              <div mainz><span mainMom>6 <span days>Days</span></span></div>
+              <span sants>Total</span>
+              </div>
+              <div con>
+                <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
+                <span sants>From</span>
+                </div>
+                <div con>
+                  <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
+                  <span sants>To</span>
+                 </div>
+          </ion-label>
+          <ion-icon name="trash"slot="end" trash></ion-icon>
+        </ion-item>
+      </ion-list>
+    </div>
+   
+  </div>
+</ion-content>
