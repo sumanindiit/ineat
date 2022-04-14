@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
   },
   {
-    path: 'chat',
+    path: 'chat/:userId',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
   {
@@ -106,13 +106,18 @@ const routes: Routes = [
   {
     path: 'mealfilters',
     loadChildren: () => import('./mealfilters/mealfilters.module').then( m => m.MealfiltersPageModule)
-  },  {
+  },
+  {
     path: 'deliveries-holds',
     loadChildren: () => import('./deliveries-holds/deliveries-holds.module').then( m => m.DeliveriesHoldsPageModule)
   },
   {
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
+  },
+  {
+    path: 'userprofile/:userId',
+    loadChildren: () => import('./userprofile/userprofile.module').then( m => m.UserprofilePageModule)
   }
 
 

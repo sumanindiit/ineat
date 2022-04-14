@@ -98,7 +98,7 @@ export class ManageSubscriptionPage implements OnInit {
             this.price = this.subscriptionData.price;
 
             this.totalMeals = (this.subscriptionData.meal_count * this.subscriptionData.people_count);
-            this.singlePrice = (this.price / this.mealCount);
+            this.singlePrice = Number((this.price / this.mealCount)).toFixed(2);
             this.subscriptionId = this.subscriptionData.id;
             this.isCancelled = this.subscriptionData.is_cancelled;
           }

@@ -51,11 +51,11 @@ export class HomePage implements OnInit {
       }
     });
 
-    
+
   }
 
   ngOnInit() {
-    this.fetchUserSocialData();
+    
     this.updateProfileForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z][a-zA-Z ]+')]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z][a-zA-Z ]+')]],
@@ -63,17 +63,14 @@ export class HomePage implements OnInit {
       description: ['']
     });
   }
-
   ionViewDidEnter() {
-
+    this.fetchUserSocialData();
   }
+
 
   get errorCtr() {
     return this.updateProfileForm.controls;
   }
-
-
-
 
   async selectImageSource() {
     const buttons = [

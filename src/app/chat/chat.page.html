@@ -3,11 +3,13 @@
 		<div flexHeader>
 			<div backHead>
 				<ion-back-button></ion-back-button>
-				<img src="assets/img/img1.jpg" alt="">
-				<ion-title>  Amelia Bedi</ion-title>
+				<img src="{{ valletData?.image }}" alt="">
+				<ion-title> {{ valletData?.name }}</ion-title>
 			</div>
 			<div ml-auto>
-				<ion-button toggle><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
+				<ion-button toggle>
+					<ion-icon name="ellipsis-vertical"></ion-icon>
+				</ion-button>
 			</div>
 		</div>
 	</ion-toolbar>
@@ -16,49 +18,53 @@
 <ion-content>
 	<div padding>
 		<div dateMsg>
-			<span></span><p>Today</p><span></span>
+			<span></span>
+			<p>Today</p><span></span>
 		</div>
 
-		<div msgs>
-			<div lftsidemsg>
-				<span><img src="assets/img/img2.jpg" alt=""></span>
-				<div msg>
-					<p>Hi Jake, how are you? I saw on the app that we’ve crossed paths several times this week 😄</p>
-					<small>2:55 PM</small>
+		<ng-container *ngFor="let data of messageData">
+			<ng-container *ngIf="data.typ === 'sender'">
+				<div msgs>
+					<div lftsidemsg>
+						<span><img src="{{ valletData?.image }}" alt=""></span>
+						<div msg>
+							<ng-container chatleft *ngIf="data.typo === '1'">
+								<p><img style="height: 100px;width: 100px;"
+										src="https://dev.indiit.solutions/vwd/public/messages/{{ data.message }}"></p>
+							</ng-container>
+							<p *ngIf="data.typo === '0'">{{ data.message }}</p>
+							<small>{{ data.time }}</small>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div msgs rit>
-			<div lftsidemsg>
-				<div msg>
-					<p>Haha really! Nice to meet you Grace! How about a cup of coffee tonight? ☕️</p>
-					<small>3:45 PM</small>
+			</ng-container>
+
+			<ng-container *ngIf="data.typ === 'receiver'">
+				<div msgs rit>
+					<div lftsidemsg>
+						<div msg>
+							<ng-container chatleft *ngIf="data.typo === '1'">
+								<p><img style="height: 100px;width: 100px;"
+										src="https://dev.indiit.solutions/vwd/public/messages/{{ data.message }}"></p>
+							</ng-container>
+							<p *ngIf="data.typo === '0'">{{ data.message }}</p>
+							<small>{{ data.time }}</small>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div msgs>
-			<div lftsidemsg>
-				<span><img src="assets/img/img2.jpg" alt=""></span>
-				<div msg>
-					<p>Sure, let’s do it! 😊</p>
-					<small>2:55 PM</small>
-				</div>
-			</div>
-		</div>
-		<div msgs rit>
-			<div lftsidemsg>
-				<div msg>
-					<p>Great I will write later the 
-time and place. See you soon!</p>
-					<small>3:45 PM</small>
-				</div>
-			</div>
-		</div>
+			</ng-container>
+		</ng-container>
 
 		<div typemsg>
-			<ion-icon name="link-outline"></ion-icon>
-			<ion-input placeholder="Message"></ion-input>
-			<ion-icon emoji name="happy"></ion-icon>
+			<form [formGroup]="messageForm" (ngSubmit)="onSubmit()" novalidate>
+				<ion-icon (click)="selectImageSource()" name="link-outline"></ion-icon>
+				<ion-input placeholder="Message" formControlName="message" (ionInput)="change($event)"
+					placeholder="Write Message....."></ion-input>
+				<ion-icon emoji name="happy"></ion-icon>
+				<input type="file" accept="image/*" id="fileupload" (change)="uploadFile($event)" name="fileupload"
+					hidden=true />
+			</form>
 		</div>
+
 	</div>
 </ion-content>

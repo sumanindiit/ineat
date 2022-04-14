@@ -8,24 +8,28 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'userprofile',
+        loadChildren: () => import('../userprofile/userprofile.module').then(m => m.UserprofilePageModule)
+      },
+      {
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
-      },  
+      },
       {
         path: 'feed',
         loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
-      },   
+      },
       {
         path: 'notifications',
         loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
-      },  
-       {
-         path: 'deliveries',
-         loadChildren: () => import('../deliveries/deliveries.module').then(m => m.DeliveriesPageModule)
-       },	
+      },
       {
-       path: 'settings',
-         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
+        path: 'deliveries',
+        loadChildren: () => import('../deliveries/deliveries.module').then(m => m.DeliveriesPageModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
         path: '',
@@ -44,4 +48,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

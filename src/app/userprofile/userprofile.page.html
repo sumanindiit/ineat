@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <div flexHeader>
+      <div backHead>
+        <ion-back-button defaultHref="/tabs/settings" [text]="" icon="chevron-back-outline"></ion-back-button>
+      </div>
+      <ion-title class="ion-text-center">Account Info</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div accouninfo-page>
+
+    <div class="top-ims-bx">
+      <div class="img-prs">
+        <div class="left-box">
+          <img src="{{ userImage }}">
+        </div>
+        <div class="con-pr">
+          <h4>{{ firstName }} {{ lastName }}</h4>
+          <p> {{ userName }} </p>
+          <ion-button slot="end" btngetsocial routerLink="/chat/{{ this.userId }}">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon> Message
+          </ion-button>
+        </div>
+      </div>
+    </div>
+    <div personal-info>
+      <ion-row>
+        <ion-col size="12">
+          <label>About</label>
+          <ion-item>
+            {{ description }}
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

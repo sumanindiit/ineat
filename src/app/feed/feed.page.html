@@ -72,8 +72,13 @@
 								</div>
 								<ion-row>
 									<ion-col size="8" pl-0>
-										<div [innerHTML]="feed?.liked_message"></div>
-
+									
+										<p *ngIf="feed?.liked_message.likePostcount > 0">Liked by
+												<b><a routerLink="/userprofile/{{ feed?.liked_message.likedbyId }}">{{
+														feed?.liked_message.likedBy }}</a></b> <ng-container *ngIf="feed?.liked_message.likeCount > 0"> and
+												<b >{{ feed?.liked_message.likeCount }}more</b></ng-container>
+										</p>
+										
 									</ion-col>
 									<ion-col size="4" class="ion-text-right" pr-0 *ngIf="feed?.comments.length > 0">
 										<p>Comments <b>{{ feed?.comments.length }}</b></p>
@@ -86,7 +91,8 @@
 									<img src="{{ comment.posted_by_image }}" alt="" />
 								</ion-avatar>
 								<ion-label>
-									<h2>{{ comment.posted_by }} <span>{{ comment.posted_on }}</span></h2>
+									<h2><a routerLink="/userprofile/{{comment.comment_user_id}}">{{ comment.posted_by }}
+										</a><span>{{ comment.posted_on }}</span></h2>
 									<p>{{ comment.comment_content }}</p>
 								</ion-label>
 							</ion-item>
@@ -105,6 +111,13 @@
 
 		<div *ngSwitchCase="'mybowls'">
 			<ul mybowlsPage>
+				<ng-container *ngIf="!myGroups?.length > 0">
+					<li>
+						<div ritBowl>
+							<h4>No groups added yet.</h4>
+						</div>
+					</li>
+				</ng-container>
 				<li routerLink="/bowl-details/{{myGroup?.id}}" *ngFor="let myGroup of myGroups">
 					<span bowlimg><img src="{{ myGroup?.image }}" alt=""> </span>
 					<div ritBowl>
@@ -123,6 +136,13 @@
 
 		<div *ngSwitchCase="'explore'">
 			<ul mybowlsPage explorePage>
+				<ng-container *ngIf="!explore?.length > 0">
+					<li>
+						<div ritBowl>
+							<h4>No more groups available.</h4>
+						</div>
+					</li>
+				</ng-container>
 				<li *ngFor="let exploreGroup of explore">
 					<span bowlimg><img src="{{ exploreGroup?.image }}" alt=""> <label>
 							<ion-icon name="people"></ion-icon> {{ exploreGroup?.peoples}}
@@ -134,7 +154,6 @@
 						<ion-button btn-join routerLink="/bowl-details/{{exploreGroup?.id}}">Preview</ion-button>
 					</div>
 				</li>
-
 			</ul>
 
 		</div>
