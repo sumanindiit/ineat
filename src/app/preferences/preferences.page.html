@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <div flexHeader>
+      <div backHead>
+        <ion-back-button defaultHref="/tabs/settings" [text]="" icon="chevron-back-outline"></ion-back-button>
+      </div>
+      <ion-title class="ion-text-center">Preferences</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <ion-segment mode="ios" [(ngModel)]="tabs" segment>
+      <ion-segment-button value="personal">
+        <h6>Delivery Address</h6>
+      </ion-segment-button>
+      <ion-segment-button value="password">
+        <h6>Preferences</h6>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div accouninfo-page [ngSwitch]="tabs">
+    <div *ngSwitchCase="'personal'">
+      <div personal-info>
+        <ion-row>
+          <ion-col size="8">
+            <label>Name</label>
+            <ion-input type="text" value="" readonly=""></ion-input>
+          </ion-col>
+          <ion-col size="4">
+            <label>User ID</label>
+            <ion-input type="text" value="" readonly=""></ion-input>
+          </ion-col>
+          <ion-col size="12">
+            <label>Email</label>
+            <ion-input type="email" value="" readonly=""></ion-input>
+          </ion-col>
+          <ion-col size="12">
+            <label>Address</label>
+            <ion-textarea rows="3" type="text" placeholder="Address" value="{{ userData?.address1 }}" readonly="">
+            </ion-textarea>
+          </ion-col>
+          <ion-col size="12">
+            <label>Chronic Disease* </label>
+            <ion-select disabled placeholder="Select One" value="{{ userData?.chronic_disease}}">
+              <ion-select-option value="1">Diabetes</ion-select-option>
+              <ion-select-option value="2">Coeliac</ion-select-option>
+              <ion-select-option value="3">Coronary Heart Disease</ion-select-option>
+              <ion-select-option value="5">IBS & IBD</ion-select-option>
+              <ion-select-option value="6">Other</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'password'" password>
+      <h4 title-h>Change Password</h4>
+      <form [formGroup]="updatePasswordForm" (ngSubmit)="onPasswordSubmit()" novalidate password-form>
+        <ion-row>
+          <ion-col size="12">
+            <label>Current Password* </label>
+            <ion-input type="password" formControlName="currentPassword" placeholder="password" value=""></ion-input>
+            <ion-item class="form-text error"
+              *ngIf="submitPasswordAttempt && errorPasswordCtr.currentPassword.errors?.required">
+              <ion-label no-margin stacked>Current Password is required.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <label>New Password*</label>
+            <ion-input type="password" formControlName="password" placeholder="password" value=""></ion-input>
+            <ion-item class='form-text error'
+              *ngIf="submitPasswordAttempt && errorPasswordCtr.password.errors?.required">
+              <ion-label no-margin stacked>Password is required.</ion-label>
+            </ion-item>
+            <ion-item class='form-text error'
+              *ngIf="submitPasswordAttempt && errorPasswordCtr.password.errors?.pattern">
+              <ion-label no-margin stacked wrap-text>Password must be between 6 and 12 characters with at least one
+                capital letter, one small letter, and one digit.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <label>Repeat New Password* </label>
+            <ion-input type="password" formControlName="confirmPassword" placeholder="password" value=""></ion-input>
+            <ion-item class='form-text error'
+              *ngIf="submitPasswordAttempt && errorPasswordCtr.confirmPassword.errors?.required">
+              <ion-label no-margin stacked>Confirm Password is required.</ion-label>
+            </ion-item>
+            <ion-item class='form-text error'
+              *ngIf="submitPasswordAttempt && !errorPasswordCtr.confirmPassword.errors?.required && updatePasswordForm.hasError('mismatchedPasswords') ">
+              <ion-label no-margin stacked>Passwords do not match</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" btnsave>Submit</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+
+  </div>
+</ion-content>

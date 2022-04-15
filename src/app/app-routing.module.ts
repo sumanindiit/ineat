@@ -106,15 +106,30 @@ const routes: Routes = [
   {
     path: 'mealfilters',
     loadChildren: () => import('./mealfilters/mealfilters.module').then( m => m.MealfiltersPageModule)
-  },  {
+  },
+  {
     path: 'deliveries-holds',
     loadChildren: () => import('./deliveries-holds/deliveries-holds.module').then( m => m.DeliveriesHoldsPageModule)
   },
   {
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
+  },
+  {
+    path: 'add-address',
+    loadChildren: () => import('./add-address/add-address.module').then( m => m.AddAddressPageModule)
+  },
+  {
+    path: 'all-comments',
+    loadChildren: () => import('./all-comments/all-comments.module').then( m => m.AllCommentsPageModule)
+  },  {
+    path: 'edit-address',
+    loadChildren: () => import('./edit-address/edit-address.module').then( m => m.EditAddressPageModule)
+  },
+  {
+    path: 'preferences',
+    loadChildren: () => import('./preferences/preferences.module').then( m => m.PreferencesPageModule)
   }
-
 
 
 ];

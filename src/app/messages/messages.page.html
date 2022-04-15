@@ -2,7 +2,7 @@
   <ion-toolbar>
     <div flexHeader>
 		<div backHead>
-			<ion-back-button></ion-back-button>
+			<ion-back-button defaultHref="" [text]="" icon="chevron-back-outline"></ion-back-button>
 		</div>
 		<ion-title>Messages</ion-title>
 	</div>
@@ -12,70 +12,62 @@
 <ion-content>
 	<div class="main-padding">
 		<div class="servic-near">
+			<div searchbar>
+				<ion-searchbar  type="text" placeholder="Search a friend" ></ion-searchbar>
+			  </div>
 			<ion-list class="liat-st" lines="none">
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
+				<ion-item lines="none" routerLink="/chat">
+					<ion-avatar>
 						<img src="assets/img/img1.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Jessica Parker</b> <span>How your life is going?</span>  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon> 27 min</p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
+					</ion-avatar>
+					<ion-label>
+						<h2>Jessica Parker</h2>
+						<p>How your life is going?</p>
+					</ion-label>
+					<ion-note>2 hrs</ion-note>
+				</ion-item>
+				<ion-item lines="none" routerLink="/chat">
+					<ion-avatar>
 						<img src="assets/img/img2.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Julia Green</b> <span>Wow, that’s awesome!</span>  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min</p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
+					</ion-avatar>
+					<ion-label>
+						<h2>Julia Green</h2>
+						<p>Wow, that’s awesome!</p>
+					</ion-label>
+					<ion-note>Yesterday</ion-note>
+				</ion-item>
+				<ion-item lines="none" routerLink="/chat">
+					<ion-avatar>
 						<img src="assets/img/img3.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Miranda Bell</b> <span>Bye-bye.</span>  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min</p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
+					</ion-avatar>
+					<ion-label>
+						<h2>Miranda Bell</h2>
+						<p>How your life is going?</p>
+					</ion-label>
+					<ion-note>26/06</ion-note>
+				</ion-item>
+
+				<ion-item lines="none" routerLink="/chat">
+					<ion-avatar>
 						<img src="assets/img/img4.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Hanna Goldberg</b> <span>It’s a sunny day.</span></h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
+					</ion-avatar>
+					<ion-label>
+						<h2>Hanna Goldberg</h2>
+						<p>How your life is going?</p>
+					</ion-label>
+					<ion-note>26/06</ion-note>
+				</ion-item>
+
+				<ion-item lines="none" routerLink="/chat">
+					<ion-avatar>
 						<img src="assets/img/img5.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Mike Goldberg</b> <span>It’s a sunny day.</span>  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
-						<img src="assets/img/img6.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none" routerLink="/chat">
-					<div class="img-boxda">
-						<img src="assets/img/img7.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
+					</ion-avatar>
+					<ion-label>
+						<h2>Mike Goldberg</h2>
+						<p>How your life is going?</p>
+					</ion-label>
+					<ion-note>26/06</ion-note>
+				</ion-item>			
 			</ion-list>
 		</div>
 	</div>

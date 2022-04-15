@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-toolbar>
+		<div flexHeader>
+			<div backHead>
+				<ion-back-button routerLink="/address"></ion-back-button>
+			</div>
+			<ion-title>Add Address</ion-title>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div address-div>
+		<div form>
+			<form>
+				<ion-row>
+					<ion-col>
+						<label>Name</label>
+						<ion-input type="text" placeholder=""></ion-input>
+					</ion-col>
+				</ion-row>	
+        <ion-row>
+					<ion-col>
+						<label>Email Address</label>
+            <ion-input type="email" placeholder=""></ion-input>
+					</ion-col>
+				</ion-row>	
+        <ion-row>
+					<ion-col>
+						<label>Address</label>
+						<ion-textarea type="text" placeholder="" rows="4"></ion-textarea>
+					</ion-col>
+				</ion-row>
+        <ion-row>
+					<ion-col>
+						<label>Postal Code</label>
+            <ion-input type="number" placeholder=""></ion-input>
+					</ion-col>
+				</ion-row>		
+				<ion-row>
+					<ion-col>
+						<ion-button type="submit" btnsave>Add</ion-button>
+					</ion-col>
+				</ion-row>
+			</form>
+		</div>
+
+	</div>
+</ion-content>

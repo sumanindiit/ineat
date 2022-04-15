@@ -1,4 +1,7 @@
 ion-header{
+	[flexHeader] {
+		padding-top: 10px;
+	}
 	img{
 		width: 35px;
 		height: 35px;
@@ -77,7 +80,7 @@ ion-header{
 			justify-content: flex-end;
 			[msg]{
 				p{
-					background: #fcfcfc;
+					background: #F3F3F3;
 					border-radius: 15px 15px 0 15px;
 					color: #333;
 				}
@@ -89,17 +92,18 @@ ion-header{
 	}
 }
 [typemsg]{
-	border:1px solid #eee;
-	border-radius: 100px;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	padding: 0px 15px;
-	position: fixed;
-	bottom: 20px;
-	left: 20px;
-	right: 20px;
-	z-index: 11;
+	border: 1px solid #eee;
+    border-radius: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 11;
+    background: #fff;
 	ion-icon{
 		color: #666;
 		font-size: 18px;
