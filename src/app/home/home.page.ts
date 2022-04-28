@@ -55,7 +55,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.updateProfileForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z][a-zA-Z ]+')]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z][a-zA-Z ]+')]],
@@ -64,7 +64,10 @@ export class HomePage implements OnInit {
     });
   }
   ionViewDidEnter() {
-    this.fetchUserSocialData();
+    if (this.userId != null) {
+      this.fetchUserSocialData();
+    }
+
   }
 
 
@@ -233,6 +236,7 @@ export class HomePage implements OnInit {
 
   fetchUserSocialData() {
     this.common.presentLoading();
+    console.log('userid', this.userId);
     this.api.post('getSocialData', { userId: this.userId }, '')
       .subscribe(
         (result) => {

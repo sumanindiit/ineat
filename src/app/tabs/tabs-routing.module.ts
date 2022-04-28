@@ -20,6 +20,14 @@ const routes: Routes = [
         loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
       },
       {
+        path: 'messages',
+        loadChildren: () => import('../messages/messages.module').then( m => m.MessagesPageModule)
+      },
+      {
+        path: 'deliveries-holds',
+        loadChildren: () => import('../deliveries-holds/deliveries-holds.module').then( m => m.DeliveriesHoldsPageModule)
+      },
+      {
         path: 'notifications',
         loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
       },
@@ -31,6 +39,7 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
       },
+
       {
         path: '',
         redirectTo: '/tabs/home',

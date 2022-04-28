@@ -11,6 +11,7 @@ import { CommonService } from '../services/common.service';
 })
 export class UserprofilePage implements OnInit {
   userId: any;
+  currentUserId: any = localStorage.getItem('ineat_userid');
   userName: any = 'Demo User';
   userImage: any = '../assets/img/logo.png';
   firstName: any = 'Demo';

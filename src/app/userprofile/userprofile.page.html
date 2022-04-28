@@ -20,9 +20,12 @@
         <div class="con-pr">
           <h4>{{ firstName }} {{ lastName }}</h4>
           <p> {{ userName }} </p>
-          <ion-button slot="end" btngetsocial routerLink="/chat/{{ this.userId }}">
-            <ion-icon name="chatbubble-ellipses-outline"></ion-icon> Message
-          </ion-button>
+          <ng-container *ngIf="this.userId != currentUserId">
+            <ion-button slot="end" btngetsocial routerLink="/chat/{{ userId }}">
+              <ion-icon name="chatbubble-ellipses-outline"></ion-icon> Message
+            </ion-button>
+          </ng-container>
+
         </div>
       </div>
     </div>

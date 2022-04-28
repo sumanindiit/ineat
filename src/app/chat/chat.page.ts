@@ -30,7 +30,7 @@ export class ChatPage implements OnInit {
   userId: any = localStorage.getItem('ineat_userid');
   fromId: any;
   userData: any;
-  
+  userImage: any = 'assets/img/img1.jpg';
 
   previewImage: any;
 
@@ -80,6 +80,7 @@ export class ChatPage implements OnInit {
           }
           else if (res.status === '200' || res.status === 200) {
             this.valletData = res.data.user;
+            this.userImage = res.data.user.image;
             this.messageData = res.data.message;
             this.is_loaded = false;
             setTimeout(() => {

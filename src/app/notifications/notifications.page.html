@@ -1,81 +1,35 @@
 <ion-header>
-  <ion-toolbar>
-    <div flexHeader>
-		<div backHead>
-			<ion-back-button></ion-back-button>
+	<ion-toolbar>
+		<div flexHeader>
+			<div backHead>
+				<ion-back-button defaultHref="/tabs/feed" [text]="" icon="chevron-back-outline"></ion-back-button>
+			</div>
+			<ion-title>Notifications</ion-title>
 		</div>
-		<ion-title>Notifications</ion-title>
-	</div>
-  </ion-toolbar>
+	</ion-toolbar>
 </ion-header>
-	
+
 <ion-content>
 	<div class="main-padding">
 		<div class="servic-near">
 			<ion-list class="liat-st" lines="none">
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img1.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon> 27 min</p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img2.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min</p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img3.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min</p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img4.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post</h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img5.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img6.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
-				<ion-card class="detals" lines="none">
-					<div class="img-boxda">
-						<img src="assets/img/img7.jpg">
-					</div>
-					<div class="cont-alls">
-						<h5 class="name-trs"><b>Somona Lisa</b> liked your post  </h5>
-						<p class="emainb"><ion-icon name="time-outline"></ion-icon>  27 min </p>
-					</div>
-				</ion-card>
+
+				<ng-container *ngIf="is_loaded === true && notificationData.length < 1" class="alert alert-danger" role="alert" style="color: red;font-size: 17px;text-align: center;font-weight: 600;" >
+					No notifications found!
+				</ng-container>
+				<ng-container *ngIf="notificationData">
+					<ion-item lines="none" *ngFor="let data of notificationData">
+						<ion-avatar>
+							<img src="{{ data.image }}">
+						</ion-avatar>
+						<ion-label>
+							<h2><strong>{{ data?.username }}</strong> {{ data?.message}}</h2>
+						</ion-label>
+						<ion-note>27 min</ion-note>
+					</ion-item>
+				</ng-container>
+
+
 			</ion-list>
 		</div>
 	</div>

@@ -1,46 +1,36 @@
 <ion-header>
-  <ion-toolbar> <ion-menu-button slot="start"><div navToggle><span></span><span></span><span></span></div></ion-menu-button>
+  <ion-toolbar>
+    <ion-menu-button slot="start">
+      <div navToggle><span></span><span></span><span></span></div>
+    </ion-menu-button>
     <ion-title>Deliveries</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div padding>
-    <ion-list deliveries-item-lists> 
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="assets/img/food.jpg" alt="">
-          <div badge>Preferences</div>
-        </ion-thumbnail>
-        <ion-label>
-          <div date>2021/06/14</div>
-          <h4>Lamb Chops With <br>Middle Eastern</h4>
-          <h6>$12.75</h6>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="assets/img/food1.jpg" alt="">
-          <div badge>Preferences</div>
-        </ion-thumbnail>
-        <ion-label>
-          <div date>2021/06/14</div>
-          <h4>Lamb Chops With <br>Middle Eastern</h4>
-          <h6>$13.99</h6>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="assets/img/food2.jpg" alt="">
-          <div badge>Preferences</div>
-        </ion-thumbnail>
-        <ion-label>
-          <div date>2021/06/14</div>
-          <h4>Lamb Chops With <br>Middle Eastern</h4>
-          <h6>$15.00</h6>
-        </ion-label>
-      </ion-item>
-     
+    <ion-list deliveries-item-lists>
+      <ng-container *ngIf="is_loaded === true && pageData.length < 1" class="alert alert-danger" role="alert"
+        style="color: red;font-size: 17px;text-align: center;font-weight: 600;">
+        <ion-item>
+          <p>No Deliveries found!</p>
+        </ion-item>
+      </ng-container>
+      <ng-container *ngIf="pageData">
+        <ion-item  *ngFor="let data of pageData">
+          <ion-thumbnail slot="start">
+            <img src="{{ data?.image }}" alt="">
+            <div badge>{{ data?.planType }}</div>
+          </ion-thumbnail>
+          <ion-label>
+            <div date>{{ data?.date }}</div>
+            <h4>{{ data?.title }}</h4>
+            <h6></h6>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+
+
     </ion-list>
   </div>
 </ion-content>
