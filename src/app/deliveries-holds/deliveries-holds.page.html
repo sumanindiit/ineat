@@ -1,16 +1,18 @@
 <ion-header>
-	<ion-toolbar>
-		<div flexHeader>
-      <ion-menu-button slot="start"><div navToggle><span></span><span></span><span></span></div></ion-menu-button>
-			<ion-title>Delivery Holds</ion-title>
-			<div ml-auto>
-				<ion-button fill="none">
-				<img src="assets/img/map-icon.png">
-				</ion-button>
-			
-			</div>
-		</div>
-	</ion-toolbar>
+  <ion-toolbar>
+    <div flexHeader>
+      <ion-menu-button slot="start">
+        <div navToggle><span></span><span></span><span></span></div>
+      </ion-menu-button>
+      <ion-title>Delivery Holds</ion-title>
+      <div ml-auto>
+        <ion-button fill="none">
+          <img src="assets/img/map-icon.png">
+        </ion-button>
+
+      </div>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 
@@ -21,58 +23,44 @@
       <ion-row>
         <ion-col size="12">
           <label>Start From*</label>
-          <ion-input type="date" placeholder="DD/MM/YYYY" value=""></ion-input>
+          <ion-input readonly (click)="openFromCalendar();" name="fromDate" [(ngModel)]="fromDate" type="date"
+            placeholder="DD/MM/YYYY" value=""></ion-input>
         </ion-col>
         <ion-col size="12">
           <label>End*</label>
-          <ion-input type="date" placeholder="DD/MM/YYYY" value=""></ion-input>
+          <ion-input readonly (click)="openEndCalendar();"  name="endDate" [(ngModel)]="endDate" type="date" placeholder="DD/MM/YYYY" value=""></ion-input>
         </ion-col>
+
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" btnsave>Save</ion-button>
+          <ion-button (click)="submitHoliday()" type="submit" btnsave>Save</ion-button>
         </ion-col>
       </ion-row>
     </form>
-    <div holidayLists>
+
+    <div holidayLists *ngIf="holidayData">
       <h4 title-h>Lists of Holidays</h4>
       <ion-list>
-        <ion-item>
+        <ion-item *ngFor="let data of holidayData">
           <ion-label>
             <div con>
-              <div mainz><span mainMom>4 <span days>Days</span></span></div>
+              <div mainz><span mainMom>{{ data?.day_diff}} <span days>Days</span></span></div>
               <span sants>Total</span>
-              </div>
-              <div con>
-                <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
-                <span sants>From</span>
-                </div>
-                <div con>
-                  <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
-                  <span sants>To</span>
-                  </div>
-          </ion-label>
-          <ion-icon name="trash" slot="end" trash></ion-icon>
-        </ion-item>
-        <ion-item>
-          <ion-label>
+            </div>
             <div con>
-              <div mainz><span mainMom>6 <span days>Days</span></span></div>
-              <span sants>Total</span>
-              </div>
-              <div con>
-                <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
-                <span sants>From</span>
-                </div>
-                <div con>
-                  <div mainz><span mainMom> <span days>2021/06/16</span></span></div>
-                  <span sants>To</span>
-                 </div>
+              <div mainz><span mainMom> <span days>{{ data?.from_date}}</span></span></div>
+              <span sants>From</span>
+            </div>
+            <div con>
+              <div mainz><span mainMom> <span days>{{ data?.to_date}}</span></span></div>
+              <span sants>To</span>
+            </div>
           </ion-label>
-          <ion-icon name="trash"slot="end" trash></ion-icon>
+          <ion-icon (click)="deleteHoliday(data.holiday_id)" name="trash" slot="end" trash></ion-icon>
         </ion-item>
       </ion-list>
     </div>
-   
+
   </div>
 </ion-content>
